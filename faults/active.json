@@ -1,4 +1,6 @@
 [
-  "footer-broken-link",
-  "image-missing-alt"
+  "image-missing-alt",
+  "html-lang-missing",
+  "mixed-content-image",
+  "canonical-wrong-home"
 ]
