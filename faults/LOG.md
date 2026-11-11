@@ -8,3 +8,4 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T09:32:37.976Z off broken-external-invalid-domain
 - 2026-11-11T09:32:37.976Z off image-missing-alt
 - 2026-11-11T09:32:37.977Z reset (3 cleared)
+- 2026-11-11T12:01:28.453Z on broken-internal-link @a3f8d11
