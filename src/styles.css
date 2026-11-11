@@ -350,7 +350,7 @@ a:hover {
 }
 .btn-secondary {
   background: transparent;
-  border-color: var(--brand-2);
+  border-color: var(--border-strong);
   color: var(--text);
 }
 .btn-quiet {
@@ -713,6 +713,7 @@ a.card {
    --------------------------------------------------------------- */
 .site-footer {
   margin-top: var(--s-8);
+  border-top: 1px solid var(--border);
   background: var(--brand);
   color: var(--text-on-brand);
 }
