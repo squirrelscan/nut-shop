@@ -106,3 +106,5 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T13:34:11.876Z off csp-removed @ac3cad6
 - 2026-11-11T13:34:11.905Z off third-party-script-on-cart @ac3cad6
 - 2026-11-11T13:34:11.933Z off inline-script-with-token @ac3cad6
+- 2026-11-11T13:44:26.962Z on leaked-secret-fake @64f23ea
+- 2026-11-11T13:44:26.986Z on inline-script-with-token @64f23ea
