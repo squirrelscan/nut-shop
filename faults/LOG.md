@@ -115,3 +115,5 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T13:53:24.375Z on image-missing-dimensions @0d0a756
 - 2026-11-11T13:53:24.401Z on title-too-long @0d0a756
 - 2026-11-11T13:53:24.427Z on missing-og-image-post @0d0a756
+- 2026-11-11T14:02:18.881Z on leaked-secret-fake @96b3b5d
+- 2026-11-11T14:02:18.926Z on inline-script-with-token @96b3b5d

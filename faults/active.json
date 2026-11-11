@@ -3,5 +3,7 @@
   "no-cache-validators",
   "image-missing-dimensions",
   "title-too-long",
-  "missing-og-image-post"
+  "missing-og-image-post",
+  "leaked-secret-fake",
+  "inline-script-with-token"
 ]
