@@ -54,10 +54,16 @@ function Newsletter() {
   );
 }
 
-export function Brand() {
+export function Brand({ lazy = false }: { lazy?: boolean }) {
   return (
     <a href="/" className="brand">
-      <img src="/logo.svg" alt="" width={36} height={36} />
+      <img
+        src="/logo.svg"
+        alt=""
+        width={36}
+        height={36}
+        {...(lazy ? { loading: "lazy" as const } : {})}
+      />
       {SITE.name}
     </a>
   );
@@ -93,12 +99,6 @@ export function Header() {
           </button>
         </form>
         <div className="header-tools">
-          <a href="/search" className="search-link" aria-label="Search">
-            <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="11" cy="11" r="6.500" />
-              <path d="m16 16 4 4" />
-            </svg>
-          </a>
           <CartLink />
         </div>
       </div>
@@ -111,7 +111,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="wrap footer-grid">
         <div className="footer-brand">
-          <Brand />
+          <Brand lazy />
           <p className="footer-small">{SITE.tagline}.</p>
           <p className="footer-small">
             {SITE.business.legalName}. {SITE.business.registration} {SITE.business.address}

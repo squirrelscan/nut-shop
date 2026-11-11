@@ -32,7 +32,7 @@ export function ProductCard({
   const H = level;
   return (
     <article className="card">
-      <a href={`/products/${p.slug}`} className="card-media" tabIndex={-1} aria-hidden="true">
+      <div className="card-media" aria-hidden="true">
         <ProductImage
           product={p}
           width={400}
@@ -41,9 +41,8 @@ export function ProductCard({
           decorative
           className="h-auto w-full"
         />
-      </a>
+      </div>
       <div className="card-body">
-        <span className="badge">{getCategory(p.category)?.name ?? "Nuts"}</span>
         <H className="card-title">
           <a href={`/products/${p.slug}`}>{p.name}</a>
         </H>
@@ -178,8 +177,8 @@ export function HomePage() {
           <a href="/blog">All journal posts</a>
         </div>
         <div className="grid grid-3">
-          {POSTS.slice(0, 3).map((p, i) => (
-            <PostCard key={p.slug} post={p} eager={i < 3} />
+          {POSTS.slice(0, 3).map((p) => (
+            <PostCard key={p.slug} post={p} />
           ))}
         </div>
       </section>
@@ -207,7 +206,7 @@ export function ShopPage() {
         <section key={c.slug} className="section-tight" aria-labelledby={`c-${c.slug}`}>
           <div className="section-head">
             <h2 id={`c-${c.slug}`}>{c.name}</h2>
-            <a href={`/categories/${c.slug}`}>See the whole range</a>
+            <a href={`/categories/${c.slug}`}>Shop all {c.name.toLowerCase()}</a>
           </div>
           <div className="grid grid-4">
             {productsIn(c.slug).map((p) => (

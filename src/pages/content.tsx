@@ -22,7 +22,7 @@ export function PostCard({
   const H = level;
   return (
     <article className="card">
-      <a href={`/blog/${post.slug}`} className="card-media" tabIndex={-1} aria-hidden="true">
+      <div className="card-media" aria-hidden="true">
         <Img
           src={`/img/posts/${post.slug}.svg`}
           alt=""
@@ -31,7 +31,7 @@ export function PostCard({
           eager={eager}
           className="h-auto w-full"
         />
-      </a>
+      </div>
       <div className="card-body">
         <p className="meta">
           <span className="badge badge-warm">{post.topic}</span>

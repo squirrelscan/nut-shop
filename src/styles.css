@@ -1,4 +1,4 @@
-/* hallmark v2.0.0 | custom: "kraft counter" | genre editorial | by request: independent shop identity, warm and playful */
+/* Hallmark v2.0.0 | custom: "kraft counter" | genre editorial | by request: independent shop identity, warm and playful */
 /* critique: type and colour carry the identity (walnut serif, paprika accent, kraft surfaces); illustrations are flat tiles, not gradients. */
 @import "tailwindcss";
 
@@ -137,6 +137,7 @@
    --------------------------------------------------------------- */
 html {
   overflow-x: clip;
+  scrollbar-color: var(--border-strong) var(--bg);
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -473,6 +474,7 @@ a:hover {
   color: var(--text-2);
 }
 .price-lg {
+  font-variant-numeric: tabular-nums;
   font-size: var(--fs-5);
   line-height: 1;
 }
@@ -489,6 +491,7 @@ a:hover {
    Cards: product, category, post (one shell)
    --------------------------------------------------------------- */
 .card {
+  color: var(--text);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -508,6 +511,7 @@ a:hover {
   }
 }
 .card-media {
+  color: var(--text);
   display: block;
   background: var(--surface-2);
 }
@@ -636,7 +640,8 @@ a.card {
   gap: var(--s-1);
 }
 .search-form {
-  display: none;
+  display: flex;
+  grid-column: 1 / -1;
 }
 .cart-count {
   display: inline-grid;
@@ -674,11 +679,8 @@ a.card {
     grid-row: auto;
   }
   .search-form {
-    display: flex;
+    grid-column: auto;
     width: 15rem;
-  }
-  .search-link {
-    display: none !important;
   }
 }
 
@@ -814,6 +816,7 @@ a.card {
   margin-top: var(--s-5);
 }
 .hero-art {
+  color: var(--text);
   overflow: hidden;
   border-radius: var(--r-3);
   background: var(--surface-3);
@@ -831,6 +834,7 @@ a.card {
   }
 }
 .band {
+  color: var(--text);
   display: grid;
   gap: var(--s-6);
   grid-template-columns: minmax(0, 1fr);
@@ -844,7 +848,7 @@ a.card {
 }
 .band-copy p {
   margin-top: var(--s-3);
-  max-width: 40ch;
+  max-width: 46ch;
   color: var(--text-2);
 }
 .band-copy .actions {
@@ -1039,8 +1043,9 @@ a.card {
 }
 .prose-nuts blockquote {
   margin: var(--s-5) 0;
-  padding-left: var(--s-4);
-  border-left: 4px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: var(--r-2);
+  padding: var(--s-3) var(--s-4);
   color: var(--text-2);
 }
 .article-art {
