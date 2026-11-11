@@ -1,5 +1,11 @@
 [
   "broken-external-404",
-  "broken-external-dead-domain",
-  "broken-external-invalid-domain"
+  "soft-404",
+  "sitemap-lists-404",
+  "sitemap-missing-page",
+  "noindex-product",
+  "canonical-missing",
+  "canonical-wrong-home",
+  "redirect-chain-3-hops",
+  "orphan-gift-guide"
 ]

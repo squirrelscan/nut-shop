@@ -19,3 +19,13 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T12:09:21.487Z on broken-external-404 @13da883
 - 2026-11-11T12:09:21.510Z on broken-external-dead-domain @13da883
 - 2026-11-11T12:09:21.531Z on broken-external-invalid-domain @13da883
+- 2026-11-11T12:17:06.203Z off broken-external-dead-domain @e13efaf
+- 2026-11-11T12:17:06.232Z off broken-external-invalid-domain @e13efaf
+- 2026-11-11T12:17:06.259Z on soft-404 @e13efaf
+- 2026-11-11T12:17:06.280Z on sitemap-lists-404 @e13efaf
+- 2026-11-11T12:17:06.302Z on sitemap-missing-page @e13efaf
+- 2026-11-11T12:17:06.322Z on noindex-product @e13efaf
+- 2026-11-11T12:17:06.344Z on canonical-missing @e13efaf
+- 2026-11-11T12:17:06.366Z on canonical-wrong-home @e13efaf
+- 2026-11-11T12:17:06.390Z on redirect-chain-3-hops @e13efaf
+- 2026-11-11T12:17:06.415Z on orphan-gift-guide @e13efaf
