@@ -84,3 +84,7 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T12:46:46.892Z off broken-link-gone-410 @019648b
 - 2026-11-11T12:46:46.920Z off broken-external-invalid-domain @019648b
 - 2026-11-11T12:46:46.947Z off leaked-secret-fake @019648b
+- 2026-11-11T12:55:00.163Z on template-meta-description-missing @ce407b2
+- 2026-11-11T12:55:00.192Z on footer-broken-link @ce407b2
+- 2026-11-11T12:55:00.229Z on html-lang-missing @ce407b2
+- 2026-11-11T12:55:00.263Z on image-missing-alt @ce407b2
