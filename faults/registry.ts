@@ -63,6 +63,28 @@ export const FAULTS = [
     severity: "medium",
   },
   {
+    id: "broken-external-404",
+    category: "links",
+    title: "Link to a real external page that returns 404",
+    breaks:
+      "Privacy page links to https://squirrelscan.com/nutshop-fault-missing-page (a real host answering HTTP 404).",
+    pages: ["/privacy"],
+    expectedRule: "links/broken-external-links",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "broken-external-dead-domain",
+    category: "links",
+    title: "Link to a hostname on a real TLD that does not resolve",
+    breaks:
+      "Terms page links to https://gone.nutshop-fault.squirrelscan.com/ (NXDOMAIN in a zone we control).",
+    pages: ["/terms"],
+    expectedRule: "links/broken-external-links",
+    confidence: C,
+    severity: "medium",
+  },
+  {
     id: "redirect-chain-3-hops",
     category: "links",
     title: "Internal link through a 3-hop redirect chain",

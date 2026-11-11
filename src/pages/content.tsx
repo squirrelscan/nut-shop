@@ -195,6 +195,16 @@ export function StaticPageView({ page }: { page: StaticPage }) {
             <a href="https://nut-supplier.invalid/">Our supplier</a>
           </p>
         ) : null}
+        {page.path === "/privacy" && fault("broken-external-404") ? (
+          <p>
+            <a href="https://squirrelscan.com/nutshop-fault-missing-page">Our supplier policy</a>
+          </p>
+        ) : null}
+        {page.path === "/terms" && fault("broken-external-dead-domain") ? (
+          <p>
+            <a href="https://gone.nutshop-fault.squirrelscan.com/">Our logistics partner</a>
+          </p>
+        ) : null}
         {isShipping ? (
           <p>
             Looking for something else? See the <a href="/faq">FAQ</a> or{" "}

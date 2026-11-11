@@ -33,6 +33,14 @@ const probes: Record<FaultId, Probe> = {
     render: () => pages.staticPage("contact"),
     on: has("https://nut-supplier.invalid/"),
   },
+  "broken-external-404": {
+    render: () => pages.staticPage("privacy"),
+    on: has("https://squirrelscan.com/nutshop-fault-missing-page"),
+  },
+  "broken-external-dead-domain": {
+    render: () => pages.staticPage("terms"),
+    on: has("https://gone.nutshop-fault.squirrelscan.com/"),
+  },
   "redirect-chain-3-hops": { render: () => pages.home(), on: has('href="/_fault/r1"') },
   "orphan-gift-guide": { render: () => pages.footer(), on: lacks("/gift-guide") },
   "soft-404": { render: () => pages.staticPage("shipping"), on: has("/_fault/soft-404") },
