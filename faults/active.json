@@ -1,9 +1,4 @@
 [
-  "h1-duplicate",
-  "no-cache-validators",
-  "image-missing-dimensions",
-  "title-too-long",
-  "missing-og-image-post",
-  "leaked-secret-fake",
-  "inline-script-with-token"
+  "broken-internal-link",
+  "footer-broken-link"
 ]
