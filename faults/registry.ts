@@ -176,7 +176,8 @@ export const FAULTS = [
     id: "title-duplicate",
     category: "meta",
     title: "Duplicate titles on two products",
-    breaks: 'Raw almonds and dry-roasted almonds share the title "Almonds | The Nut Shop".',
+    breaks:
+      'Raw almonds and dry-roasted almonds share the title "Almonds: raw and roasted | The Nut Shop".',
     pages: ["/products/raw-almonds", "/products/dry-roasted-almonds"],
     expectedRule: "core/title-duplicate",
     confidence: C,

@@ -44,6 +44,7 @@ export type Product = {
 export type Category = {
   slug: string;
   name: string;
+  seoTitle: string;
   metaDescription: string;
   intro: string;
 };

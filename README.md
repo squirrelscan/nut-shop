@@ -1,196 +1,54 @@
-Welcome to your new TanStack Start app!
+# The Nut Shop
 
-# Getting Started
+A fictional demo ecommerce site that squirrelscan audits end to end. It is a **test bed**: it looks like a small real shop, and it has a controlled way to be broken and fixed so we can time how long audit findings take to appear and close.
 
-To run this application:
+> Every page carries: "The Nut Shop is a demo store run by squirrelscan to test website audits. Nothing here is for sale." There is no real checkout, no payment fields and no form that collects personal data. Everything (brand, products, prices, recipes, business details) is invented.
+
+Stack: TanStack Start (React, SSR, file routes), Tailwind v4, Cloudflare Workers (wrangler config present, **not deployed**). No database: content lives in the repo.
+
+## Run it
 
 ```bash
 bun install
-bun --bun run dev
+bun run dev            # http://127.0.0.1:4210 (vite + workerd)
+bun run build          # compiles content, then vite build
+bun run test           # unit tests (faults + healthy baseline)
+bun run typecheck      # tsgo --noEmit
+bun run lint           # oxlint
+bun run format:check   # oxfmt
+bun run check-links    # crawl the running site (add -- --external for outbound links)
 ```
 
-# Building For Production
+The hostname is set in one place, `src/config/site.ts`. Build with `VITE_SITE_URL=https://example.test bun run build` to change canonicals, sitemap, JSON-LD `@id`s, OG URLs and the contact email (`hello@<host>`).
 
-To build this application for production:
+## Content
+
+- `src/content/products/*.json` (36 products), `src/content/posts/*.md` (16 posts), `src/content/catalog.ts` (6 categories), `src/content/pages.ts` (static pages, FAQ).
+- `bun run content` compiles them into `src/content/generated/*.json` (committed) and validates slugs, internal links, description sizes and word counts.
+- `bun run images` regenerates the original SVG illustrations (`public/img`) and PNG social cards (`public/og`).
+
+## Controlled faults
+
+`faults/registry.ts` lists every fault (id, title, what it breaks, pages, expected squirrelscan rule, severity). Every `expectedRule` is **expected, to be confirmed by audit**: it is a best guess, not a verified mapping.
+
+`faults/active.json` is the list of fault ids that are ON. The healthy baseline is `[]`. The app reads it at build time (dev: hot reloaded), so one small commit flips a defect.
 
 ```bash
-bun --bun run build
+bun run fault list                 # all faults, ON/off, severity, expected rule
+bun run fault on broken-internal-link
+bun run fault off broken-internal-link
+bun run fault reset                # back to the healthy baseline
 ```
 
-## Styling
+Every toggle appends a line to `faults/LOG.md` (ISO time, action, id). That log is how we measure time-to-detect and time-to-close: commit `active.json` + `LOG.md`, deploy, then compare against the audit timestamps.
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+Endpoints under `/_fault/` (410 page, 3-hop redirect chain, soft 404, slow script, big image) exist in every state; faults only decide whether anything links to them.
 
-### Removing Tailwind CSS
+`tests/faults.test.ts` renders the affected route/head/sitemap/headers with each fault off and on and asserts the claimed change. `Record<FaultId, Probe>` makes a fault without a probe a type error. `tests/baseline.test.ts` checks the healthy site: unique titles/descriptions, canonicals, JSON-LD, sitemap equals the indexable pages, headers, alt text and dimensions, no broken internal link targets.
 
-If you prefer not to use Tailwind CSS:
+## Healthy baseline notes
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Remove `@tailwindcss/vite` and `tailwindcss` from `package.json`
-
-
-## Deploy to Cloudflare Workers
-
-This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`) and `wrangler.jsonc`:
-
-1. Install Wrangler: `npm install -g wrangler`
-2. Authenticate: `wrangler login`
-3. Deploy: `npx wrangler deploy`
-
-For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
-
-KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see https://developers.cloudflare.com/workers/wrangler/configuration/.
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+- Headers (CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy, nosniff, COOP), ETag/Last-Modified with 304 handling, and the http to https 301 fallback are set in the Worker (`src/server.ts`, `src/server/headers.ts`).
+- The CSP allows `'unsafe-inline'` scripts because TanStack Start inlines its hydration scripts. squirrelscan reports this as a warning in the baseline.
+- Social cards are PNG; the product, category and post illustrations are SVG.
+- Noindex pages (`/search`, `/cart`, `/order-demo`) are not in the sitemap, carry no JSON-LD and are not blocked in robots.txt.

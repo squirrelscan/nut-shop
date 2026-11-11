@@ -16,8 +16,8 @@
     "check-links": "bun run scripts/check-links.ts",
     "typecheck": "tsgo --noEmit",
     "lint": "oxlint src faults scripts tests",
-    "format": "oxfmt src faults scripts tests",
-    "format:check": "oxfmt --check src faults scripts tests",
+    "format": "oxfmt src faults/*.ts scripts tests",
+    "format:check": "oxfmt --check src faults/*.ts scripts tests",
     "test": "bun test tests"
   },
   "dependencies": {

@@ -42,7 +42,7 @@ export function sitemapXml(): string {
 export function robotsTxt(): string {
   if (fault("robots-disallow-all"))
     return `User-agent: *\nDisallow: /\n\nSitemap: ${url("/sitemap.xml")}\n`;
-  return `User-agent: *\nAllow: /\nDisallow: /search\nDisallow: /cart\nDisallow: /order-demo\n\nSitemap: ${url("/sitemap.xml")}\n`;
+  return `User-agent: *\nAllow: /\n\nSitemap: ${url("/sitemap.xml")}\n`;
 }
 
 export function llmsTxt(): string {
@@ -81,4 +81,8 @@ export function rssXml(): string {
       `  <item>\n    <title>${escapeXml(p.title)}</title>\n    <link>${url(`/blog/${p.slug}`)}</link>\n    <guid isPermaLink="true">${url(`/blog/${p.slug}`)}</guid>\n    <pubDate>${new Date(`${p.date}T09:00:00Z`).toUTCString()}</pubDate>\n    <description>${escapeXml(p.description)}</description>\n  </item>`,
   ).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>${SITE.name} journal</title>\n  <link>${url("/blog")}</link>\n  <description>Guides, recipes and explainers from a demo nut shop.</description>\n${items}\n</channel>\n</rss>\n`;
+}
+
+export function securityTxt(): string {
+  return `Contact: mailto:${SITE.contactEmail}\nExpires: 2027-11-01T00:00:00.000Z\nPreferred-Languages: en\nCanonical: ${url("/.well-known/security.txt")}\n# This is a demo site: there is nothing to report except audit findings.\n`;
 }

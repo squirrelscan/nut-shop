@@ -15,7 +15,7 @@ export const STATIC_PAGES: Record<
 > = {
   about: {
     path: "/about",
-    title: "About The Nut Shop",
+    title: "About The Nut Shop: a demo store for audits",
     description:
       "The story of The Nut Shop: a fictional small shop for nuts, nut butters, trail mixes and gift boxes, built as a demo to test website audits.",
     h1: "About The Nut Shop",
@@ -45,7 +45,7 @@ export const STATIC_PAGES: Record<
   },
   contact: {
     path: "/contact",
-    title: "Contact The Nut Shop",
+    title: "Contact The Nut Shop by email",
     description:
       "How to reach The Nut Shop demo store by email. There is no contact form and no phone line: this is a demo site and nothing is for sale.",
     h1: "Contact us",
@@ -67,7 +67,7 @@ export const STATIC_PAGES: Record<
   },
   shipping: {
     path: "/shipping-and-returns",
-    title: "Shipping and returns",
+    title: "Shipping and returns policy (demo store)",
     description:
       "Shipping and returns policy for The Nut Shop, written for a demo store: what the policy would say if nuts were really for sale here.",
     h1: "Shipping and returns",
@@ -97,7 +97,7 @@ export const STATIC_PAGES: Record<
   },
   privacy: {
     path: "/privacy",
-    title: "Privacy policy",
+    title: "Privacy policy: we collect no data",
     description:
       "Privacy policy for The Nut Shop demo store: the site collects no personal data, sets no tracking cookies and has no accounts or forms.",
     h1: "Privacy policy",
@@ -124,7 +124,7 @@ export const STATIC_PAGES: Record<
   },
   terms: {
     path: "/terms",
-    title: "Terms of use",
+    title: "Terms of use for the demo store",
     description:
       "Terms of use for The Nut Shop demo website: the site is a test bed, nothing is for sale, and content is provided as is for audit testing.",
     h1: "Terms of use",
@@ -152,7 +152,7 @@ export const STATIC_PAGES: Record<
   },
   giftGuide: {
     path: "/gift-guide",
-    title: "Nut gift guide",
+    title: "Nut gift guide: what to put in a box",
     description:
       "A short guide to choosing a nut gift: which boxes suit which people, how to mix flavours and what to avoid, with links to our gift boxes.",
     h1: "The nut gift guide",

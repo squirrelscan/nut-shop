@@ -1,5 +1,6 @@
 import { SITE } from "#/config/site";
 import { POSTS, PRODUCTS, getProduct, productsFor } from "#/content";
+import { furtherReading } from "#/content/catalog";
 import { FAQ, STATIC_PAGES, type StaticPage } from "#/content/pages";
 import type { Post } from "#/content/types";
 import { formatDate } from "#/lib/format";
@@ -9,15 +10,25 @@ import { postCrumbs } from "#/seo/head";
 import { fault } from "../../faults/runtime";
 import { ProductCard } from "#/pages/shop";
 
-export function PostCard({ post }: { post: Post }) {
+export function PostCard({
+  post,
+  level = "h3",
+  eager = false,
+}: {
+  post: Post;
+  level?: "h2" | "h3";
+  eager?: boolean;
+}) {
+  const H = level;
   return (
     <article className="card flex flex-col">
-      <a href={`/blog/${post.slug}`} className="block">
+      <a href={`/blog/${post.slug}`} className="block" tabIndex={-1} aria-hidden="true">
         <Img
           src={`/img/posts/${post.slug}.svg`}
-          alt={`Illustration for the post: ${post.title}`}
+          alt=""
           width={600}
           height={315}
+          eager={eager}
           className="h-auto w-full"
         />
       </a>
@@ -25,9 +36,9 @@ export function PostCard({ post }: { post: Post }) {
         <p className="text-xs uppercase tracking-wide text-muted">
           {post.topic} · <time dateTime={post.date}>{formatDate(post.date)}</time>
         </p>
-        <h3 className="text-lg">
+        <H className="text-lg">
           <a href={`/blog/${post.slug}`}>{post.title}</a>
-        </h3>
+        </H>
         <p className="text-sm text-muted">{post.description}</p>
       </div>
     </article>
@@ -50,7 +61,7 @@ export function BlogIndexPage() {
       </p>
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {POSTS.map((p) => (
-          <PostCard key={p.slug} post={p} />
+          <PostCard key={p.slug} post={p} level="h2" eager={POSTS.indexOf(p) < 3} />
         ))}
       </div>
     </Layout>
@@ -90,6 +101,20 @@ export function PostPage({ post }: { post: Post }) {
         />
         <div className="prose-nuts mt-8" dangerouslySetInnerHTML={{ __html: html }} />
       </article>
+      <section className="mt-12 max-w-prose" aria-labelledby="further">
+        <h2 id="further" className="text-2xl">
+          Further reading
+        </h2>
+        <ul className="mt-3 list-disc pl-6">
+          {furtherReading(products.map((p) => p.nut)).map((l) => (
+            <li key={l.href}>
+              <a href={l.href} rel="noopener">
+                {l.label} on Wikipedia
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
       {products.length ? (
         <section className="mt-12" aria-labelledby="mentioned">
           <h2 id="mentioned" className="text-2xl">
@@ -145,8 +170,9 @@ export function StaticPageView({ page }: { page: StaticPage }) {
         ))}
         {page.path === "/about" ? (
           <p>
-            Browse the <a href="/shop">shop</a>, read the <a href="/blog">journal</a>, or see the{" "}
-            <a href="/faq">FAQ</a>. For background on what a nut actually is, Wikipedia has a good{" "}
+            Browse the <a href="/shop">full product list</a>, read the <a href="/blog">journal</a>,
+            or see the <a href="/faq">FAQ</a>. For background on what a nut actually is, Wikipedia
+            has a good{" "}
             <a href="https://en.wikipedia.org/wiki/Nut_(fruit)" rel="noopener">
               overview
             </a>
@@ -229,8 +255,9 @@ export function FaqPage() {
           </section>
         ))}
         <p>
-          More questions? <a href="/contact">Get in touch</a> or read the{" "}
-          <a href="/blog/storing-nuts-so-they-stay-fresh">storage guide</a>.
+          More questions? <a href="/contact">Get in touch</a>, read the{" "}
+          <a href="/blog/storing-nuts-so-they-stay-fresh">storage guide</a>, or learn{" "}
+          <a href="/about">who runs this demo store</a>.
         </p>
       </div>
     </Layout>

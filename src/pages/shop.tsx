@@ -20,16 +20,32 @@ import { PostCard } from "#/pages/content";
 import { categoryCrumbs, productCrumbs } from "#/seo/head";
 import { fault } from "../../faults/runtime";
 
-export function ProductCard({ p }: { p: Product }) {
+export function ProductCard({
+  p,
+  level = "h3",
+  eager = false,
+}: {
+  p: Product;
+  level?: "h2" | "h3";
+  eager?: boolean;
+}) {
+  const H = level;
   return (
     <article className="card flex flex-col">
-      <a href={`/products/${p.slug}`} className="block">
-        <ProductImage product={p} width={400} height={300} className="h-auto w-full" />
+      <a href={`/products/${p.slug}`} className="block" tabIndex={-1} aria-hidden="true">
+        <ProductImage
+          product={p}
+          width={400}
+          height={300}
+          eager={eager}
+          decorative
+          className="h-auto w-full"
+        />
       </a>
       <div className="flex flex-1 flex-col gap-1 p-4">
-        <h3 className="text-lg">
+        <H className="text-lg">
           <a href={`/products/${p.slug}`}>{p.name}</a>
-        </h3>
+        </H>
         <p className="flex-1 text-sm text-muted">{p.tagline}</p>
         <p className="font-semibold">From {money(fromPrice(p))}</p>
       </div>
@@ -37,14 +53,15 @@ export function ProductCard({ p }: { p: Product }) {
   );
 }
 
-export function CategoryCard({ c }: { c: Category }) {
+export function CategoryCard({ c, eager = false }: { c: Category; eager?: boolean }) {
   return (
     <a href={`/categories/${c.slug}`} className="card block no-underline">
       <Img
         src={`/img/categories/${c.slug}.svg`}
-        alt={`Illustration for ${c.name.toLowerCase()}`}
+        alt=""
         width={400}
         height={250}
+        eager={eager}
         className="h-auto w-full"
       />
       <span className="block p-4">
@@ -87,9 +104,12 @@ export function HomePage() {
             mixes with a bit of everything, and boxes ready to give.
           </p>
           <p className="mt-2 text-sm text-muted">{SITE.demoNotice}</p>
+          <p className="mt-2 text-sm">
+            Curious who is behind it? <a href="/about">About this demo store</a>.
+          </p>
           <p className="mt-6 flex flex-wrap gap-3">
             <a href="/shop" className="btn">
-              Browse the shop
+              Browse all products
             </a>
             <a href="/blog" className="btn btn-ghost">
               Read the journal
@@ -116,8 +136,8 @@ export function HomePage() {
           Shop by category
         </h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {CATEGORIES.map((c) => (
-            <CategoryCard key={c.slug} c={c} />
+          {CATEGORIES.map((c, i) => (
+            <CategoryCard key={c.slug} c={c} eager={i < 3} />
           ))}
         </div>
       </section>
@@ -191,9 +211,14 @@ export function CategoryPage({ category }: { category: Category }) {
       <Breadcrumbs crumbs={categoryCrumbs(category)} />
       <h1 className="text-4xl">{category.name}</h1>
       <p className="mt-2 max-w-prose text-lg text-muted">{category.intro}</p>
+      {category.slug === "gift-boxes" && !fault("orphan-gift-guide") ? (
+        <p className="mt-2">
+          Not sure what to pick? Read the <a href="/gift-guide">nut gift guide</a>.
+        </p>
+      ) : null}
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((p) => (
-          <ProductCard key={p.slug} p={p} />
+        {items.map((p, i) => (
+          <ProductCard key={p.slug} p={p} level="h2" eager={i < 3} />
         ))}
       </div>
       <section className="mt-12" aria-labelledby="more-cats">
@@ -377,9 +402,7 @@ export function ProductPage({ product: p }: { product: Product }) {
               <tbody>
                 {rows.map(([k, v]) => (
                   <tr key={k}>
-                    <th scope="row" className="border-b border-line py-1 font-normal">
-                      {k}
-                    </th>
+                    <td className="border-b border-line py-1">{k}</td>
                     <td className="border-b border-line py-1">{v}</td>
                   </tr>
                 ))}

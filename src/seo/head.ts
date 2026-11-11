@@ -75,9 +75,10 @@ export function buildHead(i: HeadInput): HeadResult {
       title: `${SITE.name} journal`,
     },
   ];
-  const scripts: HeadScript[] = [
-    { type: "application/ld+json", children: graph(i.path, i.nodes ?? [], { orgId: i.orgId }) },
-  ];
+  // Noindex pages carry no structured data (it would conflict with the noindex).
+  const scripts: HeadScript[] = i.noindex
+    ? []
+    : [{ type: "application/ld+json", children: graph(i.path, i.nodes ?? [], { orgId: i.orgId }) }];
   if (fault("slow-blocking-script") && i.path === "/") scripts.push({ src: "/_fault/slow.js" });
   return { meta, links, scripts };
 }
@@ -93,7 +94,7 @@ export const homeHead = (): HeadResult =>
 
 export const shopHead = (): HeadResult =>
   buildHead({
-    title: pageTitle("All products"),
+    title: pageTitle("All products: nuts, butters and mixes"),
     description:
       "Every nut, nut butter, trail mix, baking nut and gift box in The Nut Shop demo catalogue, grouped by category. Nothing here is for sale.",
     path: "/shop",
@@ -101,7 +102,7 @@ export const shopHead = (): HeadResult =>
       webPageNode("/shop", "All products", "The full demo catalogue."),
       breadcrumbNode("/shop", [
         { name: "Home", path: "/" },
-        { name: "Shop", path: "/shop" },
+        { name: "Products", path: "/shop" },
       ]),
     ],
   });
@@ -110,7 +111,7 @@ export function categoryHead(c: Category): HeadResult {
   const path = `/categories/${c.slug}`;
   const noDesc = fault("meta-description-missing-category") && c.slug === "raw-nuts";
   return buildHead({
-    title: pageTitle(c.name),
+    title: pageTitle(c.seoTitle),
     description: noDesc ? null : c.metaDescription,
     path,
     image: url(`/og/categories-${c.slug}.png`),
@@ -120,7 +121,7 @@ export function categoryHead(c: Category): HeadResult {
 
 export const categoryCrumbs = (c: Category): Crumb[] => [
   { name: "Home", path: "/" },
-  { name: "Shop", path: "/shop" },
+  { name: "Products", path: "/shop" },
   { name: c.name, path: `/categories/${c.slug}` },
 ];
 export const productCrumbs = (p: Product): Crumb[] => {
@@ -135,8 +136,10 @@ export const postCrumbs = (p: Post): Crumb[] => [
 
 export function productTitle(p: Product): string {
   if (fault("title-duplicate") && (p.slug === "raw-almonds" || p.slug === "dry-roasted-almonds"))
-    return pageTitle("Almonds");
-  return pageTitle(p.name);
+    return pageTitle("Almonds: raw and roasted");
+  return pageTitle(
+    `${p.name}: ${CATEGORIES.find((c) => c.slug === p.category)!.name.toLowerCase()}`,
+  );
 }
 
 export function productHead(p: Product): HeadResult {
@@ -162,7 +165,7 @@ export function productHead(p: Product): HeadResult {
 
 export const blogIndexHead = (): HeadResult =>
   buildHead({
-    title: pageTitle("Journal"),
+    title: pageTitle("Journal: nut guides, recipes, explainers"),
     description:
       "Roasting guides, storage tips, baking recipes and explainers about nuts from The Nut Shop journal, written for the demo store.",
     path: "/blog",
@@ -210,7 +213,7 @@ export function staticHead(page: StaticPage, extra: Node[] = []): HeadResult {
 
 export const faqHead = (): HeadResult =>
   buildHead({
-    title: pageTitle("Frequently asked questions"),
+    title: pageTitle("FAQ: demo store, cart, allergens, storage"),
     description:
       "Answers about The Nut Shop demo store: what is for sale (nothing), how the cart works, privacy, allergens and how to store nuts.",
     path: "/faq",

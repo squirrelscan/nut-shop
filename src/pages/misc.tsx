@@ -1,7 +1,7 @@
 import { PRODUCTS, getProduct, searchProducts } from "#/content";
 import { money } from "#/lib/format";
 import { clearCart, setQty, useCart } from "#/lib/cart";
-import { Breadcrumbs, Layout } from "#/components/layout";
+import { Layout } from "#/components/layout";
 import { PostCard } from "#/pages/content";
 import { ProductCard } from "#/pages/shop";
 
@@ -15,19 +15,13 @@ export function CartPage() {
   const total = rows.reduce((s, r) => s + r.v.priceCents * r.l.qty, 0);
   return (
     <Layout>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Cart", path: "/cart" },
-        ]}
-      />
       <h1 className="text-4xl">Your cart</h1>
       <p className="mt-2 text-muted">
         This cart lives only in your browser. It is a demo: no order can be placed.
       </p>
       {rows.length === 0 ? (
         <p className="mt-6">
-          Your cart is empty. <a href="/shop">Browse the shop</a>.
+          Your cart is empty. <a href="/shop">Browse all products</a>.
         </p>
       ) : (
         <div className="mt-6">

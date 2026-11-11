@@ -29,7 +29,7 @@ function Newsletter() {
         <input
           id="newsletter-email"
           type="email"
-          autoComplete="off"
+          autoComplete="email"
           placeholder="you@example.com"
           className="min-w-0 flex-1 rounded border border-line bg-white px-3 py-2"
         />
@@ -61,7 +61,7 @@ export function Header() {
           {SITE.name}
         </a>
         <nav aria-label="Main" className="flex flex-wrap gap-x-5 gap-y-1">
-          <a href="/shop">Shop</a>
+          <a href="/shop">Products</a>
           <a href="/blog">Journal</a>
           <a href="/about">About</a>
           <a href="/faq">FAQ</a>
