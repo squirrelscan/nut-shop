@@ -126,3 +126,7 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T14:14:34.054Z off inline-script-with-token @dbe3871
 - 2026-11-11T14:14:34.082Z on broken-internal-link @dbe3871
 - 2026-11-11T14:14:34.107Z on footer-broken-link @dbe3871
+- 2026-11-11T14:23:21.213Z off broken-internal-link @b0c8084
+- 2026-11-11T14:23:21.278Z off footer-broken-link @b0c8084
+- 2026-11-11T14:23:21.377Z on noindex-product @b0c8084
+- 2026-11-11T14:23:21.476Z on canonical-wrong-home-same-page @b0c8084
