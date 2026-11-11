@@ -1,6 +1,8 @@
+import { fault } from "../../faults/runtime";
+import { leakedConfigAsset } from "#/seo/fake-secret";
 import { SITE } from "#/config/site";
 
-/** Endpoints under /_fault/. They exist in every state; faults only decide whether anything links to them. */
+/** Endpoints under /_fault/. They exist in every state (shop-config.js only while its fault is on); faults mostly decide whether anything links to them. */
 export function faultRoute(request: Request): Response | Promise<Response> | null {
   const { pathname } = new URL(request.url);
   if (!pathname.startsWith("/_fault/")) return null;
@@ -35,6 +37,14 @@ export function faultRoute(request: Request): Response | Promise<Response> | nul
           2500,
         ),
       );
+    case "/_fault/shop-config.js":
+      // Only exists while the fault is on; otherwise a plain 404.
+      return fault("leaked-secret-fake")
+        ? new Response(leakedConfigAsset(), {
+            status: 200,
+            headers: { "content-type": "text/javascript; charset=utf-8" },
+          })
+        : new Response("Not found\n", { status: 404 });
     case "/_fault/big-image.svg":
       return new Response(bigSvg(), { status: 200, headers: { "content-type": "image/svg+xml" } });
     default:

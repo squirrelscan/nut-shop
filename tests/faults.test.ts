@@ -8,6 +8,7 @@ import { finalize, securityHeaders } from "#/server/headers";
 import { htmlLang } from "#/lib/html";
 import { categoryHead, homeHead, productHead, staticHead } from "#/seo/head";
 import { robotsTxt, sitemapXml } from "#/seo/sitemap";
+import { fakeSecretKey } from "#/seo/fake-secret";
 import { canonicalOf, category, ldGraph, metaContent, pages, product, titleOf } from "./helpers";
 
 type Probe = { render: () => string; on: (out: string) => boolean };
@@ -29,7 +30,7 @@ const probes: Record<FaultId, Probe> = {
     on: has(`${url("/_fault/gone")}`),
   },
   "broken-external-invalid-domain": {
-    render: () => pages.staticPage("about"),
+    render: () => pages.staticPage("contact"),
     on: has("https://nut-supplier.invalid/"),
   },
   "redirect-chain-3-hops": { render: () => pages.home(), on: has('href="/_fault/r1"') },
@@ -120,6 +121,10 @@ const probes: Record<FaultId, Probe> = {
   "slow-blocking-script": { render: () => json(homeHead().scripts), on: has("/_fault/slow.js") },
   "html-lang-missing": { render: () => String(htmlLang()), on: has("undefined") },
   "low-contrast-text": { render: () => pages.home(), on: has("#b9b9b9") },
+  "leaked-secret-fake": {
+    render: () => json(productHead(product("crunchy-peanut-butter")).scripts),
+    on: has(fakeSecretKey()),
+  },
   "form-input-no-label": { render: () => pages.footer(), on: lacks('for="newsletter-email"') },
 };
 
@@ -181,5 +186,37 @@ describe("fault endpoints (exist in every state)", () => {
   test("slow script is delayed (promise, not immediate)", () => {
     const r = faultRoute(new Request("http://127.0.0.1:4210/_fault/slow.js"));
     expect(r instanceof Promise).toBe(true);
+  });
+});
+
+describe("leaked-secret-fake", () => {
+  const call = async (p: string) => (await faultRoute(new Request(`http://127.0.0.1:4210${p}`)))!;
+  test("asset serves the value only while the fault is on", async () => {
+    const off = await withFaultsAsync([], () => call("/_fault/shop-config.js"));
+    const on = await withFaultsAsync(["leaked-secret-fake"], () => call("/_fault/shop-config.js"));
+    expect(off.status).toBe(404);
+    expect(await off.text()).not.toContain(fakeSecretKey());
+    expect(on.status).toBe(200);
+    expect(await on.text()).toContain(fakeSecretKey());
+  });
+
+  test("only the crunchy peanut butter page carries it", () => {
+    withFaults(["leaked-secret-fake"], () => {
+      expect(json(productHead(product("smooth-peanut-butter")).scripts)).not.toContain(
+        fakeSecretKey(),
+      );
+    });
+  });
+
+  test("the key has the provider shape the rule matches", () => {
+    expect(fakeSecretKey()).toMatch(/^sk_live_[0-9a-zA-Z]{24}$/);
+  });
+
+  test("no contiguous copy of the value in the repository", () => {
+    const key = fakeSecretKey();
+    for (const needle of [key, key.slice(0, 20), key.slice(8)]) {
+      const r = Bun.spawnSync(["git", "grep", "--untracked", "-nF", "-e", needle]);
+      expect(r.stdout.toString(), needle).toBe("");
+    }
   });
 });

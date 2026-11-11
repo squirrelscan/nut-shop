@@ -1,5 +1,5 @@
 /**
- * bun run fault on <id> | off <id> | list | reset
+ * bun run fault on <id> | off <id> | list | status | reset
  * Edits faults/active.json and appends to faults/LOG.md.
  */
 import { appendFileSync } from "node:fs";
@@ -12,11 +12,17 @@ const [cmd, id] = process.argv.slice(2);
 
 const read = async (): Promise<string[]> => (await Bun.file(activePath).json()) as string[];
 const write = (list: string[]) => Bun.write(activePath, JSON.stringify(list, null, 2) + "\n");
+const git = (...args: string[]): string => {
+  const r = Bun.spawnSync(["git", ...args], { cwd: new URL("..", import.meta.url).pathname });
+  return r.exitCode === 0 ? r.stdout.toString().trim() : "";
+};
+const headSha = (): string => git("rev-parse", "--short", "HEAD") || "nogit";
+// Line format: `- <ISO time> <action> <id> @<sha at toggle time>`
 const log = (action: string, fid: string) =>
-  appendFileSync(logPath, `- ${new Date().toISOString()} ${action} ${fid}\n`);
+  appendFileSync(logPath, `- ${new Date().toISOString()} ${action} ${fid} @${headSha()}\n`);
 
 const usage = () => {
-  console.error("usage: bun run fault <on|off> <id> | list | reset");
+  console.error("usage: bun run fault <on|off> <id> | list | status | reset");
   process.exit(2);
 };
 
@@ -48,6 +54,30 @@ switch (cmd) {
         `${current.includes(f.id) ? "[ON ] " : "[off] "}${f.id.padEnd(36)} ${f.severity.padEnd(6)} ${f.expectedRule}  ${f.title}`,
       );
     break;
+  case "status": {
+    if (!current.length) {
+      console.log("healthy baseline: no active faults");
+      break;
+    }
+    const lines = (await Bun.file(logPath).text()).split("\n");
+    for (const fid of current) {
+      const on = lines.filter((l) => new RegExp(`^- \\S+ on ${fid}( |$)`).test(l)).pop();
+      const [, at, , , sha] = on?.match(/^- (\S+) (on) (\S+)(?: @(\S+))?/) ?? [];
+      // The commit that deployed it: the first commit that put the id into active.json.
+      const deployed = git(
+        "log",
+        "--reverse",
+        "--format=%h %cI",
+        `-S"${fid}"`,
+        "--",
+        "faults/active.json",
+      ).split("\n")[0];
+      console.log(
+        `${fid}\n  switched on:   ${at ?? "(not in LOG.md)"} at ${sha ? `@${sha}` : "(no sha)"}\n  deploying commit: ${deployed || "(not committed yet: commit and push faults/active.json, then deploy)"}`,
+      );
+    }
+    break;
+  }
   case "reset": {
     for (const x of current) log("off", x);
     log("reset", `(${current.length} cleared)`);

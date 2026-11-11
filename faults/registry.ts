@@ -5,7 +5,7 @@
  * `expectedRule` is a best-effort squirrelscan rule id. Every mapping is
  * "expected, to be confirmed by audit": do not treat it as verified.
  */
-export type FaultSeverity = "low" | "medium" | "high";
+export type FaultSeverity = "low" | "medium" | "high" | "critical";
 export type FaultCategory =
   | "links"
   | "images"
@@ -37,7 +37,7 @@ export const FAULTS = [
     title: "Link to a product slug that does not exist",
     breaks: "Adds a related-products link to /products/almond-brittle-deluxe, which 404s.",
     pages: ["/products/raw-almonds"],
-    expectedRule: "links/broken-internal-links",
+    expectedRule: "links/broken-links",
     confidence: C,
     severity: "high",
   },
@@ -47,7 +47,7 @@ export const FAULTS = [
     title: "Link to an own-host URL that returns 410",
     breaks: "About page links to <base>/_fault/gone (HTTP 410).",
     pages: ["/about"],
-    expectedRule: "links/broken-internal-links",
+    expectedRule: "links/broken-links",
     confidence: C,
     severity: "high",
   },
@@ -55,8 +55,9 @@ export const FAULTS = [
     id: "broken-external-invalid-domain",
     category: "links",
     title: "Link to a non-resolving reserved domain",
-    breaks: "About page links to https://nut-supplier.invalid/ (never resolves).",
-    pages: ["/about"],
+    breaks:
+      "Contact page links to https://nut-supplier.invalid/ (DNS never resolves; the audit reports a failed lookup).",
+    pages: ["/contact"],
     expectedRule: "links/broken-external-links",
     confidence: C,
     severity: "medium",
@@ -332,6 +333,17 @@ export const FAULTS = [
     expectedRule: "a11y/form-labels",
     confidence: C,
     severity: "medium",
+  },
+  {
+    id: "leaked-secret-fake",
+    category: "security",
+    title: "Fake payments secret key shipped to the browser",
+    breaks:
+      "Crunchy peanut butter page ships a dummy Stripe-shaped live key in an inline script (window.__SHOP_CONFIG__) and in /_fault/shop-config.js. Not a real credential.",
+    pages: ["/products/crunchy-peanut-butter"],
+    expectedRule: "security/leaked-secrets",
+    confidence: C,
+    severity: "critical",
   },
 ] as const satisfies readonly FaultDef[];
 

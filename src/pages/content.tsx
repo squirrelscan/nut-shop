@@ -184,7 +184,7 @@ export function StaticPageView({ page }: { page: StaticPage }) {
             <a href={`${SITE.baseUrl}/_fault/gone`}>Our old press kit</a>
           </p>
         ) : null}
-        {isAbout && fault("broken-external-invalid-domain") ? (
+        {page.path === "/contact" && fault("broken-external-invalid-domain") ? (
           <p>
             <a href="https://nut-supplier.invalid/">Our supplier</a>
           </p>

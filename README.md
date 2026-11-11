@@ -59,10 +59,13 @@ Why the auditor is exempt: the demo audit should see an indexable shop, so findi
 bun run fault list                 # all faults, ON/off, severity, expected rule
 bun run fault on broken-internal-link
 bun run fault off broken-internal-link
+bun run fault status               # active faults: when switched on, and the commit that deployed each
 bun run fault reset                # back to the healthy baseline
 ```
 
-Every toggle appends a line to `faults/LOG.md` (ISO time, action, id). That log is how we measure time-to-detect and time-to-close: commit `active.json` + `LOG.md`, deploy, then compare against the audit timestamps.
+Every toggle appends a line to `faults/LOG.md` (ISO time, action, id, short git sha at toggle time). `scripts/time-to-detect.md` is the template for timing a run.
+
+`leaked-secret-fake` ships a dummy Stripe-shaped key so the leaked-secrets rule fires. It is not a real credential and is assembled from parts at request time (`src/seo/fake-secret.ts`), so no contiguous copy lives in the repo (a test checks with `git grep`). That log is how we measure time-to-detect and time-to-close: commit `active.json` + `LOG.md`, deploy, then compare against the audit timestamps.
 
 Endpoints under `/_fault/` (410 page, 3-hop redirect chain, soft 404, slow script, big image) exist in every state; faults only decide whether anything links to them.
 

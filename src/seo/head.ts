@@ -3,6 +3,7 @@ import { fault } from "../../faults/runtime";
 import { CATEGORIES } from "#/content/catalog";
 import type { Category, Post, Product } from "#/content/types";
 import { STATIC_PAGES, type StaticPage } from "#/content/pages";
+import { LEAK_PAGE_SLUG, leakedConfigScript } from "./fake-secret";
 import {
   articleNode,
   breadcrumbNode,
@@ -30,6 +31,7 @@ export type HeadInput = {
   noindex?: boolean;
   nodes?: Node[];
   orgId?: string;
+  extraScripts?: HeadScript[];
 };
 
 /** "X | The Nut Shop" unless that runs past 60 chars. */
@@ -80,6 +82,7 @@ export function buildHead(i: HeadInput): HeadResult {
     ? []
     : [{ type: "application/ld+json", children: graph(i.path, i.nodes ?? [], { orgId: i.orgId }) }];
   if (fault("slow-blocking-script") && i.path === "/") scripts.push({ src: "/_fault/slow.js" });
+  scripts.push(...(i.extraScripts ?? []));
   return { meta, links, scripts };
 }
 
@@ -160,6 +163,10 @@ export function productHead(p: Product): HeadResult {
       breadcrumbNode(path, productCrumbs(p)),
       productNode(p),
     ],
+    extraScripts:
+      fault("leaked-secret-fake") && p.slug === LEAK_PAGE_SLUG
+        ? [{ children: leakedConfigScript() }, { src: "/_fault/shop-config.js" }]
+        : [],
   });
 }
 
