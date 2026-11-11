@@ -1,15 +1,12 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { fault } from '../../faults/runtime'
-import { NotFoundPage } from '#/pages/misc'
-import appCss from '../styles.css?url'
-
-/** `lang` is omitted by the html-lang-missing fault. */
-export const htmlLang = (): string | undefined => (fault('html-lang-missing') ? undefined : 'en')
+import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { htmlLang } from "#/lib/html";
+import { NotFoundPage } from "#/pages/misc";
+import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
   shellComponent: RootDocument,
   notFoundComponent: NotFound,
-})
+});
 
 function NotFound() {
   return (
@@ -19,7 +16,7 @@ function NotFound() {
       <meta name="description" content="The page you were looking for does not exist." />
       <NotFoundPage />
     </>
-  )
+  );
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -34,5 +31,5 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }

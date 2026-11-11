@@ -5,54 +5,334 @@
  * `expectedRule` is a best-effort squirrelscan rule id. Every mapping is
  * "expected, to be confirmed by audit": do not treat it as verified.
  */
-export type FaultSeverity = 'low' | 'medium' | 'high'
-export type FaultCategory = 'links' | 'images' | 'meta' | 'structure' | 'structured-data' | 'security' | 'performance' | 'a11y' | 'crawl'
+export type FaultSeverity = "low" | "medium" | "high";
+export type FaultCategory =
+  | "links"
+  | "images"
+  | "meta"
+  | "structure"
+  | "structured-data"
+  | "security"
+  | "performance"
+  | "a11y"
+  | "crawl";
 
 export type FaultDef = {
-  id: string
-  category: FaultCategory
-  title: string
-  breaks: string
-  pages: string[]
-  expectedRule: string
-  confidence: 'expected, to be confirmed by audit'
-  severity: FaultSeverity
-}
+  id: string;
+  category: FaultCategory;
+  title: string;
+  breaks: string;
+  pages: string[];
+  expectedRule: string;
+  confidence: "expected, to be confirmed by audit";
+  severity: FaultSeverity;
+};
 
-const C = 'expected, to be confirmed by audit' as const
+const C = "expected, to be confirmed by audit" as const;
 
 export const FAULTS = [
-  { id: 'broken-internal-link', category: 'links', title: 'Link to a product slug that does not exist', breaks: 'Adds a related-products link to /products/almond-brittle-deluxe, which 404s.', pages: ['/products/raw-almonds'], expectedRule: 'links/broken-internal-links', confidence: C, severity: 'high' },
-  { id: 'broken-link-gone-410', category: 'links', title: 'Link to an own-host URL that returns 410', breaks: 'About page links to <base>/_fault/gone (HTTP 410).', pages: ['/about'], expectedRule: 'links/broken-internal-links', confidence: C, severity: 'high' },
-  { id: 'broken-external-invalid-domain', category: 'links', title: 'Link to a non-resolving reserved domain', breaks: 'About page links to https://nut-supplier.invalid/ (never resolves).', pages: ['/about'], expectedRule: 'links/broken-external-links', confidence: C, severity: 'medium' },
-  { id: 'redirect-chain-3-hops', category: 'links', title: 'Internal link through a 3-hop redirect chain', breaks: 'Home links to /_fault/r1 -> r2 -> r3 -> /categories/gift-boxes.', pages: ['/'], expectedRule: 'links/redirect-chain', confidence: C, severity: 'medium' },
-  { id: 'orphan-gift-guide', category: 'links', title: 'Orphan page', breaks: 'Removes every internal link to /gift-guide (it stays in the sitemap).', pages: ['/gift-guide', '(all pages, footer)'], expectedRule: 'links/orphan-pages', confidence: C, severity: 'low' },
-  { id: 'soft-404', category: 'crawl', title: 'Soft 404', breaks: 'Shipping page links to /_fault/soft-404, a "not found" page that returns HTTP 200.', pages: ['/shipping-and-returns'], expectedRule: 'crawl/soft-404', confidence: C, severity: 'medium' },
-  { id: 'sitemap-lists-404', category: 'crawl', title: '404 URL listed in sitemap', breaks: 'sitemap.xml includes /products/discontinued-almond-brittle (404).', pages: ['/sitemap.xml'], expectedRule: 'crawl/sitemap-valid', confidence: C, severity: 'medium' },
-  { id: 'sitemap-missing-page', category: 'crawl', title: 'Indexable page missing from sitemap', breaks: 'sitemap.xml omits /products/pecan-pieces.', pages: ['/sitemap.xml'], expectedRule: 'crawl/sitemap-coverage', confidence: C, severity: 'low' },
-  { id: 'robots-disallow-all', category: 'crawl', title: 'robots.txt blocks the whole site', breaks: 'robots.txt serves "Disallow: /" for all agents.', pages: ['/robots.txt'], expectedRule: 'crawl/robots-txt', confidence: C, severity: 'high' },
-  { id: 'image-missing-alt', category: 'images', title: 'Image without alt attribute', breaks: 'Drops the alt attribute on the raw almonds image everywhere it appears.', pages: ['/products/raw-almonds', '/categories/raw-nuts', '/shop'], expectedRule: 'images/alt-text', confidence: C, severity: 'medium' },
-  { id: 'image-missing-dimensions', category: 'images', title: 'Image without width/height', breaks: 'Drops width and height on the raw cashews image.', pages: ['/products/raw-cashews', '/categories/raw-nuts'], expectedRule: 'perf/image-dimensions', confidence: C, severity: 'low' },
-  { id: 'image-oversized', category: 'images', title: 'Oversized hero image', breaks: 'Home hero loads /_fault/big-image.svg (about 2.5 MB) instead of the 20 KB illustration.', pages: ['/'], expectedRule: 'perf/total-byte-weight', confidence: C, severity: 'medium' },
-  { id: 'mixed-content-image', category: 'security', title: 'http:// image on an https page', breaks: 'Smooth peanut butter page embeds an image over plain http.', pages: ['/products/smooth-peanut-butter'], expectedRule: 'security/mixed-content', confidence: C, severity: 'medium' },
-  { id: 'meta-description-missing-category', category: 'meta', title: 'Category without meta description', breaks: 'Raw nuts category omits its meta description.', pages: ['/categories/raw-nuts'], expectedRule: 'core/meta-description', confidence: C, severity: 'medium' },
-  { id: 'title-duplicate', category: 'meta', title: 'Duplicate titles on two products', breaks: 'Raw almonds and dry-roasted almonds share the title "Almonds | The Nut Shop".', pages: ['/products/raw-almonds', '/products/dry-roasted-almonds'], expectedRule: 'core/title-duplicate', confidence: C, severity: 'medium' },
-  { id: 'canonical-missing', category: 'meta', title: 'Missing canonical', breaks: 'Raw cashews page has no rel=canonical.', pages: ['/products/raw-cashews'], expectedRule: 'core/canonical', confidence: C, severity: 'medium' },
-  { id: 'canonical-wrong-home', category: 'meta', title: 'Canonical points to home', breaks: 'Raw walnut halves canonical points at the home page.', pages: ['/products/raw-walnut-halves'], expectedRule: 'core/canonical', confidence: C, severity: 'high' },
-  { id: 'noindex-product', category: 'meta', title: 'noindex on an indexable product', breaks: 'Raw pecan halves gets robots noindex while staying in the sitemap.', pages: ['/products/raw-pecan-halves'], expectedRule: 'crawl/noindex-in-sitemap', confidence: C, severity: 'high' },
-  { id: 'h1-missing', category: 'structure', title: 'Missing H1', breaks: 'About page renders its heading as a div, so there is no H1.', pages: ['/about'], expectedRule: 'core/h1', confidence: C, severity: 'medium' },
-  { id: 'h1-duplicate', category: 'structure', title: 'Two H1s', breaks: 'Shipping page gets a second H1.', pages: ['/shipping-and-returns'], expectedRule: 'core/h1', confidence: C, severity: 'low' },
-  { id: 'thin-content-page', category: 'structure', title: 'Thin content page', breaks: 'Storage post body is cut to its first two paragraphs.', pages: ['/blog/storing-nuts-so-they-stay-fresh'], expectedRule: 'content/thin-content', confidence: C, severity: 'medium' },
-  { id: 'jsonld-product-invalid', category: 'structured-data', title: 'Invalid Product JSON-LD', breaks: 'Smooth peanut butter Offer has no price.', pages: ['/products/smooth-peanut-butter'], expectedRule: 'schema/product', confidence: C, severity: 'medium' },
-  { id: 'jsonld-id-conflict', category: 'structured-data', title: 'Entity @id conflict', breaks: 'About page declares its Organization with the WebSite @id.', pages: ['/about'], expectedRule: 'schema/entity-id-conflict', confidence: C, severity: 'medium' },
-  { id: 'csp-removed', category: 'security', title: 'Content-Security-Policy removed', breaks: 'Worker stops sending the CSP header.', pages: ['(all pages)'], expectedRule: 'security/csp', confidence: C, severity: 'high' },
-  { id: 'hsts-xfo-removed', category: 'security', title: 'HSTS and X-Frame-Options removed', breaks: 'Worker stops sending Strict-Transport-Security and X-Frame-Options.', pages: ['(all pages)'], expectedRule: 'security/hsts', confidence: C, severity: 'medium' },
-  { id: 'no-cache-validators', category: 'performance', title: 'HTML without cache validators', breaks: 'HTML responses get Cache-Control: no-store and no ETag/Last-Modified.', pages: ['(all pages)'], expectedRule: 'perf/cache-headers', confidence: C, severity: 'low' },
-  { id: 'slow-blocking-script', category: 'performance', title: 'Slow render-blocking script', breaks: 'Home head loads /_fault/slow.js synchronously; it answers after 2.5 s.', pages: ['/'], expectedRule: 'perf/render-blocking', confidence: C, severity: 'medium' },
-  { id: 'html-lang-missing', category: 'a11y', title: 'Missing lang attribute', breaks: '<html> has no lang.', pages: ['(all pages)'], expectedRule: 'a11y/html-lang', confidence: C, severity: 'medium' },
-  { id: 'low-contrast-text', category: 'a11y', title: 'Low-contrast text', breaks: 'Home hero tagline rendered #b9b9b9 on near-white.', pages: ['/'], expectedRule: 'a11y/color-contrast', confidence: C, severity: 'medium' },
-  { id: 'form-input-no-label', category: 'a11y', title: 'Form input without label', breaks: 'Footer newsletter email input loses its label and aria-label.', pages: ['(all pages)'], expectedRule: 'a11y/form-labels', confidence: C, severity: 'medium' },
-] as const satisfies readonly FaultDef[]
+  {
+    id: "broken-internal-link",
+    category: "links",
+    title: "Link to a product slug that does not exist",
+    breaks: "Adds a related-products link to /products/almond-brittle-deluxe, which 404s.",
+    pages: ["/products/raw-almonds"],
+    expectedRule: "links/broken-internal-links",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "broken-link-gone-410",
+    category: "links",
+    title: "Link to an own-host URL that returns 410",
+    breaks: "About page links to <base>/_fault/gone (HTTP 410).",
+    pages: ["/about"],
+    expectedRule: "links/broken-internal-links",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "broken-external-invalid-domain",
+    category: "links",
+    title: "Link to a non-resolving reserved domain",
+    breaks: "About page links to https://nut-supplier.invalid/ (never resolves).",
+    pages: ["/about"],
+    expectedRule: "links/broken-external-links",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "redirect-chain-3-hops",
+    category: "links",
+    title: "Internal link through a 3-hop redirect chain",
+    breaks: "Home links to /_fault/r1 -> r2 -> r3 -> /categories/gift-boxes.",
+    pages: ["/"],
+    expectedRule: "links/redirect-chain",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "orphan-gift-guide",
+    category: "links",
+    title: "Orphan page",
+    breaks: "Removes every internal link to /gift-guide (it stays in the sitemap).",
+    pages: ["/gift-guide", "(all pages, footer)"],
+    expectedRule: "links/orphan-pages",
+    confidence: C,
+    severity: "low",
+  },
+  {
+    id: "soft-404",
+    category: "crawl",
+    title: "Soft 404",
+    breaks: 'Shipping page links to /_fault/soft-404, a "not found" page that returns HTTP 200.',
+    pages: ["/shipping-and-returns"],
+    expectedRule: "crawl/soft-404",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "sitemap-lists-404",
+    category: "crawl",
+    title: "404 URL listed in sitemap",
+    breaks: "sitemap.xml includes /products/discontinued-almond-brittle (404).",
+    pages: ["/sitemap.xml"],
+    expectedRule: "crawl/sitemap-valid",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "sitemap-missing-page",
+    category: "crawl",
+    title: "Indexable page missing from sitemap",
+    breaks: "sitemap.xml omits /products/pecan-pieces.",
+    pages: ["/sitemap.xml"],
+    expectedRule: "crawl/sitemap-coverage",
+    confidence: C,
+    severity: "low",
+  },
+  {
+    id: "robots-disallow-all",
+    category: "crawl",
+    title: "robots.txt blocks the whole site",
+    breaks: 'robots.txt serves "Disallow: /" for all agents.',
+    pages: ["/robots.txt"],
+    expectedRule: "crawl/robots-txt",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "image-missing-alt",
+    category: "images",
+    title: "Image without alt attribute",
+    breaks: "Drops the alt attribute on the raw almonds image everywhere it appears.",
+    pages: ["/products/raw-almonds", "/categories/raw-nuts", "/shop"],
+    expectedRule: "images/alt-text",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "image-missing-dimensions",
+    category: "images",
+    title: "Image without width/height",
+    breaks: "Drops width and height on the raw cashews image.",
+    pages: ["/products/raw-cashews", "/categories/raw-nuts"],
+    expectedRule: "perf/image-dimensions",
+    confidence: C,
+    severity: "low",
+  },
+  {
+    id: "image-oversized",
+    category: "images",
+    title: "Oversized hero image",
+    breaks:
+      "Home hero loads /_fault/big-image.svg (about 2.5 MB) instead of the 20 KB illustration.",
+    pages: ["/"],
+    expectedRule: "perf/total-byte-weight",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "mixed-content-image",
+    category: "security",
+    title: "http:// image on an https page",
+    breaks: "Smooth peanut butter page embeds an image over plain http.",
+    pages: ["/products/smooth-peanut-butter"],
+    expectedRule: "security/mixed-content",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "meta-description-missing-category",
+    category: "meta",
+    title: "Category without meta description",
+    breaks: "Raw nuts category omits its meta description.",
+    pages: ["/categories/raw-nuts"],
+    expectedRule: "core/meta-description",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "title-duplicate",
+    category: "meta",
+    title: "Duplicate titles on two products",
+    breaks: 'Raw almonds and dry-roasted almonds share the title "Almonds | The Nut Shop".',
+    pages: ["/products/raw-almonds", "/products/dry-roasted-almonds"],
+    expectedRule: "core/title-duplicate",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "canonical-missing",
+    category: "meta",
+    title: "Missing canonical",
+    breaks: "Raw cashews page has no rel=canonical.",
+    pages: ["/products/raw-cashews"],
+    expectedRule: "core/canonical",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "canonical-wrong-home",
+    category: "meta",
+    title: "Canonical points to home",
+    breaks: "Raw walnut halves canonical points at the home page.",
+    pages: ["/products/raw-walnut-halves"],
+    expectedRule: "core/canonical",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "noindex-product",
+    category: "meta",
+    title: "noindex on an indexable product",
+    breaks: "Raw pecan halves gets robots noindex while staying in the sitemap.",
+    pages: ["/products/raw-pecan-halves"],
+    expectedRule: "crawl/noindex-in-sitemap",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "h1-missing",
+    category: "structure",
+    title: "Missing H1",
+    breaks: "About page renders its heading as a div, so there is no H1.",
+    pages: ["/about"],
+    expectedRule: "core/h1",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "h1-duplicate",
+    category: "structure",
+    title: "Two H1s",
+    breaks: "Shipping page gets a second H1.",
+    pages: ["/shipping-and-returns"],
+    expectedRule: "core/h1",
+    confidence: C,
+    severity: "low",
+  },
+  {
+    id: "thin-content-page",
+    category: "structure",
+    title: "Thin content page",
+    breaks: "Storage post body is cut to its first two paragraphs.",
+    pages: ["/blog/storing-nuts-so-they-stay-fresh"],
+    expectedRule: "content/thin-content",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "jsonld-product-invalid",
+    category: "structured-data",
+    title: "Invalid Product JSON-LD",
+    breaks: "Smooth peanut butter Offer has no price.",
+    pages: ["/products/smooth-peanut-butter"],
+    expectedRule: "schema/product",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "jsonld-id-conflict",
+    category: "structured-data",
+    title: "Entity @id conflict",
+    breaks: "About page declares its Organization with the WebSite @id.",
+    pages: ["/about"],
+    expectedRule: "schema/entity-id-conflict",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "csp-removed",
+    category: "security",
+    title: "Content-Security-Policy removed",
+    breaks: "Worker stops sending the CSP header.",
+    pages: ["(all pages)"],
+    expectedRule: "security/csp",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "hsts-xfo-removed",
+    category: "security",
+    title: "HSTS and X-Frame-Options removed",
+    breaks: "Worker stops sending Strict-Transport-Security and X-Frame-Options.",
+    pages: ["(all pages)"],
+    expectedRule: "security/hsts",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "no-cache-validators",
+    category: "performance",
+    title: "HTML without cache validators",
+    breaks: "HTML responses get Cache-Control: no-store and no ETag/Last-Modified.",
+    pages: ["(all pages)"],
+    expectedRule: "perf/cache-headers",
+    confidence: C,
+    severity: "low",
+  },
+  {
+    id: "slow-blocking-script",
+    category: "performance",
+    title: "Slow render-blocking script",
+    breaks: "Home head loads /_fault/slow.js synchronously; it answers after 2.5 s.",
+    pages: ["/"],
+    expectedRule: "perf/render-blocking",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "html-lang-missing",
+    category: "a11y",
+    title: "Missing lang attribute",
+    breaks: "<html> has no lang.",
+    pages: ["(all pages)"],
+    expectedRule: "a11y/html-lang",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "low-contrast-text",
+    category: "a11y",
+    title: "Low-contrast text",
+    breaks: "Home hero tagline rendered #b9b9b9 on near-white.",
+    pages: ["/"],
+    expectedRule: "a11y/color-contrast",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "form-input-no-label",
+    category: "a11y",
+    title: "Form input without label",
+    breaks: "Footer newsletter email input loses its label and aria-label.",
+    pages: ["(all pages)"],
+    expectedRule: "a11y/form-labels",
+    confidence: C,
+    severity: "medium",
+  },
+] as const satisfies readonly FaultDef[];
 
-export type FaultId = (typeof FAULTS)[number]['id']
-export const FAULT_IDS: readonly FaultId[] = FAULTS.map((f) => f.id)
+export type FaultId = (typeof FAULTS)[number]["id"];
+export const FAULT_IDS: readonly FaultId[] = FAULTS.map((f) => f.id);

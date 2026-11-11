@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": ["src/content/products/**", "src/content/posts/**", "src/content/generated/**", "src/routeTree.gen.ts"]
+}

@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { STATIC_PAGES } from '#/content/pages'
-import { StaticPageView } from '#/pages/content'
-import { staticHead } from '#/seo/head'
+import { createFileRoute } from "@tanstack/react-router";
+import { STATIC_PAGES } from "#/content/pages";
+import { StaticPageView } from "#/pages/content";
+import { staticHead } from "#/seo/head";
 
-const page = STATIC_PAGES.giftGuide
+const page = STATIC_PAGES.giftGuide;
 
-export const Route = createFileRoute('/gift-guide')({
+export const Route = createFileRoute("/gift-guide")({
   head: () => staticHead(page),
   component: () => <StaticPageView page={page} />,
-})
+});
