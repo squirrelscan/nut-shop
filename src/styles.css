@@ -285,11 +285,61 @@ a:hover {
   gap: var(--s-5);
   grid-template-columns: minmax(0, 1fr);
 }
-@media (min-width: 36rem) {
-  .grid-2,
+/* Card grids are two per row from 360px, with compact cards below 36rem. */
+@media (min-width: 22.5rem) {
   .grid-3,
   .grid-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3);
+  }
+}
+@media (min-width: 36rem) {
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-3,
+  .grid-4 {
+    gap: var(--s-5);
+  }
+}
+@media (max-width: 35.99rem) {
+  .grid-3 .card-body,
+  .grid-4 .card-body {
+    gap: var(--s-1);
+    padding: var(--s-3) var(--s-3) var(--s-4);
+  }
+  .grid-3 .card-title,
+  .grid-4 .card-title {
+    font-size: var(--fs-1);
+    line-height: 1.25;
+  }
+  .grid-3 .card-text,
+  .grid-4 .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+  .grid-3 .price,
+  .grid-4 .price {
+    font-size: var(--fs-2);
+  }
+  .grid-3 .badge,
+  .grid-4 .badge {
+    padding-inline: var(--s-2);
+    font-size: 0.75rem;
+  }
+  .grid-3 .meta,
+  .grid-4 .meta {
+    gap: var(--s-1) var(--s-2);
+    font-size: 0.75rem;
+  }
+  .grid-3 .card-media,
+  .grid-4 .card-media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
   }
 }
 @media (min-width: 60rem) {
@@ -825,12 +875,37 @@ a.card {
 .hero-art img {
   width: 100%;
   height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
 }
 @media (min-width: 52rem) {
   .hero {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
     gap: var(--s-7);
     padding-block: var(--s-7) 0;
+  }
+  .hero > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--s-5);
+    padding-block: var(--s-1);
+  }
+  .hero-foot {
+    display: grid;
+    gap: var(--s-5);
+  }
+  .hero .lead,
+  .hero .actions {
+    margin-top: 0;
+  }
+  .hero-art {
+    min-height: 19rem;
+  }
+  .hero-art img {
+    height: 100%;
+    aspect-ratio: auto;
   }
 }
 .band {

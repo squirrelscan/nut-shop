@@ -99,29 +99,34 @@ export function HomePage() {
       <section className="hero">
         <div>
           <h1>Good nuts, small batches</h1>
-          <p className="lead" style={fault("low-contrast-text") ? { color: "#b9b9b9" } : undefined}>
-            Raw and roasted nuts, spreads ground in small jars, and boxes ready to give.
-          </p>
-          <p className="actions">
-            <a href="/shop" className="btn">
-              Browse all products
-            </a>
-            <a href="/blog" className="btn-secondary">
-              Read the journal
-            </a>
-          </p>
-          {fault("redirect-chain-3-hops") ? (
-            <p className="section-tight">
-              <a href="/_fault/r1">Seasonal picks</a>
+          <div className="hero-foot">
+            <p
+              className="lead"
+              style={fault("low-contrast-text") ? { color: "#b9b9b9" } : undefined}
+            >
+              Raw and roasted nuts, spreads ground in small jars, and boxes ready to give.
             </p>
-          ) : null}
+            <p className="actions">
+              <a href="/shop" className="btn">
+                Browse all products
+              </a>
+              <a href="/blog" className="btn-secondary">
+                Read the journal
+              </a>
+            </p>
+            {fault("redirect-chain-3-hops") ? (
+              <p className="section-tight">
+                <a href="/_fault/r1">Seasonal picks</a>
+              </p>
+            ) : null}
+          </div>
         </div>
         <div className="hero-art">
           <Img
             src={heroSrc}
             alt="A heap of illustrated almonds, walnuts, pecans and cashews"
             width={1200}
-            height={600}
+            height={800}
             priority
           />
         </div>

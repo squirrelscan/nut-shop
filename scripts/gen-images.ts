@@ -136,18 +136,17 @@ function postSvg(p: Post): string {
   return frame(1200, 630, PAL.blog!, inner);
 }
 
-const ogCard = (heroSvg: string): string =>
-  `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#f0dfbd"/><g transform="translate(0 90)">${heroSvg.replace(/^<svg[^>]*>/, '<svg width="1200" height="600" viewBox="0 0 1200 600">')}</g><rect x="60" y="60" width="620" height="230" rx="28" fill="#fffbf3" stroke="${INK}" stroke-width="4"/><text x="100" y="170" font-family="Georgia,serif" font-weight="700" font-size="84" fill="${INK}">The Nut Shop</text><text x="100" y="235" font-family="Georgia,serif" font-size="34" fill="#5b452e">Good nuts, small batches. A demo store.</text></svg>`;
+const ogCard = (): string =>
+  frame(1200, 630, PAL["raw-nuts"]!, pile("hero", KINDS, 840, 420, 560, 18, 2.6)).replace(
+    "</svg>",
+    `<rect x="60" y="60" width="620" height="230" rx="28" fill="#fffbf3" stroke="${INK}" stroke-width="4"/><text x="100" y="170" font-family="Georgia,serif" font-weight="700" font-size="84" fill="${INK}">The Nut Shop</text><text x="100" y="235" font-family="Georgia,serif" font-size="34" fill="#5b452e">Good nuts, small batches. A demo store.</text></svg>`,
+  );
 
 const w = (path: string, data: string) => Bun.write(`public/${path}`, data);
 
-const hero = frame(1200, 600, PAL["raw-nuts"]!, pile("hero", KINDS, 600, 400, 1000, 30, 3.1));
+const hero = frame(1200, 800, PAL["raw-nuts"]!, pile("hero", KINDS, 600, 480, 860, 22, 3.7));
 await w("img/hero.svg", hero);
-const jobs: Promise<unknown>[] = [
-  sharp(Buffer.from(ogCard(hero)))
-    .png()
-    .toFile("public/og/home.png"),
-];
+const jobs: Promise<unknown>[] = [sharp(Buffer.from(ogCard())).png().toFile("public/og/home.png")];
 await Bun.write("public/og/.keep", "");
 for (const p of products) {
   const svg = productSvg(p);
