@@ -82,7 +82,12 @@ export async function finalize(
       headers,
     });
   const body = await response.arrayBuffer();
-  const etag = await etagOf(body);
+  // TanStack embeds a per-request timestamp (`u:<epoch ms>`) in the dehydrated router state.
+  // Hash the body without it so unchanged pages keep a stable ETag and can answer 304.
+  const stable = ct.includes("text/html")
+    ? new TextEncoder().encode(new TextDecoder().decode(body).replace(/\bu:\d{12,}/g, "u:0")).buffer
+    : body;
+  const etag = await etagOf(stable);
   headers.set("ETag", etag);
   headers.set("Last-Modified", lastModified);
   headers.set("Vary", "Accept-Encoding");

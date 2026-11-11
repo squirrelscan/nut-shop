@@ -17,7 +17,7 @@ import {
   staticHead,
 } from "#/seo/head";
 import { indexablePaths, llmsTxt, robotsTxt, sitemapXml } from "#/seo/sitemap";
-import { securityHeaders } from "#/server/headers";
+import { finalize, securityHeaders } from "#/server/headers";
 import { canonicalOf, ldGraph, metaContent, pages, titleOf } from "./helpers";
 
 const allHeads = () =>
@@ -221,5 +221,23 @@ describe("healthy baseline", () => {
         for (const m of out.matchAll(/<a [^>]*href="(\/[^"#?]*)"/g))
           if (!m[1]!.startsWith("/_")) expect(known.has(m[1]!), m[1]).toBe(true);
     });
+  });
+});
+
+describe("cache validators", () => {
+  const page = (u: number) =>
+    new Response(`<html>u:${u}</html>`, {
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  const req = (inm?: string) =>
+    new Request("http://127.0.0.1:4210/about", inm ? { headers: { "if-none-match": inm } } : {});
+
+  test("HTML ETag ignores the per-request router timestamp and answers 304", async () => {
+    const a = await finalize(req(), page(1794389921762), "x");
+    const b = await finalize(req(), page(1794389929999), "x");
+    expect(a.headers.get("etag")).toBeTruthy();
+    expect(a.headers.get("etag")).toBe(b.headers.get("etag"));
+    const c = await finalize(req(a.headers.get("etag")!), page(1794389930000), "x");
+    expect(c.status).toBe(304);
   });
 });
