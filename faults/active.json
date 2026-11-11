@@ -5,5 +5,9 @@
   "form-input-no-label",
   "noindex-product",
   "sitemap-lists-404",
-  "thin-content-page"
+  "thin-content-page",
+  "canonical-wrong-home-same-page",
+  "slow-blocking-script",
+  "low-contrast-text",
+  "broken-external-404"
 ]

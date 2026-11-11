@@ -141,3 +141,7 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T20:21:21.981Z on noindex-product @cb33c7c
 - 2026-11-11T20:21:22.009Z on sitemap-lists-404 @cb33c7c
 - 2026-11-11T20:21:22.033Z on thin-content-page @cb33c7c
+- 2026-11-11T20:32:25.075Z on canonical-wrong-home-same-page @27b2d3a
+- 2026-11-11T20:32:25.102Z on slow-blocking-script @27b2d3a
+- 2026-11-11T20:32:25.125Z on low-contrast-text @27b2d3a
+- 2026-11-11T20:32:25.152Z on broken-external-404 @27b2d3a
