@@ -344,7 +344,7 @@ export const FAULTS = [
     category: "security",
     title: "Fake GitHub-style token in an inline script on the contact page",
     breaks:
-      "Contact page head has an inline script with a dummy ghp_-shaped token (assembled at request time from parts in src/seo/fake-secret.ts, never committed whole; it reads NutShopDemoFakeNotReal...). Not a real credential.",
+      "Contact page head has an inline script with a dummy ghp_-shaped token (assembled at request time from parts in src/seo/fake-secret.ts, never committed whole). The value looks random on purpose so detectors do not filter it as a placeholder, but it is not a real credential: it was typed at random for this demo store, never issued by GitHub or anyone else, and must never be tested against any service.",
     pages: ["/contact"],
     expectedRule: "security/leaked-secrets",
     confidence: C,

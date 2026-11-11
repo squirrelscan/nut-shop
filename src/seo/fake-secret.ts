@@ -21,11 +21,11 @@ export const LEAK_PAGE_SLUG = "crunchy-peanut-butter";
 
 /**
  * FAKE test token for the `inline-script-with-token` fault: GitHub personal access token shape
- * (ghp_ plus 36 characters), a different vendor from the Stripe-shaped key above. It reads
- * "NutShopDemoFakeNotReal..." and was never issued by any provider. Assembled at request time
- * so no contiguous copy sits in the repository.
+ * (ghp_ plus 36 random-looking characters), a different vendor from the Stripe-shaped key above.
+ * It was typed at random for this demo store and was never issued by any provider. Assembled at
+ * request time so no contiguous copy sits in the repository.
  */
-const TOKEN_PARTS = ["ghp_", "NutShopD", "emoFakeN", "otRealTk", "n7Q2x9Zc", "4Lw8"] as const;
+const TOKEN_PARTS = ["ghp_", "Zk3Qx9Tv", "Lb7MrN2p", "Wc8YdH4f", "Gs1JuA6e", "Qo5X"] as const;
 
 export const fakeTokenValue = (): string => TOKEN_PARTS.join("");
 
