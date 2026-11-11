@@ -1,3 +1,6 @@
 [
-  "robots-disallow-all"
+  "broken-internal-link",
+  "broken-link-gone-410",
+  "broken-external-invalid-domain",
+  "leaked-secret-fake"
 ]
