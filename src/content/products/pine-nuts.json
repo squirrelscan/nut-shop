@@ -1,0 +1,46 @@
+{
+  "slug": "pine-nuts",
+  "name": "Pine nuts",
+  "category": "baking",
+  "nut": "pine",
+  "tagline": "Small, creamy, resinous pine nuts for pesto, salads and baking.",
+  "metaDescription": "Soft, creamy pine nuts for pesto, salads, pilafs and baking. Toast in a dry pan to bring out their sweet, buttery, slightly resinous flavour.",
+  "description": [
+    "Pine nuts are the small, ivory seeds tucked inside pine cones, and they are one of the more expensive nuts to harvest, which is why they come in smaller bags. The reward is a soft, creamy texture and a sweet, slightly resinous flavour.",
+    "Raw, they are mild and a little waxy. A couple of minutes in a dry pan turns them golden and brings out a buttery, toasty character. Keep them moving, because they go from pale to scorched in seconds.",
+    "The classic use is pesto, where they are blended with basil, garlic, cheese and olive oil. They are equally good scattered over a salad, folded into a rice pilaf with raisins, or baked into biscuits and cakes for a delicate crunch.",
+    "Because they are so rich in oil, pine nuts can spoil quickly. We pack them in small quantities and suggest keeping them in the fridge. If they smell sharp or paint-like, it is time to replace them. Our post on why nuts go rancid explains the reason."
+  ],
+  "variants": [
+    {
+      "label": "100 g",
+      "weightG": 100,
+      "priceCents": 895
+    },
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 1995
+    }
+  ],
+  "ingredients": "Pine nuts.",
+  "allergens": [
+    "Pine nuts (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 673,
+    "fatG": 68,
+    "saturatesG": 4.9,
+    "carbsG": 13,
+    "sugarsG": 3.6,
+    "fibreG": 3.7,
+    "proteinG": 14,
+    "saltG": 0.07
+  },
+  "storage": "Store sealed in the fridge or freezer. Use within a couple of months of opening.",
+  "posts": [
+    "why-nuts-go-rancid",
+    "storing-nuts-so-they-stay-fresh"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "salted-roasted-cashews",
+  "name": "Salted roasted cashews",
+  "category": "roasted-nuts",
+  "nut": "cashew",
+  "tagline": "Golden roasted cashews finished with a light dusting of sea salt.",
+  "metaDescription": "Roasted cashews with a light sprinkle of sea salt. Buttery, golden and moreish, the sort of snack that vanishes from the bowl quickly.",
+  "description": [
+    "This is the cashew most people picture when they think of a bar snack: golden, glossy, buttery and lightly salted. We roast the kernels until they colour and then season them gently, so the sweetness of the nut still comes through.",
+    "Roasting gives the cashew a firmer crunch than its raw cousin and a rounder, toastier taste. The salt makes them dangerously easy to eat by the handful, which is why we suggest putting some in a bowl rather than eating from the bag.",
+    "Beyond snacking, they are a lovely garnish. Scatter them over a noodle dish, a rice bowl or a bowl of spicy soup for a crunchy finish, or chop them into a slaw. They also sit nicely next to a cold drink at the end of a long day.",
+    "Most of the cashews we use are whole kernels, so you get that familiar kidney shape with few broken bits. Check the label if you are watching your salt, and compare with our raw cashews if you want to season them yourself. Want something livelier? Try the chilli lime cashews."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 795
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1795
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 3295
+    }
+  ],
+  "ingredients": "Cashews, sunflower oil, sea salt.",
+  "allergens": [
+    "Cashews (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 586,
+    "fatG": 48,
+    "saturatesG": 9,
+    "carbsG": 28,
+    "sugarsG": 5.5,
+    "fibreG": 3,
+    "proteinG": 17,
+    "saltG": 1.1
+  },
+  "storage": "Keep in a sealed container in a cool, dry place. Reseal the bag after opening so the nuts stay crisp.",
+  "posts": [
+    "where-cashews-come-from",
+    "raw-vs-roasted-nuts"
+  ]
+}

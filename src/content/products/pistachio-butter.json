@@ -1,0 +1,46 @@
+{
+  "slug": "pistachio-butter",
+  "name": "Pistachio butter",
+  "category": "nut-butters",
+  "nut": "pistachio",
+  "tagline": "Vivid green-tinged pistachio butter with a rich, sweet, slightly resinous flavour.",
+  "metaDescription": "Pistachio butter made from roasted pistachios and a pinch of salt. Rich, creamy and subtly sweet, ideal for toast, desserts and baking.",
+  "description": [
+    "Pistachio butter is the fancy one on the shelf, and it knows it. We roast shelled pistachios gently and grind them into a thick paste that keeps a hint of the nut's green tinge, giving a colour you do not see in other spreads.",
+    "The flavour is rich, sweet and a little resinous, with a savoury edge from the pinch of salt that stops it from being cloying. The texture is creamy but slightly looser than a peanut butter, and it gets a few tiny flecks from the nut skins.",
+    "Spoon it onto warm toast with a few slices of fig, or swirl it through yoghurt. In baking it works in shortbread, thumbprint biscuits and cakes. Loosened with a bit of cream, it makes an excellent sauce for ice cream or a tart filling.",
+    "Pistachios are a premium nut, and this jar reflects that in the price. It is an easy way to add a different flavour to your pantry. As always, check the label for allergens, and stir the jar before use if oil has risen to the surface."
+  ],
+  "variants": [
+    {
+      "label": "190 g jar",
+      "weightG": 190,
+      "priceCents": 1195
+    },
+    {
+      "label": "380 g jar",
+      "weightG": 380,
+      "priceCents": 2095
+    }
+  ],
+  "ingredients": "Roasted pistachios (99%), sea salt.",
+  "allergens": [
+    "Pistachios (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 604,
+    "fatG": 50,
+    "saturatesG": 6.2,
+    "carbsG": 18,
+    "sugarsG": 7,
+    "fibreG": 9,
+    "proteinG": 20,
+    "saltG": 0.4
+  },
+  "storage": "Store in a cool, dark cupboard and stir before use. Keep tightly closed after opening and use within a few months.",
+  "posts": [
+    "homemade-nut-butter-in-a-food-processor",
+    "nut-allergies-reading-food-labels"
+  ]
+}

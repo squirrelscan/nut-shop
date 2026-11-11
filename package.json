@@ -1,0 +1,46 @@
+{
+  "name": "nut-shop",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "vite dev --host 127.0.0.1 --port 4210 --strictPort",
+    "build": "bun run content && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4210",
+    "deploy": "bun run build && wrangler deploy",
+    "content": "bun run scripts/build-content.ts",
+    "images": "bun run scripts/gen-images.ts",
+    "fault": "bun run scripts/fault.ts",
+    "check-links": "bun run scripts/check-links.ts",
+    "typecheck": "tsgo --noEmit",
+    "lint": "oxlint src faults scripts tests",
+    "format": "oxfmt src faults scripts tests",
+    "test": "bun test tests"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-router": "1.170.46",
+    "@tanstack/react-start": "1.169.5",
+    "marked": "^18.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.26.0",
+    "@types/bun": "^1.4.4",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260707.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0",
+    "wrangler": "^4.70.0"
+  }
+}

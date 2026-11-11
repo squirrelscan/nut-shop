@@ -1,0 +1,46 @@
+{
+  "slug": "crunchy-peanut-butter",
+  "name": "Crunchy peanut butter",
+  "category": "nut-butters",
+  "nut": "peanut",
+  "tagline": "Thick roasted peanut butter packed with chunky, crunchy peanut pieces.",
+  "metaDescription": "Crunchy peanut butter with roasted peanut pieces in every spoonful. A thick, hearty spread for toast, sandwiches and baking.",
+  "description": [
+    "For people who think peanut butter should have something to chew, this is the jar. We grind roasted peanuts into a thick base, then fold in a generous scoop of coarsely chopped peanuts so every spoonful has texture.",
+    "The flavour is deep and toasty, with a pinch of salt and nothing else added. The crunch comes from real nut pieces, not from fillers, so it softens a little as it sits on warm toast and stays satisfying on a cold cracker.",
+    "It is a hardy spread that stands up to heavier jobs. Stir it into porridge, spread it thickly on a banana, layer it into a sandwich with jam, or melt a spoonful into a stir-fry sauce. In baking, it makes biscuits and bars with a more rustic bite.",
+    "As with any natural peanut butter, you may see some oil on the surface, so give it a stir when you open it. It contains peanuts, so check the label carefully if you or anyone you cook for has an allergy. Prefer a silkier texture? Reach for our smooth peanut butter instead."
+  ],
+  "variants": [
+    {
+      "label": "227 g jar",
+      "weightG": 227,
+      "priceCents": 525
+    },
+    {
+      "label": "454 g jar",
+      "weightG": 454,
+      "priceCents": 825
+    }
+  ],
+  "ingredients": "Roasted peanuts (99%), sea salt.",
+  "allergens": [
+    "Peanuts"
+  ],
+  "mayContain": "May contain traces of tree nuts.",
+  "nutrition": {
+    "energyKcal": 618,
+    "fatG": 50,
+    "saturatesG": 9.3,
+    "carbsG": 12.5,
+    "sugarsG": 5.2,
+    "fibreG": 7,
+    "proteinG": 26,
+    "saltG": 0.6
+  },
+  "storage": "Store in a cool cupboard. Stir well if oil separates. Keep the lid tight after opening and use within a few months.",
+  "posts": [
+    "homemade-nut-butter-in-a-food-processor",
+    "nut-allergies-reading-food-labels"
+  ]
+}

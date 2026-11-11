@@ -1,0 +1,51 @@
+{
+  "slug": "dry-roasted-almonds",
+  "name": "Dry-roasted almonds",
+  "category": "roasted-nuts",
+  "nut": "almond",
+  "tagline": "Slow-roasted almonds with a deep golden crunch and no added oil or salt.",
+  "metaDescription": "Dry-roasted almonds with no oil or salt added. Deeply golden, extra crunchy and toasty, a simple snack for the desk, bag or bowl.",
+  "description": [
+    "We roast these almonds in dry heat only, with no oil and no salt, until the kernels turn deep golden and the whole thing smells like a bakery. The result is a louder, toastier almond than the raw version, with a snappy crunch that lasts.",
+    "Roasting concentrates the flavour and dries the nut slightly, which is why it feels crisper between the teeth. You can taste a hint of caramel from the browning reaction, plus that familiar warmth you get from toast. Because nothing is added, they stay clean and simple.",
+    "They are a handy snack for a desk drawer or a coat pocket, but they also work in the kitchen. Chop them onto yoghurt, stir them through a grain salad, or crush them over roasted vegetables for texture. Sweet and savoury dishes both like them.",
+    "If you want to see how this is done at home, our how to roast almonds at home guide explains the timing. Prefer something with a little more attitude? The smoked almonds start from the same nut but take it in a smokier direction."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 695
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1495
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2795
+    }
+  ],
+  "ingredients": "Almonds.",
+  "allergens": [
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 598,
+    "fatG": 53,
+    "saturatesG": 4,
+    "carbsG": 19,
+    "sugarsG": 4.2,
+    "fibreG": 12,
+    "proteinG": 22,
+    "saltG": 0.01
+  },
+  "storage": "Store in an airtight tin or jar away from heat and light. Eat within a couple of months of opening.",
+  "posts": [
+    "how-to-roast-almonds-at-home",
+    "raw-vs-roasted-nuts"
+  ]
+}

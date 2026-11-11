@@ -1,0 +1,46 @@
+{
+  "slug": "maple-glazed-pecans",
+  "name": "Maple-glazed pecans",
+  "category": "roasted-nuts",
+  "nut": "pecan",
+  "tagline": "Pecan halves baked in a maple glaze until they are sticky, crisp and toffee-sweet.",
+  "metaDescription": "Pecan halves coated in a maple glaze and baked until crisp. Sweet, toasty and sticky, lovely on salads, desserts or by the handful.",
+  "description": [
+    "Take a perfectly buttery pecan, wrap it in a maple glaze and bake it until the coating crisps into a thin, caramel-like shell. That is the whole idea, and it works very well.",
+    "The first bite is sweet, with a deep, woody maple flavour and a hint of toffee. Then comes the soft, tender crunch of the pecan underneath, with a faint pinch of salt that stops it from being too sugary. It is more elegant than a candied nut and less fussy than a praline.",
+    "They are a natural for the cheese board, and they make a quick upgrade to a green salad with goat's cheese and pear. Sprinkle them over porridge, ice cream or a stack of pancakes, or chop them into a loaf cake. They are also dangerously good straight from the bag.",
+    "If you would like to try the technique yourself, our maple-glazed pecans at home post walks through it. For something plainer, our raw pecan halves give you the same nut with no coating, and a blank canvas for pecan pie bars."
+  ],
+  "variants": [
+    {
+      "label": "150 g",
+      "weightG": 150,
+      "priceCents": 795
+    },
+    {
+      "label": "350 g",
+      "weightG": 350,
+      "priceCents": 1695
+    }
+  ],
+  "ingredients": "Pecans, sugar, maple syrup (6%), sunflower oil, sea salt.",
+  "allergens": [
+    "Pecans (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 598,
+    "fatG": 47,
+    "saturatesG": 4.5,
+    "carbsG": 36,
+    "sugarsG": 30,
+    "fibreG": 7,
+    "proteinG": 6.5,
+    "saltG": 0.4
+  },
+  "storage": "Store in an airtight container in a cool, dry spot. Humidity softens the glaze, so reseal promptly.",
+  "posts": [
+    "maple-glazed-pecans-at-home",
+    "pecan-pie-bars-recipe"
+  ]
+}

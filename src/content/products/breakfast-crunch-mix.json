@@ -1,0 +1,54 @@
+{
+  "slug": "breakfast-crunch-mix",
+  "name": "Breakfast crunch mix",
+  "category": "trail-mixes",
+  "nut": "mixed",
+  "tagline": "Oat clusters, almonds, pecans and walnuts for bowls and on-the-go mornings.",
+  "metaDescription": "A morning mix of honey oat clusters, raw almonds, pecans and walnuts with dried apple and pumpkin seeds. Pour over yoghurt or eat from the bag.",
+  "description": [
+    "This is trail mix for people who do not do trail mix. Golden honey oat clusters carry most of the volume, studded with raw almonds, pecan halves and walnut pieces. It tastes like the best bit of a granola bowl, without needing a bowl.",
+    "Dried apple gives soft, mellow sweetness, and pumpkin seeds add a little toasted crunch. The clusters are baked lightly so they stay crisp in milk for a good few minutes, which is exactly the test we use for any breakfast cereal.",
+    "Spoon it over yoghurt, stir it into porridge, or sprinkle it over sliced banana. It is also a decent desk-drawer snack for the morning slump. If you are curious about making your own, our homemade granola post walks through the method.",
+    "Because the clusters are fragile, we pack this mix gently. A few crumbs at the bottom of the bag are normal, and they make a great topping for anything creamy."
+  ],
+  "variants": [
+    {
+      "label": "300 g",
+      "weightG": 300,
+      "priceCents": 775
+    },
+    {
+      "label": "600 g",
+      "weightG": 600,
+      "priceCents": 1425
+    }
+  ],
+  "ingredients": "Oat clusters (oats, honey, sunflower oil, sugar), raw almonds, raw pecan halves, raw walnut pieces, dried apple, pumpkin seeds.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Pecans (tree nut)",
+    "Walnuts (tree nut)",
+    "Oats (gluten)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts, milk and other cereals containing gluten.",
+  "nutrition": {
+    "energyKcal": 490,
+    "fatG": 28,
+    "saturatesG": 4.2,
+    "carbsG": 47,
+    "sugarsG": 20,
+    "fibreG": 7.8,
+    "proteinG": 11,
+    "saltG": 0.05
+  },
+  "storage": "Seal tightly after opening and keep somewhere cool and dry so the clusters stay crisp.",
+  "posts": [
+    "homemade-granola-with-nuts",
+    "a-guide-to-building-a-trail-mix"
+  ],
+  "contains": [
+    "raw-almonds",
+    "raw-pecan-halves",
+    "raw-walnut-halves"
+  ]
+}

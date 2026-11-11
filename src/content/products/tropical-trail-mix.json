@@ -1,0 +1,51 @@
+{
+  "slug": "tropical-trail-mix",
+  "name": "Tropical trail mix",
+  "category": "trail-mixes",
+  "nut": "mixed",
+  "tagline": "Cashews and almonds with dried mango, pineapple and banana chips.",
+  "metaDescription": "A sunny trail mix of raw cashews and almonds with chewy dried mango, pineapple and crisp banana chips. Sweet, fruity and easy to snack on.",
+  "description": [
+    "If a beach holiday were a snack, it would look a lot like this. We start with creamy raw cashews and lightly crunchy almonds, then fold in strips of chewy dried mango and sticky pineapple pieces for a bright, sweet tang.",
+    "Crisp banana chips run through the middle for a bit of crackle. They soften slightly if they sit next to the fruit, so you get a nice mix of textures from one handful to the next. There is no added salt, which lets the fruit do the talking.",
+    "This one is lovely stirred into plain yoghurt, scattered over a smoothie bowl, or packed into a lunchbox for a sweeter afternoon snack. It also makes a cheerful base for homemade granola bars if you chop everything a little finer.",
+    "Dried fruit can clump in warm weather, so give the bag a shake before you pour. The pieces separate easily and the flavour is unchanged."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 795
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1475
+    }
+  ],
+  "ingredients": "Raw cashews, raw almonds, dried mango, dried pineapple, banana chips (banana, sunflower oil, sugar).",
+  "allergens": [
+    "Cashews (tree nut)",
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts and sulphites.",
+  "nutrition": {
+    "energyKcal": 470,
+    "fatG": 24,
+    "saturatesG": 4.1,
+    "carbsG": 56,
+    "sugarsG": 36,
+    "fibreG": 5.4,
+    "proteinG": 8.5,
+    "saltG": 0.05
+  },
+  "storage": "Store in a cool, dry place in a sealed container, away from heat so the fruit stays soft.",
+  "posts": [
+    "a-guide-to-building-a-trail-mix",
+    "where-cashews-come-from"
+  ],
+  "contains": [
+    "raw-cashews",
+    "raw-almonds"
+  ]
+}

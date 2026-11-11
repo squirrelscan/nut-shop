@@ -1,0 +1,51 @@
+{
+  "slug": "flaked-almonds",
+  "name": "Flaked almonds",
+  "category": "baking",
+  "nut": "almond",
+  "tagline": "Thin, pale almond slivers for topping, toasting and decorating.",
+  "metaDescription": "Delicate flaked almonds for baking and finishing. Toast for salads, scatter over tarts or press onto cakes for a golden, crisp topping.",
+  "description": [
+    "Flaked almonds are almonds sliced into thin, pale curls. They are light and delicate, which makes them ideal for finishing dishes: a golden scatter over a tart, a crown on a cake, or a crunchy lift for a bowl of porridge.",
+    "Raw, they are mild and slightly milky. Toasted, they turn gold and fragrant in a few minutes, and the edges go crisp and nutty. Watch them closely, as the thin slices go from pale to burnt very fast in a hot pan or oven.",
+    "They are the traditional topping for Bakewell-style tarts and many Danish pastries, and they work in savoury dishes too. Try them over green beans with butter, in a rice pilaf, or in a creamy chicken dish for a bit of texture.",
+    "We slice them ourselves from blanched almonds so the flakes stay whole rather than crumbling to dust. They are packed in a resealable bag to keep them dry and crisp."
+  ],
+  "variants": [
+    {
+      "label": "150 g",
+      "weightG": 150,
+      "priceCents": 595
+    },
+    {
+      "label": "300 g",
+      "weightG": 300,
+      "priceCents": 1050
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2950
+    }
+  ],
+  "ingredients": "Almonds.",
+  "allergens": [
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 600,
+    "fatG": 52,
+    "saturatesG": 4,
+    "carbsG": 7,
+    "sugarsG": 4,
+    "fibreG": 10,
+    "proteinG": 24,
+    "saltG": 0.01
+  },
+  "storage": "Keep in a sealed bag in a cool, dry cupboard. Toast only what you need, just before using.",
+  "posts": [
+    "how-to-roast-almonds-at-home",
+    "homemade-granola-with-nuts"
+  ]
+}

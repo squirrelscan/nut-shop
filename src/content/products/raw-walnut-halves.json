@@ -1,0 +1,52 @@
+{
+  "slug": "raw-walnut-halves",
+  "name": "Raw walnut halves",
+  "category": "raw-nuts",
+  "nut": "walnut",
+  "tagline": "Pale, crinkly walnut halves with a rich flavour and a pleasant bitter edge.",
+  "metaDescription": "Raw walnut halves with a rich, slightly bitter taste and a tender crunch. Great in baking, salads, porridge and stuffings.",
+  "description": [
+    "Walnut halves look like tiny brains, and they taste far better than that sounds. The flesh is tender and crinkled, with a rich, woody flavour and a pleasant bitter edge from the thin skin that keeps them from being dull.",
+    "Use them where you want a bit of grown-up character. They are the classic partner for ripe pears and blue cheese, they turn banana bread into something special, and a handful scattered over roasted beetroot makes a very good lunch. Toast them lightly to bring out their sweetness and soften that bitterness.",
+    "We select mostly intact halves in a light amber shade, as darker ones can taste stronger and a little harsher. They are packed raw, so you decide what happens next: bake, chop, crush into a pesto, or simply eat them with a cup of tea.",
+    "Walnuts are an oil-rich nut, which makes them one of the more delicate things in the pantry. Keep them sealed and cool, and take a look at our notes on why nuts go rancid if you ever wonder whether a forgotten bag is still good."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 795
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1795
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 3295
+    }
+  ],
+  "ingredients": "Walnuts.",
+  "allergens": [
+    "Walnuts (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 654,
+    "fatG": 65,
+    "saturatesG": 6.1,
+    "carbsG": 14,
+    "sugarsG": 2.6,
+    "fibreG": 6.7,
+    "proteinG": 15,
+    "saltG": 0.01
+  },
+  "storage": "Store in a sealed container in a cool, dark spot, or the fridge in warm weather. Walnuts turn stale quicker than most nuts.",
+  "posts": [
+    "walnut-banana-bread-recipe",
+    "why-nuts-go-rancid",
+    "storing-nuts-so-they-stay-fresh"
+  ]
+}

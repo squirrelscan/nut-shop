@@ -1,0 +1,46 @@
+{
+  "slug": "raw-brazil-nuts",
+  "name": "Raw Brazil nuts",
+  "category": "raw-nuts",
+  "nut": "brazil",
+  "tagline": "Big, creamy Brazil nuts with a rich, milky flavour and a satisfying chew.",
+  "metaDescription": "Large raw Brazil nuts, shelled and unsalted. Creamy, rich and satisfyingly chewy, good for snacking, chopping and baking.",
+  "description": [
+    "Brazil nuts are the heavyweights of the bowl. Long, pale and generously sized, they have a dense, creamy bite and a rich, milky flavour that feels almost indulgent for something so plain.",
+    "Their size makes them easy to spot in a mix, and just as easy to use on their own. Slice them thinly over a salad, chop them for a crumble, or shave them with a vegetable peeler to make curls for desserts. A quick toast in the oven brings out a gentle sweetness.",
+    "We pack these shelled and unsalted, with no oils or coatings. Expect a few differences in shape from nut to nut, which is just nature being nature. The texture is firm at first and then almost soft as you chew, quite unlike a crisp almond or a crumbly pecan.",
+    "Because Brazil nuts are so oily, they are best bought in modest amounts and eaten within a reasonable time. Our guide to storing nuts so they stay fresh has all the tips you need, and our post on why nuts go rancid explains the science."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 795
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1795
+    }
+  ],
+  "ingredients": "Brazil nuts.",
+  "allergens": [
+    "Brazil nuts (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 659,
+    "fatG": 67,
+    "saturatesG": 15,
+    "carbsG": 4,
+    "sugarsG": 2.3,
+    "fibreG": 7.5,
+    "proteinG": 14,
+    "saltG": 0.01
+  },
+  "storage": "Keep in a sealed container in a cool, dark place. Their high oil content means they are best used within a few months.",
+  "posts": [
+    "storing-nuts-so-they-stay-fresh",
+    "why-nuts-go-rancid"
+  ]
+}

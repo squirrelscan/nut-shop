@@ -1,0 +1,51 @@
+{
+  "slug": "honey-roasted-peanuts",
+  "name": "Honey-roasted peanuts",
+  "category": "roasted-nuts",
+  "nut": "peanut",
+  "tagline": "Peanuts roasted in a sticky honey glaze, sweet first and salty after.",
+  "metaDescription": "Peanuts roasted with a honey glaze and a pinch of salt. Sweet, sticky and crunchy, a nostalgic snack for the cinema, the car or the sofa.",
+  "description": [
+    "These peanuts are roasted until crunchy and then coated in a thin honey glaze that sets to a shiny, slightly tacky shell. The first taste is sweet and floral, and the salt arrives just afterwards to keep it balanced.",
+    "The glaze is only a light coat, so the peanut flavour is still the star. Peanuts have an earthy, roasted character that works well with sweetness, and the contrast with the crisp interior makes the bag disappear faster than you planned.",
+    "Think of them as a snack for long journeys, film nights and board games. They are also good chopped over ice cream, stirred into a cookie dough or crushed over a bowl of spiced noodles for a sweet and savoury finish.",
+    "Peanuts are technically legumes, which is a fun fact you can read about in our post on whether peanuts are really nuts. They are still a common allergen, so read the label carefully. If you like the idea of a glazed nut but prefer pecans, take a look at our maple-glazed pecans."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 595
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1195
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2095
+    }
+  ],
+  "ingredients": "Peanuts, honey (9%), sugar, sunflower oil, sea salt.",
+  "allergens": [
+    "Peanuts"
+  ],
+  "mayContain": "May contain traces of tree nuts.",
+  "nutrition": {
+    "energyKcal": 552,
+    "fatG": 40,
+    "saturatesG": 6,
+    "carbsG": 30,
+    "sugarsG": 17,
+    "fibreG": 6,
+    "proteinG": 21,
+    "saltG": 0.7
+  },
+  "storage": "Keep in a sealed container in a cool, dry place so the glaze stays crisp rather than sticky.",
+  "posts": [
+    "are-peanuts-really-nuts",
+    "nut-allergies-reading-food-labels"
+  ]
+}

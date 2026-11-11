@@ -1,0 +1,57 @@
+{
+  "slug": "classic-trail-mix",
+  "name": "Classic trail mix",
+  "category": "trail-mixes",
+  "nut": "mixed",
+  "tagline": "Almonds, cashews, peanuts and raisins: the mix that started every hike.",
+  "metaDescription": "A balanced everyday trail mix of roasted almonds, salted cashews, honey-roasted peanuts, raisins and sunflower seeds, packed fresh to order.",
+  "description": [
+    "This is the mix we reach for when someone says they just want a proper trail mix and nothing fancy. Dry-roasted almonds bring the crunch, salted roasted cashews add a buttery softness, and honey-roasted peanuts give a sweet, sticky edge that keeps every handful interesting.",
+    "Plump raisins and sunflower seeds fill the gaps. The raisins are chewy and sweet, which stops the salt from taking over, and the seeds add a light, nutty snap. We blend the mix by hand in small batches so the ratio stays generous with the nuts instead of the fruit.",
+    "It travels well in a jacket pocket, sits happily in a desk drawer, and works as a topping for yoghurt or porridge when you want some texture. If you like to tweak, pour it into a bowl and add a few chocolate chips or dried cherries of your own.",
+    "Our guide to building a trail mix explains how we think about the balance of salty, sweet and crunchy, if you want to make your own blend at home."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 725
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1350
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2500
+    }
+  ],
+  "ingredients": "Dry-roasted almonds, salted roasted cashews, honey-roasted peanuts (peanuts, honey, sugar), raisins, sunflower seeds.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Cashews (tree nut)",
+    "Peanuts"
+  ],
+  "mayContain": "May contain traces of other tree nuts, sesame and soy.",
+  "nutrition": {
+    "energyKcal": 520,
+    "fatG": 34,
+    "saturatesG": 4.6,
+    "carbsG": 40,
+    "sugarsG": 18,
+    "fibreG": 6.2,
+    "proteinG": 15,
+    "saltG": 0.4
+  },
+  "storage": "Keep in a cool, dry place in a resealable bag or jar. Best eaten within a couple of months of opening.",
+  "posts": [
+    "a-guide-to-building-a-trail-mix"
+  ],
+  "contains": [
+    "dry-roasted-almonds",
+    "salted-roasted-cashews",
+    "honey-roasted-peanuts"
+  ]
+}

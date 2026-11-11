@@ -1,0 +1,51 @@
+{
+  "slug": "ground-almonds",
+  "name": "Ground almonds",
+  "category": "baking",
+  "nut": "almond",
+  "tagline": "Finely milled almonds for cakes, macaroons and frangipane.",
+  "metaDescription": "Finely ground blanched almonds for baking. Gives cakes a moist crumb and a gentle nutty sweetness. Use in frangipane, macaroons and more.",
+  "description": [
+    "Ground almonds are the quiet hero of the baking cupboard. Ours are blanched, so the skins are removed, then milled to a fine, pale, slightly sandy powder. The result is mild, sweet and creamy, and it blends invisibly into batters.",
+    "In cakes, they keep the crumb moist and tender, and they bring a delicate marzipan note without being overpowering. They are the foundation of frangipane, the classic tart filling, and they are essential for macaroons and many flourless bakes.",
+    "You can swap some of the flour in a recipe for ground almonds to add richness, though they behave differently to wheat flour, so start with a small swap. They also thicken curries and sauces, and make a good coating for fish or chicken.",
+    "Ground almonds go off faster than whole nuts because more surface is exposed, so we mill in small batches. Our post on almond flour vs ground almonds explains the small but important differences between them."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 695
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1250
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2300
+    }
+  ],
+  "ingredients": "Almonds.",
+  "allergens": [
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 612,
+    "fatG": 54,
+    "saturatesG": 4.1,
+    "carbsG": 6.5,
+    "sugarsG": 4,
+    "fibreG": 11,
+    "proteinG": 22,
+    "saltG": 0.01
+  },
+  "storage": "Keep sealed in a cool, dry place. Once opened, use within a few weeks or store in the fridge.",
+  "posts": [
+    "almond-flour-vs-ground-almonds",
+    "storing-nuts-so-they-stay-fresh"
+  ]
+}

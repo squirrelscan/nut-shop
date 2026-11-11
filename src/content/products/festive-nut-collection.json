@@ -1,0 +1,57 @@
+{
+  "slug": "festive-nut-collection",
+  "name": "The festive nut collection",
+  "category": "gift-boxes",
+  "nut": "mixed",
+  "tagline": "Nuts in the shell spirit: pecans, Brazils, hazelnuts, walnuts and peanuts.",
+  "metaDescription": "A seasonal gift box of maple-glazed pecans, raw Brazil nuts, hazelnuts, walnut halves and honey-roasted peanuts. Bring on the bowl and the nutcracker.",
+  "description": [
+    "This box is for the table at the end of a big meal. It gathers the nuts people have always put in a bowl at holiday time: sticky maple-glazed pecans, raw Brazil nuts, raw hazelnuts, raw walnut halves and honey-roasted peanuts.",
+    "Brazil nuts are large and creamy, hazelnuts are sweet and crisp, and walnuts have a gentle bitterness that works well with cheese. The glazed pecans and honey peanuts add a bit of sparkle for anyone with a sweet tooth.",
+    "We pack everything into a deep red box with a ribbon and a card for your message. Put the tubs in bowls, add a nutcracker if you like theatre, and let people help themselves. The leftovers are good for baking in the weeks after.",
+    "The nuts here are shelled and ready to eat, so no cracking is required unless you want it. The box is a seasonal pick, so we make it in limited batches."
+  ],
+  "variants": [
+    {
+      "label": "Five tubs",
+      "weightG": 750,
+      "priceCents": 5400
+    },
+    {
+      "label": "Five tubs plus board",
+      "weightG": 1100,
+      "priceCents": 7200
+    }
+  ],
+  "ingredients": "See the contents list on the product page.",
+  "allergens": [
+    "Pecans (tree nut)",
+    "Brazil nuts (tree nut)",
+    "Hazelnuts (tree nut)",
+    "Walnuts (tree nut)",
+    "Peanuts"
+  ],
+  "mayContain": "May contain traces of other tree nuts and sesame.",
+  "nutrition": {
+    "energyKcal": 650,
+    "fatG": 59,
+    "saturatesG": 8.2,
+    "carbsG": 12,
+    "sugarsG": 6,
+    "fibreG": 7.4,
+    "proteinG": 14,
+    "saltG": 0.2
+  },
+  "storage": "Keep in a cool, dry place. Reseal tubs after use and store walnuts and pecans somewhere cool.",
+  "posts": [
+    "how-to-build-a-nut-gift-box",
+    "maple-glazed-pecans-at-home"
+  ],
+  "contains": [
+    "maple-glazed-pecans",
+    "raw-brazil-nuts",
+    "raw-hazelnuts",
+    "raw-walnut-halves",
+    "honey-roasted-peanuts"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "nut-butter-trio",
+  "name": "The nut butter trio",
+  "category": "gift-boxes",
+  "nut": "mixed",
+  "tagline": "Almond, cashew and pistachio butter in three small jars.",
+  "metaDescription": "A gift set of three small jars: creamy almond butter, mellow cashew butter and vivid pistachio butter. Spread, stir or eat by the spoon.",
+  "description": [
+    "Three small jars, three very different spreads. Almond butter is toasty and a touch sweet, cashew butter is soft and mellow, and pistachio butter is rich, savoury and unmistakably green. Together they make an easy tasting set.",
+    "Each jar is made with nuts and nothing much else, so the flavour is clean and the texture is naturally smooth. A little oil may rise to the top, which is normal and shows there are no stabilisers. Stir it back in and you are ready to go.",
+    "Spread them on toast, swirl them into porridge, or whisk a spoonful into a dressing or a sauce. Pistachio butter on warm bread with a pinch of salt is a small joy. Cashew butter turns a smoothie creamy without any fuss.",
+    "The jars are small enough to finish in a week or two, so everything stays fresh. Our homemade nut butter post is a good read for anyone who wants to try making a batch themselves."
+  ],
+  "variants": [
+    {
+      "label": "Three 100 g jars",
+      "weightG": 300,
+      "priceCents": 3200
+    },
+    {
+      "label": "Three 227 g jars",
+      "weightG": 681,
+      "priceCents": 5200
+    }
+  ],
+  "ingredients": "See the contents list on the product page.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Cashews (tree nut)",
+    "Pistachios (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 620,
+    "fatG": 52,
+    "saturatesG": 6.4,
+    "carbsG": 20,
+    "sugarsG": 5,
+    "fibreG": 8.1,
+    "proteinG": 20,
+    "saltG": 0.05
+  },
+  "storage": "Store unopened in a cool, dry cupboard. After opening, keep in the fridge and stir before use.",
+  "posts": [
+    "homemade-nut-butter-in-a-food-processor",
+    "how-to-build-a-nut-gift-box"
+  ],
+  "contains": [
+    "almond-butter",
+    "cashew-butter",
+    "pistachio-butter"
+  ]
+}

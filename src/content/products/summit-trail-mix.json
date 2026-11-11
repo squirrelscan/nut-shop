@@ -1,0 +1,60 @@
+{
+  "slug": "summit-trail-mix",
+  "name": "Summit trail mix",
+  "category": "trail-mixes",
+  "nut": "mixed",
+  "tagline": "Four nuts, pumpkin seeds and tart cranberries for the long climb.",
+  "metaDescription": "A hearty trail mix of dry-roasted almonds, hazelnuts, walnuts and cashews with pumpkin seeds and dried cranberries, built for long days out.",
+  "description": [
+    "Summit is our nut-forward mix, designed for people who want to be chewing something substantial by the time they reach the top. It leads with dry-roasted almonds and raw hazelnuts, adds walnut halves for a gentle bitterness, and rounds things out with creamy cashews.",
+    "Pumpkin seeds give a green, toasty crunch, and a small scattering of dried cranberries brings a sharp, tart note so the whole mix does not feel heavy. We keep the fruit to a minimum on purpose. This is a nut mix with a hint of sweetness, not the other way round.",
+    "Because it is dense, a small handful goes a long way. It is a good companion for a packed lunch, a long drive or a late meeting, and it holds its texture well in a bag for days at a time.",
+    "Walnuts are the most delicate nut in the blend, so we pack the mix in small batches to keep everything tasting fresh when it reaches you."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 845
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1575
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2950
+    }
+  ],
+  "ingredients": "Dry-roasted almonds, raw hazelnuts, raw walnut halves, raw cashews, pumpkin seeds, dried cranberries (cranberries, sugar, sunflower oil).",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Hazelnuts (tree nut)",
+    "Walnuts (tree nut)",
+    "Cashews (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts and sesame.",
+  "nutrition": {
+    "energyKcal": 590,
+    "fatG": 47,
+    "saturatesG": 5.1,
+    "carbsG": 22,
+    "sugarsG": 9,
+    "fibreG": 8.1,
+    "proteinG": 17,
+    "saltG": 0.02
+  },
+  "storage": "Keep sealed in a cool, dry, dark spot. Refrigerate in warm weather to protect the walnuts.",
+  "posts": [
+    "a-guide-to-building-a-trail-mix",
+    "storing-nuts-so-they-stay-fresh"
+  ],
+  "contains": [
+    "dry-roasted-almonds",
+    "raw-hazelnuts",
+    "raw-walnut-halves",
+    "raw-cashews"
+  ]
+}

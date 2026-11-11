@@ -1,0 +1,46 @@
+{
+  "slug": "chilli-lime-cashews",
+  "name": "Chilli lime cashews",
+  "category": "roasted-nuts",
+  "nut": "cashew",
+  "tagline": "Roasted cashews with a zesty lime kick and a slow-building chilli heat.",
+  "metaDescription": "Roasted cashews seasoned with lime and chilli. Zesty, warming and crunchy, a lively snack with plenty of personality for any bowl.",
+  "description": [
+    "These cashews arrive with a bright, sharp hit of lime, followed a second later by a gentle chilli warmth that builds without taking over. Underneath it all, the roasted cashew keeps things buttery and round.",
+    "We season them after roasting so the flavours stay fresh. The lime gives a tangy lift, the chilli adds slow heat, and a little salt ties it together. They sit somewhere around a medium level of spice, so most people will find them lively rather than painful.",
+    "They are great beside a cold drink, but also very good in cooking. Scatter over a mango salad, a coconut curry or a bowl of rice noodles, or crush them over avocado on toast. A small handful can liven up a boring lunch.",
+    "We kept the ingredient list short and the flavour direct. If you prefer a gentler snack, try our salted roasted cashews or the plain raw ones. For readers curious about the cashew itself, our where cashews come from post tells the story from tree to bag."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 845
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1895
+    }
+  ],
+  "ingredients": "Cashews, sunflower oil, sea salt, lime powder, chilli powder, sugar, citric acid.",
+  "allergens": [
+    "Cashews (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 580,
+    "fatG": 46,
+    "saturatesG": 8.5,
+    "carbsG": 29,
+    "sugarsG": 5.8,
+    "fibreG": 3.2,
+    "proteinG": 17,
+    "saltG": 1
+  },
+  "storage": "Keep sealed in a cool, dry cupboard away from light. Eat within a couple of months of opening.",
+  "posts": [
+    "where-cashews-come-from",
+    "raw-vs-roasted-nuts"
+  ]
+}

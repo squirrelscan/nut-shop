@@ -1,0 +1,50 @@
+{
+  "slug": "roasters-selection-box",
+  "name": "The roaster's selection box",
+  "category": "gift-boxes",
+  "nut": "mixed",
+  "tagline": "Five roasted nuts, from plain and smoky to sweet and spicy.",
+  "metaDescription": "A gift box of five roasted nuts: dry-roasted and smoked almonds, salted and chilli lime cashews, plus maple-glazed pecans. Roasted by us.",
+  "description": [
+    "This box is our roasting room in miniature. Each tub shows a different side of the craft: plain dry-roasted almonds, smoky almonds, salted cashews, chilli lime cashews and sticky maple-glazed pecans.",
+    "Putting two almonds and two cashews side by side is the fun part. You taste how the same nut changes with a different roast or seasoning, from clean and toasty to smoky or bright and tangy. The pecans round it off as the sweet finish.",
+    "It is a good pick for someone who cooks, hosts or just likes to snack with some thought. Put the tubs out on a board with cheese and fruit and let people compare. It also makes a thoughtful present for anyone who has just bought their first proper oven or air fryer.",
+    "Every tub is roasted in small batches and sealed soon after cooling, so the nuts reach the recipient crisp. A card in the box explains what to taste first and what to save for last."
+  ],
+  "variants": [
+    {
+      "label": "Five tubs",
+      "weightG": 500,
+      "priceCents": 4500
+    }
+  ],
+  "ingredients": "See the contents list on the product page.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Cashews (tree nut)",
+    "Pecans (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts and sesame.",
+  "nutrition": {
+    "energyKcal": 615,
+    "fatG": 51,
+    "saturatesG": 6.6,
+    "carbsG": 17,
+    "sugarsG": 6,
+    "fibreG": 7.6,
+    "proteinG": 17,
+    "saltG": 0.8
+  },
+  "storage": "Keep in a cool, dry, dark place. Close each tub firmly after opening.",
+  "posts": [
+    "raw-vs-roasted-nuts",
+    "how-to-roast-almonds-at-home"
+  ],
+  "contains": [
+    "dry-roasted-almonds",
+    "smoked-almonds",
+    "salted-roasted-cashews",
+    "chilli-lime-cashews",
+    "maple-glazed-pecans"
+  ]
+}

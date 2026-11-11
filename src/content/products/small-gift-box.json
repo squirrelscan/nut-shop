@@ -1,0 +1,47 @@
+{
+  "slug": "small-gift-box",
+  "name": "The small gift box",
+  "category": "gift-boxes",
+  "nut": "mixed",
+  "tagline": "Three roasted favourites in a neat little box, ready to hand over.",
+  "metaDescription": "A compact gift box with dry-roasted almonds, salted roasted cashews and maple-glazed pecans, packed in a kraft box with a tie of twine.",
+  "description": [
+    "Sometimes a gift just needs to say thank you, and this little box does it well. Inside are three tubs of our most popular roasted nuts: dry-roasted almonds, salted roasted cashews and maple-glazed pecans.",
+    "The trio covers the bases. The almonds are crunchy and plain, the cashews are salty and soft, and the pecans are sweet and sticky with a hint of maple. Together they make a tidy sampler that suits almost anyone who likes a nibble.",
+    "The box is kraft card with a tie of twine and a blank tag for your own message. It slips through a letterbox gap on a good day and sits easily on a desk or a dinner table. Nothing about it needs wrapping. It is also a handy size for a teacher, a neighbour or a colleague who has done you a favour.",
+    "Wondering what else to put in a gift? Our guide to building a nut gift box explains how we choose and balance the contents."
+  ],
+  "variants": [
+    {
+      "label": "Box of three tubs",
+      "weightG": 300,
+      "priceCents": 2800
+    }
+  ],
+  "ingredients": "See the contents list on the product page.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Cashews (tree nut)",
+    "Pecans (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 610,
+    "fatG": 50,
+    "saturatesG": 6.2,
+    "carbsG": 18,
+    "sugarsG": 7,
+    "fibreG": 7.5,
+    "proteinG": 16,
+    "saltG": 0.5
+  },
+  "storage": "Keep in a cool, dry place. Once a tub is opened, reseal it and eat within a few weeks.",
+  "posts": [
+    "how-to-build-a-nut-gift-box"
+  ],
+  "contains": [
+    "dry-roasted-almonds",
+    "salted-roasted-cashews",
+    "maple-glazed-pecans"
+  ]
+}

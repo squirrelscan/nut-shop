@@ -1,0 +1,51 @@
+{
+  "slug": "raw-cashews",
+  "name": "Raw cashews",
+  "category": "raw-nuts",
+  "nut": "cashew",
+  "tagline": "Plump, buttery, ivory cashews with a gentle sweetness and a soft crunch.",
+  "metaDescription": "Creamy raw cashew kernels, whole and unsalted. Soft in the bite and gently sweet, ideal for sauces, curries, nut milks and snacking.",
+  "description": [
+    "Raw cashews are the soft-spoken member of the nut bowl. They are curved, ivory-coloured and plump, with a slightly yielding crunch and a sweet, buttery flavour that never shouts over the rest of your meal.",
+    "That mellow character is exactly why cooks love them. Soak them in warm water and blitz until smooth and you have a rich cream for pasta sauces, soups and dairy-free desserts. Toss them whole into a stir-fry near the end of cooking, or simmer them in a curry where they turn tender and silky.",
+    "We buy whole kernels and keep broken pieces to a minimum, so the bag is mostly the good-looking ones. They are unroasted and unsalted, which means you control the seasoning. Fifteen minutes in a hot oven with a pinch of salt gives you a fine bar snack.",
+    "Cashews have a higher proportion of starch than many nuts, which is partly why they blend so smoothly. Read more about their origins in our guide to where cashews come from, or pick up a jar of our cashew butter if you want the creamy result without the effort."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 845
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1595
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2995
+    }
+  ],
+  "ingredients": "Cashews.",
+  "allergens": [
+    "Cashews (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 553,
+    "fatG": 44,
+    "saturatesG": 7.8,
+    "carbsG": 30,
+    "sugarsG": 6,
+    "fibreG": 3.3,
+    "proteinG": 18,
+    "saltG": 0.02
+  },
+  "storage": "Keep in an airtight container somewhere cool and dark. For longer storage, the fridge keeps their delicate oils fresh.",
+  "posts": [
+    "where-cashews-come-from",
+    "raw-vs-roasted-nuts"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "smoked-almonds",
+  "name": "Smoked almonds",
+  "category": "roasted-nuts",
+  "nut": "almond",
+  "tagline": "Roasted almonds with a savoury, barbecue-style smoke flavour and a dark, crunchy finish.",
+  "metaDescription": "Roasted almonds with a smoky, savoury flavour and a deep brown coat. Bold, crunchy and good with drinks, cheese or a picnic.",
+  "description": [
+    "If a campfire and a cupboard staple ever met, they would make these almonds. They are roasted and finished with a smoky, savoury seasoning that sits on the surface, giving each nut a deep brown coat and a bold first taste.",
+    "Underneath the smoke is the same dependable crunch you expect from an almond. The flavour is savoury rather than sweet, with a hint of salt and a faint edge of paprika-style warmth, so they sit comfortably alongside strong cheese, cured meats and cold beer.",
+    "They also earn their place in cooking. Crush a few over a bowl of lentils, sprinkle them into a pasta with roasted peppers, or chop them into a salad with sharp leaves. A little goes a long way, so you can season a dish without reaching for the salt shaker.",
+    "The smoke flavour comes from the seasoning, not from a long stay in a smokehouse, so the nuts keep their texture. They are one of the most popular snacks in our roasted range, and they make a fine addition to any gift box. Keep them away from sweet bakes and you will be happy."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 745
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1595
+    }
+  ],
+  "ingredients": "Almonds, sunflower oil, sea salt, smoked paprika, natural smoke flavouring, yeast extract.",
+  "allergens": [
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 603,
+    "fatG": 54,
+    "saturatesG": 4.2,
+    "carbsG": 17,
+    "sugarsG": 3.8,
+    "fibreG": 11.5,
+    "proteinG": 21,
+    "saltG": 1.2
+  },
+  "storage": "Store sealed in a cool, dry cupboard away from sunlight. Eat within a couple of months of opening.",
+  "posts": [
+    "how-to-roast-almonds-at-home",
+    "raw-vs-roasted-nuts"
+  ]
+}

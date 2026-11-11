@@ -1,0 +1,46 @@
+{
+  "slug": "pecan-pieces",
+  "name": "Pecan pieces",
+  "category": "baking",
+  "nut": "pecan",
+  "tagline": "Buttery pecan pieces, broken just right for pies, bars and cookies.",
+  "metaDescription": "Sweet, buttery pecan pieces for baking. Ideal for pecan pie bars, cookies, sticky buns and granola. A thrifty way to stock the baking shelf.",
+  "description": [
+    "Pecan pieces are halves that did not quite make it, and that is a good thing for your baking. They cost less than whole halves and spread through batters and fillings more evenly, which is exactly what you want in bars and cookies.",
+    "The flavour is sweet, soft and buttery with a faint maple note, and the texture is crisp on the outside and tender in the middle. They toast beautifully, but even straight from the bag they carry a rich, almost caramel taste.",
+    "Use them in pecan pie bars, sticky buns, oatmeal cookies or a quick coffee cake. They are also lovely over roasted sweet potatoes, in a carrot salad, or crushed over pancakes with a drizzle of syrup.",
+    "Our pecan pie bars recipe uses these pieces and shows how well they hold their shape in a gooey filling. We pack them in small bags and suggest using them within a couple of months."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 795
+    },
+    {
+      "label": "400 g",
+      "weightG": 400,
+      "priceCents": 1450
+    }
+  ],
+  "ingredients": "Pecans.",
+  "allergens": [
+    "Pecans (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 691,
+    "fatG": 72,
+    "saturatesG": 6.2,
+    "carbsG": 4,
+    "sugarsG": 4,
+    "fibreG": 9.6,
+    "proteinG": 9,
+    "saltG": 0.01
+  },
+  "storage": "Keep sealed in the fridge for best flavour. Cool and dark is fine for short periods.",
+  "posts": [
+    "pecan-pie-bars-recipe",
+    "maple-glazed-pecans-at-home"
+  ]
+}

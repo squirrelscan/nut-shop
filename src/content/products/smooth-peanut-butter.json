@@ -1,0 +1,46 @@
+{
+  "slug": "smooth-peanut-butter",
+  "name": "Smooth peanut butter",
+  "category": "nut-butters",
+  "nut": "peanut",
+  "tagline": "Silky, roasted-peanut butter with just a pinch of salt and nothing else.",
+  "metaDescription": "Smooth peanut butter made from roasted peanuts and a pinch of salt. Silky, rich and spreadable, great on toast, in sauces and by the spoon.",
+  "description": [
+    "This jar is as simple as peanut butter gets: roasted peanuts, ground until silky, with a pinch of salt. No sweeteners, no stabilisers, just a deep roasted flavour and a texture you can spread on warm toast without tearing it.",
+    "Because it is made without added stabilisers, a thin layer of natural oil may rise to the top over time. That is normal, and a good stir brings it back together. After that, the butter is thick, glossy and rich, with the toasty, slightly salty taste of freshly roasted peanuts.",
+    "Use it the obvious way, on bread or crackers, or lean on it in the kitchen. A spoonful thickens a satay sauce, enriches a noodle dressing and gives a good chew to cookies. It also pairs nicely with banana, apple slices or a drizzle of honey.",
+    "Peanuts are one of the most common food allergens, so read the label carefully. If you like a little crunch, our crunchy peanut butter uses the same recipe with chopped nuts folded in. For a deeper dive on the ingredient, see our post on peanuts and their botanical status."
+  ],
+  "variants": [
+    {
+      "label": "227 g jar",
+      "weightG": 227,
+      "priceCents": 495
+    },
+    {
+      "label": "454 g jar",
+      "weightG": 454,
+      "priceCents": 795
+    }
+  ],
+  "ingredients": "Roasted peanuts (99%), sea salt.",
+  "allergens": [
+    "Peanuts"
+  ],
+  "mayContain": "May contain traces of tree nuts.",
+  "nutrition": {
+    "energyKcal": 620,
+    "fatG": 51,
+    "saturatesG": 9.5,
+    "carbsG": 12,
+    "sugarsG": 5,
+    "fibreG": 6.5,
+    "proteinG": 26,
+    "saltG": 0.6
+  },
+  "storage": "Store in a cool cupboard. Stir if oil separates. Once opened, keep the lid tightly closed and use within a few months.",
+  "posts": [
+    "homemade-nut-butter-in-a-food-processor",
+    "are-peanuts-really-nuts"
+  ]
+}

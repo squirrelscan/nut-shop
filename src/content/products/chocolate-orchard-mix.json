@@ -1,0 +1,53 @@
+{
+  "slug": "chocolate-orchard-mix",
+  "name": "Chocolate orchard mix",
+  "category": "trail-mixes",
+  "nut": "mixed",
+  "tagline": "Almonds, hazelnuts and pecans with dark chocolate drops and dried apple.",
+  "metaDescription": "A dessert-leaning snack mix of raw almonds, hazelnuts and pecans with dark chocolate drops, dried apple and raisins. Rich, fruity and not too sweet.",
+  "description": [
+    "Think of an autumn orchard with a chocolatier next door. Raw almonds, hazelnuts and pecan halves provide the base, and small dark chocolate drops melt into the gaps between them. Hazelnut and chocolate is a classic pairing for a reason.",
+    "Slices of dried apple add a soft, slightly tart chew, and a few raisins deepen the sweetness without turning it sugary. The chocolate is dark rather than milky, so the finish stays rich and a little bitter, the way a good square of chocolate should.",
+    "This mix is happiest as an after-dinner nibble, a gift for a chocolate fan, or a topping for vanilla ice cream. It also bakes well: fold a few handfuls into a cookie dough and skip the extra chocolate chips.",
+    "In warm weather the chocolate can soften, so keep the bag somewhere cool. If the drops turn pale on the surface, it is only cocoa butter that has moved, and they still taste fine."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 895
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1650
+    }
+  ],
+  "ingredients": "Raw almonds, raw hazelnuts, raw pecan halves, dark chocolate drops (cocoa mass, sugar, cocoa butter, emulsifier: soya lecithin), dried apple, raisins.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Hazelnuts (tree nut)",
+    "Pecans (tree nut)",
+    "Soy"
+  ],
+  "mayContain": "May contain traces of milk, other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 545,
+    "fatG": 38,
+    "saturatesG": 9.8,
+    "carbsG": 41,
+    "sugarsG": 25,
+    "fibreG": 7.5,
+    "proteinG": 10,
+    "saltG": 0.03
+  },
+  "storage": "Store in a cool, dry place away from sunlight and heat so the chocolate keeps its shape.",
+  "posts": [
+    "a-guide-to-building-a-trail-mix"
+  ],
+  "contains": [
+    "raw-almonds",
+    "raw-hazelnuts",
+    "raw-pecan-halves"
+  ]
+}

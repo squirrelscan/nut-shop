@@ -1,0 +1,52 @@
+{
+  "slug": "raw-almonds",
+  "name": "Raw almonds",
+  "category": "raw-nuts",
+  "nut": "almond",
+  "tagline": "Whole, unroasted almonds with the skins on, ready for baking, soaking or snacking.",
+  "metaDescription": "Whole raw almonds with their skins on. A pale, crisp, mildly sweet nut for baking, soaking, milling or eating straight from the bag.",
+  "description": [
+    "These are plain, whole almonds in their brown skins, nothing added and nothing done to them. Bite one and you get a firm, pale crunch with a mild, faintly sweet flavour that tastes a bit like marzipan's quiet cousin.",
+    "Because they are raw, they are a blank canvas. Toast a handful in a dry pan for a few minutes and the aroma fills the kitchen. Soak them overnight and they soften enough to blend into a creamy homemade milk. Chop them roughly over porridge, or grind them fine for cakes and biscuits.",
+    "We sort each batch carefully so you get mostly whole kernels with very few chips. The skins add a little tannic bite and some colour, which suits rustic bakes. If you prefer them blanched, a quick dunk in hot water slips the skins right off.",
+    "Keep a bag in the cupboard for the days when you cannot decide what you fancy. They are the sort of ingredient that quietly improves a lot of dinners, from a rice pilaf to a salad that needed something crunchy. See our raw nuts range for more unroasted staples."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 695
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1295
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2395
+    }
+  ],
+  "ingredients": "Almonds.",
+  "allergens": [
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 579,
+    "fatG": 50,
+    "saturatesG": 3.8,
+    "carbsG": 22,
+    "sugarsG": 4.4,
+    "fibreG": 12.5,
+    "proteinG": 21,
+    "saltG": 0.01
+  },
+  "storage": "Store in a cool, dry, dark place in a resealable container. Use within a few months of opening for the best flavour.",
+  "posts": [
+    "how-to-roast-almonds-at-home",
+    "raw-vs-roasted-nuts",
+    "storing-nuts-so-they-stay-fresh"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "raw-pecan-halves",
+  "name": "Raw pecan halves",
+  "category": "raw-nuts",
+  "nut": "pecan",
+  "tagline": "Sweet, buttery pecan halves with a tender bite, made for pies and porridge.",
+  "metaDescription": "Raw pecan halves with a naturally sweet, buttery flavour and a tender texture. Perfect for pies, granola, salads and toasting.",
+  "description": [
+    "Pecans are the sweet tooth of the nut world. Each deep-russet half is ridged and tender, with a buttery flavour that carries hints of maple and toffee even though nothing has been added.",
+    "Their soft texture makes them very forgiving. Fold them into cookie dough, press them onto the top of a tart, or crush them for a crumble topping. In savoury cooking they are lovely roasted with sweet potato or tossed into a salad with bitter leaves and a sharp dressing.",
+    "This is the raw version, so a few minutes in a dry pan or a warm oven is a good idea if you want a deeper, more toasted taste. Watch them closely, because the same sugars that make them taste so good also make them catch quickly.",
+    "We pick halves that are whole and plump rather than shards, which matters if you are decorating something. Looking for a ready-made treat instead? Our maple-glazed pecans are the same nut with a sticky coat, or try the recipe in our pecan pie bars post."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 895
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1995
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 3695
+    }
+  ],
+  "ingredients": "Pecans.",
+  "allergens": [
+    "Pecans (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 691,
+    "fatG": 72,
+    "saturatesG": 6.2,
+    "carbsG": 14,
+    "sugarsG": 4,
+    "fibreG": 9.6,
+    "proteinG": 9,
+    "saltG": 0.01
+  },
+  "storage": "Keep sealed in a cool, dry, dark place. Pecans are rich in oil, so the fridge or freezer helps if you store them for months.",
+  "posts": [
+    "pecan-pie-bars-recipe",
+    "maple-glazed-pecans-at-home"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "tasting-flight-box",
+  "name": "The tasting flight box",
+  "category": "gift-boxes",
+  "nut": "mixed",
+  "tagline": "Raw, roasted and smoked, side by side. Taste one nut five ways.",
+  "metaDescription": "A tasting box of five small tubs: raw, dry-roasted and smoked almonds, plus raw and salted roasted cashews. Compare how roasting changes a nut.",
+  "description": [
+    "A flight is a tasting in a row, and this box applies the idea to nuts. Five small tubs let you compare two favourites at different stages: raw, dry-roasted and smoked almonds, and raw and salted roasted cashews.",
+    "Start with the raw almonds: pale, mild and a bit milky. Move to the dry-roasted ones for deeper, toastier flavour, then the smoked ones for a savoury finish. With the cashews, notice how salt and heat turn a soft, sweet nut into a very moreish one.",
+    "It is a good present for curious eaters, cooks and anyone who has ever asked what the difference between raw and roasted really is. It also works for a dinner party: hand out small plates and let guests score each tub.",
+    "A tasting card with a simple order of play is included. For a deeper look at what roasting does to flavour, our raw vs roasted post is a good companion read."
+  ],
+  "variants": [
+    {
+      "label": "Five small tubs",
+      "weightG": 400,
+      "priceCents": 3900
+    }
+  ],
+  "ingredients": "See the contents list on the product page.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Cashews (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts and sesame.",
+  "nutrition": {
+    "energyKcal": 605,
+    "fatG": 51,
+    "saturatesG": 6.4,
+    "carbsG": 19,
+    "sugarsG": 5,
+    "fibreG": 7.4,
+    "proteinG": 19,
+    "saltG": 0.5
+  },
+  "storage": "Store in a cool, dry place and reseal each tub after tasting. Enjoy within a few weeks of opening.",
+  "posts": [
+    "raw-vs-roasted-nuts",
+    "how-to-roast-almonds-at-home"
+  ],
+  "contains": [
+    "raw-almonds",
+    "dry-roasted-almonds",
+    "smoked-almonds",
+    "raw-cashews",
+    "salted-roasted-cashews"
+  ]
+}

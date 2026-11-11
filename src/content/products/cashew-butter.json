@@ -1,0 +1,46 @@
+{
+  "slug": "cashew-butter",
+  "name": "Cashew butter",
+  "category": "nut-butters",
+  "nut": "cashew",
+  "tagline": "Ultra-creamy cashew butter, naturally sweet and soft enough to drizzle.",
+  "metaDescription": "Creamy cashew butter made from roasted cashews and a pinch of salt. Naturally sweet, silky and very spreadable, great for sauces and snacks.",
+  "description": [
+    "Cashews are already the creamiest nut in the bowl, so it is no surprise that cashew butter is the silkiest spread on our shelf. We roast the kernels lightly and grind them until the mixture turns soft, pale and almost pourable.",
+    "The flavour is mild and gently sweet, with that buttery cashew note and a pinch of salt in the background. It does not have the sharpness of some other butters, which makes it an easy one to like, especially if you prefer something delicate.",
+    "It is wonderful on toast with a drizzle of honey, but it also earns its keep in the kitchen. Loosen it with warm water and lemon for a sauce for noodles, stir a spoonful into curry for body, or use it as a base for a no-bake cheesecake filling.",
+    "Because it is so soft, it may separate a little in the jar, and a good stir sorts that out. Fans of the ingredient might enjoy our story on where cashews come from, and anyone curious about homemade versions can read our food-processor guide."
+  ],
+  "variants": [
+    {
+      "label": "227 g jar",
+      "weightG": 227,
+      "priceCents": 845
+    },
+    {
+      "label": "454 g jar",
+      "weightG": 454,
+      "priceCents": 1495
+    }
+  ],
+  "ingredients": "Roasted cashews (99%), sea salt.",
+  "allergens": [
+    "Cashews (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 588,
+    "fatG": 49,
+    "saturatesG": 9.5,
+    "carbsG": 23,
+    "sugarsG": 5,
+    "fibreG": 3,
+    "proteinG": 17,
+    "saltG": 0.4
+  },
+  "storage": "Store in a cool cupboard and stir before use. Keep refrigerated after opening if your kitchen is warm, and use within a few months.",
+  "posts": [
+    "where-cashews-come-from",
+    "homemade-nut-butter-in-a-food-processor"
+  ]
+}

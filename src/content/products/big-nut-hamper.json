@@ -1,0 +1,57 @@
+{
+  "slug": "big-nut-hamper",
+  "name": "The big nut hamper",
+  "category": "gift-boxes",
+  "nut": "mixed",
+  "tagline": "Five generous bags of roasted and raw nuts in a proper wicker-style hamper.",
+  "metaDescription": "A generous hamper of dry-roasted almonds, salted cashews, raw walnut halves, honey-roasted peanuts and maple-glazed pecans, gift-ready.",
+  "description": [
+    "When a small box would feel a bit modest, this is the one to send. The big nut hamper holds five full-size bags, packed snugly into a sturdy basket-style box with shredded paper to keep everything in place.",
+    "There is something for every type of nut fan. Dry-roasted almonds and salted roasted cashews cover the savoury side, honey-roasted peanuts and maple-glazed pecans bring the sweet, and raw walnut halves are there for the baker in the family.",
+    "It suits a family at a holiday, a team after a big project, or a host who has everything. Because the bags are full size, the hamper keeps giving: the snacking goes on for weeks, and the walnuts are ready for the next banana bread.",
+    "We pack the hamper to order and add a blank card for your message. If a recipient has a nut allergy, the label has the full allergen details, so it is worth checking before you send."
+  ],
+  "variants": [
+    {
+      "label": "Five bags",
+      "weightG": 1250,
+      "priceCents": 5900
+    },
+    {
+      "label": "Five bags plus extra tubs",
+      "weightG": 1750,
+      "priceCents": 7400
+    }
+  ],
+  "ingredients": "See the contents list on the product page.",
+  "allergens": [
+    "Almonds (tree nut)",
+    "Cashews (tree nut)",
+    "Walnuts (tree nut)",
+    "Peanuts",
+    "Pecans (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, sesame and soy.",
+  "nutrition": {
+    "energyKcal": 620,
+    "fatG": 52,
+    "saturatesG": 6.5,
+    "carbsG": 17,
+    "sugarsG": 8,
+    "fibreG": 7.2,
+    "proteinG": 19,
+    "saltG": 0.5
+  },
+  "storage": "Store in a cool, dry place. Reseal each bag after opening and keep the walnuts somewhere cool.",
+  "posts": [
+    "how-to-build-a-nut-gift-box",
+    "walnut-banana-bread-recipe"
+  ],
+  "contains": [
+    "dry-roasted-almonds",
+    "salted-roasted-cashews",
+    "raw-walnut-halves",
+    "honey-roasted-peanuts",
+    "maple-glazed-pecans"
+  ]
+}

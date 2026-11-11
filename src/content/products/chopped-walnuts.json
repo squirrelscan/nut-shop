@@ -1,0 +1,46 @@
+{
+  "slug": "chopped-walnuts",
+  "name": "Chopped walnuts",
+  "category": "baking",
+  "nut": "walnut",
+  "tagline": "Ready-chopped walnut pieces for banana bread, brownies and salads.",
+  "metaDescription": "Fresh chopped walnut pieces for baking and cooking. Add to banana bread, brownies, salads and porridge. No chopping board required.",
+  "description": [
+    "Walnuts are the nut of banana bread and brownies, and these pieces save you the job of chopping. We shell and chop them to an even size, roughly the size of a lentil to a chickpea, so they spread nicely through batter.",
+    "The flavour is earthy and slightly bitter, with a soft, buttery crunch. That edge is a good match for sweet things like bananas, maple and dark chocolate, and it holds up well alongside strong cheeses and bitter leaves in a salad.",
+    "Toast them for five minutes in a dry pan before baking to wake up the oils and deepen the taste. You can also stir them into porridge, scatter them over roasted vegetables, or blitz them into a rough pesto with garlic and olive oil.",
+    "Walnuts are fragile and their oils can turn if they are stored badly, so we pack them in small quantities and recommend using them within a couple of months. Our walnut banana bread recipe is a good place to start."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 695
+    },
+    {
+      "label": "400 g",
+      "weightG": 400,
+      "priceCents": 1250
+    }
+  ],
+  "ingredients": "Walnuts.",
+  "allergens": [
+    "Walnuts (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 654,
+    "fatG": 65,
+    "saturatesG": 6.1,
+    "carbsG": 7,
+    "sugarsG": 2.6,
+    "fibreG": 6.7,
+    "proteinG": 15,
+    "saltG": 0.01
+  },
+  "storage": "Store sealed in the fridge or freezer for best freshness. Away from strong smells.",
+  "posts": [
+    "walnut-banana-bread-recipe",
+    "why-nuts-go-rancid"
+  ]
+}

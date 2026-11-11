@@ -1,0 +1,46 @@
+{
+  "slug": "hazelnut-flour",
+  "name": "Hazelnut flour",
+  "category": "baking",
+  "nut": "hazelnut",
+  "tagline": "Fine hazelnut meal for cakes, pastry and a nutty crumb.",
+  "metaDescription": "Finely ground hazelnut flour for baking. Adds a sweet, toasty flavour to cakes, shortbread, pastry and brownies. Pairs well with chocolate.",
+  "description": [
+    "Hazelnut flour is simply hazelnuts ground to a fine meal. It has a warm, sweet, toasty aroma, and it brings a distinctive depth to bakes that ground almonds cannot quite match, especially in anything chocolatey or coffee flavoured.",
+    "Use it to replace a portion of the plain flour in shortbread for a sandy, crumbly bite, or fold it into brownies and chocolate cakes for richness. It also works in the base for a tart, where it creates a crisp, fragrant crust.",
+    "Because there is no gluten in the nuts, flour made from them behaves differently in a recipe. It will not give structure on its own, so mix it with other flours or eggs. Start by swapping around a quarter of the flour and adjust from there.",
+    "We grind small amounts at a time so the oils stay fresh. For extra flavour, toast the flour in a dry pan for a few minutes, stirring often, then let it cool before using it. Our guide to toasting hazelnuts has useful tips."
+  ],
+  "variants": [
+    {
+      "label": "200 g",
+      "weightG": 200,
+      "priceCents": 745
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1650
+    }
+  ],
+  "ingredients": "Hazelnuts.",
+  "allergens": [
+    "Hazelnuts (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 628,
+    "fatG": 61,
+    "saturatesG": 4.5,
+    "carbsG": 7,
+    "sugarsG": 4.3,
+    "fibreG": 9.7,
+    "proteinG": 15,
+    "saltG": 0.01
+  },
+  "storage": "Keep in a sealed container in the fridge. Ground nuts spoil faster than whole ones.",
+  "posts": [
+    "how-to-toast-and-skin-hazelnuts",
+    "why-nuts-go-rancid"
+  ]
+}

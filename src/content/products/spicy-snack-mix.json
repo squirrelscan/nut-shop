@@ -1,0 +1,53 @@
+{
+  "slug": "spicy-snack-mix",
+  "name": "Spicy snack mix",
+  "category": "trail-mixes",
+  "nut": "mixed",
+  "tagline": "Chilli lime cashews, smoked almonds and peanuts with a proper kick.",
+  "metaDescription": "A savoury, spicy snack mix of chilli lime cashews, smoked almonds, peanuts and pumpkin seeds. No fruit, no sweetness, just heat and salt.",
+  "description": [
+    "No raisins here, and no apologies. This mix is for people who think a snack should wake them up. Chilli lime cashews lead with tangy heat, smoked almonds add a campfire depth, and crunchy peanuts keep things grounded.",
+    "Pumpkin seeds toast quickly in the roasting pan, which gives them a nutty, green flavour that cuts through the spice. A pinch of chilli flakes and a little sea salt finish the blend, so the heat builds gently instead of arriving all at once.",
+    "It is built for the bar. Tip a bowl out next to a cold drink and it will disappear. It also works crushed lightly over a noodle bowl or tucked into a taco, where the lime and smoke give extra character.",
+    "The heat is medium, comfortable for most chilli fans and easy to soften by mixing in a handful of plain nuts. If you like it fiercer, a few extra chilli flakes in the bag do the job."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 775
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1425
+    }
+  ],
+  "ingredients": "Chilli lime cashews (cashews, sunflower oil, sea salt, chilli, lime flavouring), smoked almonds (almonds, sea salt, smoke flavouring), peanuts, pumpkin seeds, chilli flakes, sea salt.",
+  "allergens": [
+    "Cashews (tree nut)",
+    "Almonds (tree nut)",
+    "Peanuts"
+  ],
+  "mayContain": "May contain traces of other tree nuts, sesame and soy.",
+  "nutrition": {
+    "energyKcal": 595,
+    "fatG": 49,
+    "saturatesG": 7.3,
+    "carbsG": 15,
+    "sugarsG": 3.5,
+    "fibreG": 7.2,
+    "proteinG": 22,
+    "saltG": 1.4
+  },
+  "storage": "Keep in a resealable bag in a cool, dry place so the seasoning stays crisp.",
+  "posts": [
+    "raw-vs-roasted-nuts",
+    "a-guide-to-building-a-trail-mix"
+  ],
+  "contains": [
+    "chilli-lime-cashews",
+    "smoked-almonds",
+    "honey-roasted-peanuts"
+  ]
+}

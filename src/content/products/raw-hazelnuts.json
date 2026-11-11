@@ -1,0 +1,51 @@
+{
+  "slug": "raw-hazelnuts",
+  "name": "Raw hazelnuts",
+  "category": "raw-nuts",
+  "nut": "hazelnut",
+  "tagline": "Round, shelled hazelnuts with the skins on: crisp, sweet and made for toasting.",
+  "metaDescription": "Shelled raw hazelnuts with skins on. Crisp and mildly sweet, they come alive when toasted. Great for baking, spreads and chocolate.",
+  "description": [
+    "Raw hazelnuts are small, round and firmly crisp, with a clean, faintly sweet flavour that is a little shy until you apply some heat. Shelled and ready to use, they still wear their papery brown skins.",
+    "Toasting changes everything. Ten minutes in a medium oven, then a rub in a tea towel to loosen the skins, and the nuts turn deep gold with that unmistakable warm, nutty perfume. From there they can go into cakes, brownies and biscotti, or be ground into a rough meal for tart bases.",
+    "Hazelnuts also have a famous affinity for chocolate and coffee, so keep a bag handy if you like making your own spreads or truffles. They hold their crunch in baking better than many softer nuts, and they chop cleanly without turning to dust.",
+    "If you have never done the toasting and skinning dance, our step-by-step guide shows how to toast and skin hazelnuts without losing your temper. For a finished product, try the hazelnut cocoa spread, which uses the same nut roasted and blitzed until glossy."
+  ],
+  "variants": [
+    {
+      "label": "250 g",
+      "weightG": 250,
+      "priceCents": 795
+    },
+    {
+      "label": "500 g",
+      "weightG": 500,
+      "priceCents": 1495
+    },
+    {
+      "label": "1 kg",
+      "weightG": 1000,
+      "priceCents": 2795
+    }
+  ],
+  "ingredients": "Hazelnuts.",
+  "allergens": [
+    "Hazelnuts (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 628,
+    "fatG": 61,
+    "saturatesG": 4.5,
+    "carbsG": 17,
+    "sugarsG": 4.3,
+    "fibreG": 9.7,
+    "proteinG": 15,
+    "saltG": 0.01
+  },
+  "storage": "Store in an airtight container in a cool, dark cupboard. Toasted hazelnuts keep best in the fridge.",
+  "posts": [
+    "how-to-toast-and-skin-hazelnuts",
+    "storing-nuts-so-they-stay-fresh"
+  ]
+}

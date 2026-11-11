@@ -1,0 +1,47 @@
+{
+  "slug": "hazelnut-cocoa-spread",
+  "name": "Hazelnut cocoa spread",
+  "category": "nut-butters",
+  "nut": "hazelnut",
+  "tagline": "A glossy chocolate and hazelnut spread made with plenty of roasted nuts.",
+  "metaDescription": "Chocolate hazelnut spread with roasted hazelnuts and cocoa. Glossy, rich and nutty, perfect on toast, pancakes, crepes and fruit.",
+  "description": [
+    "This is a proper hazelnut spread with cocoa, not a chocolate spread with a rumour of hazelnut. We roast the nuts until they are fragrant, grind them smooth, and blend them with cocoa and sugar for a glossy, rich, spoonable finish.",
+    "The flavour is led by the nut: toasty and slightly sweet, with a deep cocoa note behind it and a trace of milk powder for softness. The texture is silky and thick, easy to spread on warm toast, and pleasantly rich on a spoon.",
+    "Use it on pancakes and crepes, sandwich it between biscuits, or swirl it through a bowl of yoghurt. It is also very good with strawberries or banana. A spoonful stirred into hot milk makes a quick hazelnut hot chocolate.",
+    "This spread contains hazelnuts and milk, so check the label if you cook for anyone with allergies. If you would like to make your own, start with our raw hazelnuts and follow the guide on how to toast and skin hazelnuts. The same nut makes our hazelnut flour for baking."
+  ],
+  "variants": [
+    {
+      "label": "220 g jar",
+      "weightG": 220,
+      "priceCents": 595
+    },
+    {
+      "label": "400 g jar",
+      "weightG": 400,
+      "priceCents": 995
+    }
+  ],
+  "ingredients": "Roasted hazelnuts (45%), sugar, skimmed milk powder, cocoa powder (8%), sunflower oil, emulsifier (sunflower lecithin), vanilla extract.",
+  "allergens": [
+    "Hazelnuts (tree nut)",
+    "Milk"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts and soy.",
+  "nutrition": {
+    "energyKcal": 545,
+    "fatG": 34,
+    "saturatesG": 5,
+    "carbsG": 49,
+    "sugarsG": 42,
+    "fibreG": 5,
+    "proteinG": 8,
+    "saltG": 0.1
+  },
+  "storage": "Store in a cool, dry cupboard. Do not refrigerate, as it will firm up. Keep the lid closed after opening.",
+  "posts": [
+    "how-to-toast-and-skin-hazelnuts",
+    "homemade-nut-butter-in-a-food-processor"
+  ]
+}

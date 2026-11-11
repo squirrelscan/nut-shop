@@ -1,0 +1,46 @@
+{
+  "slug": "almond-butter",
+  "name": "Almond butter",
+  "category": "nut-butters",
+  "nut": "almond",
+  "tagline": "Slow-roasted almonds ground into a pale, mellow, lightly sweet butter.",
+  "metaDescription": "Almond butter made from roasted almonds with a pinch of salt. Mellow, nutty and spreadable, lovely on toast, in porridge and in baking.",
+  "description": [
+    "Roasted almonds, ground slowly and patiently, with a pinch of salt: that is this butter. It comes out pale tan, a little looser than peanut butter, and with a gentle, mellow sweetness that suits both breakfast and baking.",
+    "The flavour is softer and more rounded than you might expect, with a hint of marzipan on the finish. The texture is smooth with just a trace of grit from the almond skins, which gives it a pleasant, homely feel on the tongue.",
+    "Spread it on sourdough with sliced banana, swirl it through porridge, or whisk it into a dressing with lemon and a little water. It melts into brownies and gives cookies a rich, nutty background. A spoonful with a sliced apple is a very easy snack.",
+    "Because there are no stabilisers, a little oil may rise to the top of the jar, so stir before using. Looking to make your own? Our guide to homemade nut butter in a food processor shows how, and our raw almonds are a good place to start."
+  ],
+  "variants": [
+    {
+      "label": "227 g jar",
+      "weightG": 227,
+      "priceCents": 795
+    },
+    {
+      "label": "454 g jar",
+      "weightG": 454,
+      "priceCents": 1395
+    }
+  ],
+  "ingredients": "Roasted almonds (99%), sea salt.",
+  "allergens": [
+    "Almonds (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts and peanuts.",
+  "nutrition": {
+    "energyKcal": 614,
+    "fatG": 55,
+    "saturatesG": 4.2,
+    "carbsG": 10,
+    "sugarsG": 4,
+    "fibreG": 10,
+    "proteinG": 21,
+    "saltG": 0.4
+  },
+  "storage": "Store in a cool cupboard and stir if oil separates. After opening, keep the lid tight and use within a few months.",
+  "posts": [
+    "homemade-nut-butter-in-a-food-processor",
+    "how-to-roast-almonds-at-home"
+  ]
+}
