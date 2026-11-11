@@ -146,3 +146,15 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T20:32:25.125Z on low-contrast-text @27b2d3a
 - 2026-11-11T20:32:25.152Z on broken-external-404 @27b2d3a
 - 2026-11-11T20:43:40.700Z on robots-disallow-all @e76d796
+- 2026-11-11T20:53:56.196Z off broken-external-dead-domain @40240cb
+- 2026-11-11T20:53:56.222Z off broken-link-gone-410 @40240cb
+- 2026-11-11T20:53:56.241Z off jsonld-product-invalid @40240cb
+- 2026-11-11T20:53:56.260Z off form-input-no-label @40240cb
+- 2026-11-11T20:53:56.280Z off noindex-product @40240cb
+- 2026-11-11T20:53:56.298Z off sitemap-lists-404 @40240cb
+- 2026-11-11T20:53:56.319Z off thin-content-page @40240cb
+- 2026-11-11T20:53:56.343Z off canonical-wrong-home-same-page @40240cb
+- 2026-11-11T20:53:56.363Z off slow-blocking-script @40240cb
+- 2026-11-11T20:53:56.383Z off low-contrast-text @40240cb
+- 2026-11-11T20:53:56.402Z off broken-external-404 @40240cb
+- 2026-11-11T20:53:56.421Z off robots-disallow-all @40240cb
