@@ -64,3 +64,14 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T12:35:12.896Z on image-oversized @fe6fc54
 - 2026-11-11T12:35:12.919Z on low-contrast-text @fe6fc54
 - 2026-11-11T12:35:13.043Z on form-input-no-label @fe6fc54
+- 2026-11-11T12:38:54.551Z off csp-removed @e939db3
+- 2026-11-11T12:38:54.574Z off hsts-xfo-removed @e939db3
+- 2026-11-11T12:38:54.595Z off mixed-content-image @e939db3
+- 2026-11-11T12:38:54.618Z off no-cache-validators @e939db3
+- 2026-11-11T12:38:54.640Z off slow-blocking-script @e939db3
+- 2026-11-11T12:38:54.660Z off image-missing-alt @e939db3
+- 2026-11-11T12:38:54.682Z off image-missing-dimensions @e939db3
+- 2026-11-11T12:38:54.706Z off image-oversized @e939db3
+- 2026-11-11T12:38:54.730Z off low-contrast-text @e939db3
+- 2026-11-11T12:38:54.755Z off form-input-no-label @e939db3
+- 2026-11-11T12:38:54.775Z on robots-disallow-all @e939db3

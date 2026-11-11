@@ -1,12 +1,3 @@
 [
-  "csp-removed",
-  "hsts-xfo-removed",
-  "mixed-content-image",
-  "no-cache-validators",
-  "slow-blocking-script",
-  "image-missing-alt",
-  "image-missing-dimensions",
-  "image-oversized",
-  "low-contrast-text",
-  "form-input-no-label"
+  "robots-disallow-all"
 ]
