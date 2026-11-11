@@ -31,8 +31,8 @@ export function ProductCard({
 }) {
   const H = level;
   return (
-    <article className="card flex flex-col">
-      <a href={`/products/${p.slug}`} className="block" tabIndex={-1} aria-hidden="true">
+    <article className="card">
+      <a href={`/products/${p.slug}`} className="card-media" tabIndex={-1} aria-hidden="true">
         <ProductImage
           product={p}
           width={400}
@@ -42,12 +42,18 @@ export function ProductCard({
           className="h-auto w-full"
         />
       </a>
-      <div className="flex flex-1 flex-col gap-1 p-4">
-        <H className="text-lg">
+      <div className="card-body">
+        <span className="badge">{getCategory(p.category)?.name ?? "Nuts"}</span>
+        <H className="card-title">
           <a href={`/products/${p.slug}`}>{p.name}</a>
         </H>
-        <p className="flex-1 text-sm text-muted">{p.tagline}</p>
-        <p className="font-semibold">From {money(fromPrice(p))}</p>
+        <p className="card-text card-clamp">{p.tagline}</p>
+        <p className="card-foot">
+          <span className="price">
+            <small>From </small>
+            {money(fromPrice(p))}
+          </span>
+        </p>
       </div>
     </article>
   );
@@ -55,23 +61,22 @@ export function ProductCard({
 
 export function CategoryCard({ c, eager = false }: { c: Category; eager?: boolean }) {
   return (
-    <a href={`/categories/${c.slug}`} className="card block no-underline">
-      <Img
-        src={`/img/categories/${c.slug}.svg`}
-        alt=""
-        width={400}
-        height={250}
-        eager={eager}
-        className="h-auto w-full"
-      />
-      <span className="block p-4">
-        <span
-          className="block text-lg font-semibold text-ink"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
+    <a href={`/categories/${c.slug}`} className="card">
+      <span className="card-media">
+        <Img
+          src={`/img/categories/${c.slug}.svg`}
+          alt=""
+          width={400}
+          height={250}
+          eager={eager}
+          className="h-auto w-full"
+        />
+      </span>
+      <span className="card-body">
+        <span className="card-title" style={{ fontFamily: "var(--font-display)" }}>
           {c.name}
         </span>
-        <span className="mt-1 block text-sm text-muted">{c.intro}</span>
+        <span className="card-text">{c.intro}</span>
       </span>
     </a>
   );
@@ -89,85 +94,94 @@ export function HomePage() {
     "chilli-lime-cashews",
     "nut-butter-trio",
   ].map((s) => PRODUCTS.find((p) => p.slug === s)!);
+  const box = PRODUCTS.find((p) => p.slug === "tasting-flight-box")!;
   return (
     <Layout>
-      <section className="grid items-center gap-8 md:grid-cols-2">
+      <section className="hero">
         <div>
-          <h1 className="text-4xl md:text-5xl">Nuts, nut butters and trail mixes, kept simple</h1>
-          <p
-            className="mt-4 text-lg"
-            style={
-              fault("low-contrast-text") ? { color: "#b9b9b9", background: "#fbf6ee" } : undefined
-            }
-          >
-            A small shop with a short shelf: raw and roasted nuts, spreads ground in small jars,
-            mixes with a bit of everything, and boxes ready to give.
+          <h1>Good nuts, small batches</h1>
+          <p className="lead" style={fault("low-contrast-text") ? { color: "#b9b9b9" } : undefined}>
+            Raw and roasted nuts, spreads ground in small jars, and boxes ready to give.
           </p>
-          <p className="mt-2 text-sm text-muted">{SITE.demoNotice}</p>
-          <p className="mt-2 text-sm">
-            Curious who is behind it? <a href="/about">About this demo store</a>.
-          </p>
-          <p className="mt-6 flex flex-wrap gap-3">
+          <p className="actions">
             <a href="/shop" className="btn">
               Browse all products
             </a>
-            <a href="/blog" className="btn btn-ghost">
+            <a href="/blog" className="btn-secondary">
               Read the journal
             </a>
           </p>
           {fault("redirect-chain-3-hops") ? (
-            <p className="mt-4 text-sm">
+            <p className="section-tight">
               <a href="/_fault/r1">Seasonal picks</a>
             </p>
           ) : null}
         </div>
-        <Img
-          src={heroSrc}
-          alt="A heap of illustrated almonds, walnuts, pecans and cashews"
-          width={1200}
-          height={600}
-          priority
-          className="h-auto w-full rounded-xl"
-        />
+        <div className="hero-art">
+          <Img
+            src={heroSrc}
+            alt="A heap of illustrated almonds, walnuts, pecans and cashews"
+            width={1200}
+            height={600}
+            priority
+          />
+        </div>
       </section>
 
-      <section className="mt-14" aria-labelledby="cats">
-        <h2 id="cats" className="text-3xl">
-          Shop by category
-        </h2>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="section" aria-labelledby="cats">
+        <div className="section-head">
+          <h2 id="cats">Shop by category</h2>
+        </div>
+        <div className="grid grid-3">
           {CATEGORIES.map((c, i) => (
             <CategoryCard key={c.slug} c={c} eager={i < 3} />
           ))}
         </div>
       </section>
 
-      <section className="mt-14" aria-labelledby="featured">
-        <h2 id="featured" className="text-3xl">
-          Customer favourites, on paper
-        </h2>
-        <p className="mt-2 text-muted">
-          These are the pages people open most in our imaginary shop.
-        </p>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="section" aria-labelledby="featured">
+        <div className="section-head">
+          <h2 id="featured">Customer favourites, on paper</h2>
+          <p>These are the pages people open most in our imaginary shop.</p>
+        </div>
+        <div className="grid grid-4">
           {featured.map((p) => (
             <ProductCard key={p.slug} p={p} />
           ))}
         </div>
       </section>
 
-      <section className="mt-14" aria-labelledby="journal">
-        <h2 id="journal" className="text-3xl">
-          From the journal
-        </h2>
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
-          {POSTS.slice(0, 3).map((p) => (
-            <PostCard key={p.slug} post={p} />
+      <section className="section" aria-labelledby="gifts">
+        <div className="band">
+          <div className="band-copy">
+            <h2 id="gifts">Boxes ready to give</h2>
+            <p>Pick a box, skip the wrapping paper. {box.name} is the one people try first.</p>
+            <p className="actions">
+              <a href="/categories/gift-boxes" className="btn">
+                See the gift boxes
+              </a>
+            </p>
+          </div>
+          <ProductImage
+            product={box}
+            width={800}
+            height={600}
+            decorative
+            className="h-auto w-full"
+          />
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="journal">
+        <div className="section-head">
+          <h2 id="journal">From the journal</h2>
+          <a href="/blog">All journal posts</a>
+        </div>
+        <div className="grid grid-3">
+          {POSTS.slice(0, 3).map((p, i) => (
+            <PostCard key={p.slug} post={p} eager={i < 3} />
           ))}
         </div>
-        <p className="mt-4">
-          <a href="/blog">All journal posts</a>
-        </p>
       </section>
     </Layout>
   );
@@ -182,17 +196,20 @@ export function ShopPage() {
           { name: "Shop", path: "/shop" },
         ]}
       />
-      <h1 className="text-4xl">All products</h1>
-      <p className="mt-2 max-w-prose text-muted">
-        {PRODUCTS.length} products in {CATEGORIES.length} categories. This is a demo catalogue:
-        nothing is for sale.
-      </p>
+      <div className="page-head">
+        <h1>All products</h1>
+        <p className="lead">
+          {PRODUCTS.length} products in {CATEGORIES.length} categories. This is a demo catalogue:
+          nothing is for sale.
+        </p>
+      </div>
       {CATEGORIES.map((c) => (
-        <section key={c.slug} className="mt-10" aria-labelledby={`c-${c.slug}`}>
-          <h2 id={`c-${c.slug}`} className="text-2xl">
-            <a href={`/categories/${c.slug}`}>{c.name}</a>
-          </h2>
-          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <section key={c.slug} className="section-tight" aria-labelledby={`c-${c.slug}`}>
+          <div className="section-head">
+            <h2 id={`c-${c.slug}`}>{c.name}</h2>
+            <a href={`/categories/${c.slug}`}>See the whole range</a>
+          </div>
+          <div className="grid grid-4">
             {productsIn(c.slug).map((p) => (
               <ProductCard key={p.slug} p={p} />
             ))}
@@ -209,26 +226,30 @@ export function CategoryPage({ category }: { category: Category }) {
   return (
     <Layout>
       <Breadcrumbs crumbs={categoryCrumbs(category)} />
-      <h1 className="text-4xl">{category.name}</h1>
-      <p className="mt-2 max-w-prose text-lg text-muted">{category.intro}</p>
-      {category.slug === "gift-boxes" && !fault("orphan-gift-guide") ? (
-        <p className="mt-2">
-          Not sure what to pick? Read the <a href="/gift-guide">nut gift guide</a>.
-        </p>
-      ) : null}
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="page-head">
+        <h1>{category.name}</h1>
+        <p className="lead">{category.intro}</p>
+        {category.slug === "gift-boxes" && !fault("orphan-gift-guide") ? (
+          <p className="lead">
+            Not sure what to pick? Read the <a href="/gift-guide">nut gift guide</a>.
+          </p>
+        ) : null}
+      </div>
+      <div className="grid grid-3">
         {items.map((p, i) => (
           <ProductCard key={p.slug} p={p} level="h2" eager={i < 3} />
         ))}
       </div>
-      <section className="mt-12" aria-labelledby="more-cats">
-        <h2 id="more-cats" className="text-2xl">
-          More categories
-        </h2>
-        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+      <section className="section" aria-labelledby="more-cats">
+        <div className="section-head">
+          <h2 id="more-cats">More categories</h2>
+        </div>
+        <ul className="actions list-none">
           {others.map((c) => (
             <li key={c.slug}>
-              <a href={`/categories/${c.slug}`}>{c.name}</a>
+              <a href={`/categories/${c.slug}`} className="btn-secondary">
+                {c.name}
+              </a>
             </li>
           ))}
         </ul>
@@ -242,16 +263,19 @@ function AddToCart({ p }: { p: Product }) {
   const [added, setAdded] = useState(false);
   const v = p.variants[idx]!;
   return (
-    <div className="mt-4 space-y-3">
-      <div>
-        <label htmlFor="variant" className="block text-sm font-semibold">
+    <div className="buy-box">
+      <p className="price price-lg" aria-live="polite">
+        {money(v.priceCents)}
+      </p>
+      <div className="field">
+        <label htmlFor="variant" className="label">
           Size
         </label>
         <select
           id="variant"
           value={idx}
           onChange={(e) => setIdx(Number(e.target.value))}
-          className="mt-1 rounded border border-line bg-white px-3 py-2"
+          className="select"
         >
           {p.variants.map((x, i) => (
             <option key={x.weightG} value={i}>
@@ -260,9 +284,6 @@ function AddToCart({ p }: { p: Product }) {
           ))}
         </select>
       </div>
-      <p className="text-2xl font-semibold" aria-live="polite">
-        {money(v.priceCents)}
-      </p>
       <button
         type="button"
         className="btn"
@@ -273,7 +294,7 @@ function AddToCart({ p }: { p: Product }) {
       >
         Add to cart (demo)
       </button>
-      <p role="status" className="min-h-5 text-sm text-muted">
+      <p role="status" className="status">
         {added ? "Added to your demo cart. " : ""}
         <a href="/cart">View cart</a>
       </p>
@@ -302,32 +323,29 @@ export function ProductPage({ product: p }: { product: Product }) {
   return (
     <Layout>
       <Breadcrumbs crumbs={productCrumbs(p)} />
-      <div className="grid gap-8 md:grid-cols-2">
-        <ProductImage
-          product={p}
-          width={800}
-          height={600}
-          priority
-          className="h-auto w-full rounded-xl"
-        />
-        <div>
-          <h1 className="text-4xl">{p.name}</h1>
-          <p className="mt-2 text-lg text-muted">{p.tagline}</p>
+      <div className="split">
+        <div className="gallery">
+          <ProductImage product={p} width={800} height={600} priority className="h-auto w-full" />
+        </div>
+        <div className="buy">
+          <span className="badge">{getCategory(p.category)?.name ?? "Nuts"}</span>
+          <h1>{p.name}</h1>
+          <p className="lead">{p.tagline}</p>
           <AddToCart p={p} />
-          <p className="mt-4 text-sm">
-            Allergens:{" "}
-            <strong>{p.allergens.length ? p.allergens.join(", ") : "none declared"}</strong>.{" "}
-            {p.mayContain}
-          </p>
-          <p className="mt-1 text-sm text-muted">
-            Demo store: nothing is for sale and no order can be placed.
-          </p>
+          <div className="facts">
+            <p>
+              Allergens:{" "}
+              <strong>{p.allergens.length ? p.allergens.join(", ") : "none declared"}</strong>.{" "}
+              {p.mayContain}
+            </p>
+            <p className="hint">Demo store: nothing is for sale and no order can be placed.</p>
+          </div>
         </div>
       </div>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_22rem]">
+      <div className="section-tight split split-aside">
         <div>
-          <section aria-labelledby="about-product" className="prose-nuts">
+          <section aria-labelledby="about-product" className="prose-nuts info-block">
             <h2 id="about-product">About this product</h2>
             {p.description.map((para, i) => (
               <p key={i}>{para}</p>
@@ -345,11 +363,9 @@ export function ProductPage({ product: p }: { product: Product }) {
             </p>
           </section>
           {contains.length ? (
-            <section className="mt-8" aria-labelledby="inside">
-              <h2 id="inside" className="text-2xl">
-                What is inside
-              </h2>
-              <ul className="mt-3 list-disc pl-6">
+            <section className="info-block" aria-labelledby="inside">
+              <h2 id="inside">What is inside</h2>
+              <ul className="prose-nuts" style={{ listStyle: "disc", paddingLeft: "var(--s-5)" }}>
                 {contains.map((c) => (
                   <li key={c.slug}>
                     <a href={`/products/${c.slug}`}>{c.name}</a>
@@ -358,65 +374,55 @@ export function ProductPage({ product: p }: { product: Product }) {
               </ul>
             </section>
           ) : null}
-          <section className="mt-8" aria-labelledby="ingredients">
-            <h2 id="ingredients" className="text-2xl">
-              Ingredients and allergens
-            </h2>
-            <p className="mt-2">
-              <strong>Ingredients:</strong> {p.ingredients}
-            </p>
-            <p className="mt-2">
-              <strong>Allergens:</strong>{" "}
-              {p.allergens.length ? p.allergens.join(", ") : "none declared"}. {p.mayContain}
-            </p>
-            <p className="mt-2 text-sm text-muted">
-              Not medical advice. Read the label of any food you buy and see the guidance from the{" "}
-              <a href={ALLERGY_LINKS[0]!.href} rel="noopener">
-                US FDA
-              </a>{" "}
-              or the{" "}
-              <a href={ALLERGY_LINKS[1]!.href} rel="noopener">
-                UK Food Standards Agency
-              </a>
-              .
-            </p>
+          <section className="info-block" aria-labelledby="ingredients">
+            <h2 id="ingredients">Ingredients and allergens</h2>
+            <div className="stack">
+              <p>
+                <strong>Ingredients:</strong> {p.ingredients}
+              </p>
+              <p>
+                <strong>Allergens:</strong>{" "}
+                {p.allergens.length ? p.allergens.join(", ") : "none declared"}. {p.mayContain}
+              </p>
+              <p className="hint">
+                Not medical advice. Read the label of any food you buy and see the guidance from the{" "}
+                <a href={ALLERGY_LINKS[0]!.href} rel="noopener">
+                  US FDA
+                </a>{" "}
+                or the{" "}
+                <a href={ALLERGY_LINKS[1]!.href} rel="noopener">
+                  UK Food Standards Agency
+                </a>
+                .
+              </p>
+            </div>
           </section>
-          <section className="mt-8" aria-labelledby="nutrition">
-            <h2 id="nutrition" className="text-2xl">
-              Nutrition
-            </h2>
-            <table className="mt-3 w-full max-w-md border-collapse text-left">
-              <caption className="mb-2 text-left text-sm text-muted">
-                Typical values per 100 g (illustrative, this is a demo product)
-              </caption>
+          <section className="info-block" aria-labelledby="nutrition">
+            <h2 id="nutrition">Nutrition</h2>
+            <table className="table">
+              <caption>Typical values per 100 g (illustrative, this is a demo product)</caption>
               <thead>
                 <tr>
-                  <th scope="col" className="border-b border-line py-1">
-                    Nutrient
-                  </th>
-                  <th scope="col" className="border-b border-line py-1">
-                    Per 100 g
-                  </th>
+                  <th scope="col">Nutrient</th>
+                  <th scope="col">Per 100 g</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map(([k, v]) => (
                   <tr key={k}>
-                    <td className="border-b border-line py-1">{k}</td>
-                    <td className="border-b border-line py-1">{v}</td>
+                    <td>{k}</td>
+                    <td>{v}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </section>
-          <section className="mt-8" aria-labelledby="storage">
-            <h2 id="storage" className="text-2xl">
-              Storage
-            </h2>
-            <p className="mt-2 max-w-prose">{p.storage}</p>
+          <section className="info-block" aria-labelledby="storage">
+            <h2 id="storage">Storage</h2>
+            <p className="prose-nuts">{p.storage}</p>
           </section>
           {fault("mixed-content-image") && p.slug === "smooth-peanut-butter" ? (
-            <p className="mt-6">
+            <p className="section-tight">
               <img
                 src={`http://${SITE.host}/logo.svg`}
                 alt="The Nut Shop badge"
@@ -428,11 +434,11 @@ export function ProductPage({ product: p }: { product: Product }) {
         </div>
         <aside aria-label="Related reading">
           {posts.length ? (
-            <section aria-labelledby="from-journal">
-              <h2 id="from-journal" className="text-xl">
+            <section className="buy-box" aria-labelledby="from-journal">
+              <h2 id="from-journal" style={{ fontSize: "var(--fs-3)" }}>
                 From the journal
               </h2>
-              <ul className="mt-3 space-y-2">
+              <ul className="list-plain">
                 {posts.map((post) => (
                   <li key={post.slug}>
                     <a href={`/blog/${post.slug}`}>{post.title}</a>
@@ -444,17 +450,17 @@ export function ProductPage({ product: p }: { product: Product }) {
         </aside>
       </div>
 
-      <section className="mt-12" aria-labelledby="related">
-        <h2 id="related" className="text-2xl">
-          You might also like
-        </h2>
-        <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="section" aria-labelledby="related">
+        <div className="section-head">
+          <h2 id="related">You might also like</h2>
+        </div>
+        <div className="grid grid-4">
           {related.map((r) => (
             <ProductCard key={r.slug} p={r} />
           ))}
         </div>
         {fault("broken-internal-link") && p.slug === "raw-almonds" ? (
-          <p className="mt-4">
+          <p className="section-tight">
             <a href="/products/almond-brittle-deluxe">Almond brittle deluxe</a>
           </p>
         ) : null}

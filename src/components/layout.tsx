@@ -9,8 +9,14 @@ function CartLink() {
   const lines = useCart();
   const n = lines.reduce((s, l) => s + l.qty, 0);
   return (
-    <a href="/cart" className="font-semibold">
-      Cart <span aria-label={`${n} items in cart`}>({n})</span>
+    <a href="/cart" aria-label={`Cart, ${n} items`}>
+      <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 8h14l-1.2 11a2 2 0 0 1-2 1.800H8.200a2 2 0 0 1-2-1.800L5 8Z" />
+        <path d="M9 8V6.500a3 3 0 0 1 6 0V8" />
+      </svg>
+      <span className="cart-count" aria-hidden="true">
+        {n}
+      </span>
     </a>
   );
 }
@@ -19,59 +25,59 @@ function Newsletter() {
   const [msg, setMsg] = useState("");
   const noLabel = fault("form-input-no-label");
   return (
-    <div role="group" aria-label="Newsletter demo" className="mt-2 flex flex-col gap-2">
+    <div role="group" aria-label="Newsletter demo" className="field">
       {noLabel ? null : (
-        <label htmlFor="newsletter-email" className="text-sm">
+        <label htmlFor="newsletter-email" className="label">
           Email address (demo, nothing is sent)
         </label>
       )}
-      <div className="flex gap-2">
+      <div className="field-row">
         <input
           id="newsletter-email"
           type="email"
           autoComplete="email"
           placeholder="you@example.com"
-          className="min-w-0 flex-1 rounded border border-line bg-white px-3 py-2"
+          className="input"
         />
         <button
           type="button"
-          className="btn btn-ghost"
+          className="btn-secondary"
           onClick={() => setMsg("Demo only: nothing was sent and nothing is stored.")}
         >
           Join
         </button>
       </div>
-      <p role="status" className="min-h-5 text-sm text-muted">
+      <p role="status" className="hint">
         {msg || "The newsletter box is a demo and does not submit anything."}
       </p>
     </div>
   );
 }
 
+export function Brand() {
+  return (
+    <a href="/" className="brand">
+      <img src="/logo.svg" alt="" width={36} height={36} />
+      {SITE.name}
+    </a>
+  );
+}
+
 export function Header() {
   return (
-    <header className="border-b border-line bg-card">
-      <div className="wrap flex flex-wrap items-center gap-x-6 gap-y-3 py-3">
-        <a
-          href="/"
-          className="flex items-center gap-2 text-xl font-bold text-ink no-underline"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          <img src="/logo.svg" alt="" width={32} height={32} />
-          {SITE.name}
-        </a>
-        <nav aria-label="Main" className="flex flex-wrap gap-x-5 gap-y-1">
+    <header className="site-header">
+      <div className="notice">
+        <p className="wrap">Demo store: nothing here is for sale.</p>
+      </div>
+      <div className="wrap header-bar">
+        <Brand />
+        <nav aria-label="Main" className="nav">
           <a href="/shop">Products</a>
           <a href="/blog">Journal</a>
           <a href="/about">About</a>
           <a href="/faq">FAQ</a>
         </nav>
-        <form
-          role="search"
-          action="/search"
-          method="get"
-          className="ml-auto flex items-center gap-2"
-        >
+        <form role="search" action="/search" method="get" className="search-form">
           <label htmlFor="site-search" className="sr-only">
             Search the shop
           </label>
@@ -80,13 +86,21 @@ export function Header() {
             type="search"
             name="q"
             placeholder="Search nuts and posts"
-            className="w-44 rounded border border-line bg-white px-3 py-1.5"
+            className="input"
           />
-          <button type="submit" className="btn btn-ghost py-1.5">
+          <button type="submit" className="sr-only">
             Search
           </button>
         </form>
-        <CartLink />
+        <div className="header-tools">
+          <a href="/search" className="search-link" aria-label="Search">
+            <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.500" />
+              <path d="m16 16 4 4" />
+            </svg>
+          </a>
+          <CartLink />
+        </div>
       </div>
     </header>
   );
@@ -94,11 +108,18 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-line bg-card">
-      <div className="wrap grid gap-8 py-10 md:grid-cols-4">
+    <footer className="site-footer">
+      <div className="wrap footer-grid">
+        <div className="footer-brand">
+          <Brand />
+          <p className="footer-small">{SITE.tagline}.</p>
+          <p className="footer-small">
+            {SITE.business.legalName}. {SITE.business.registration} {SITE.business.address}
+          </p>
+        </div>
         <div>
-          <h2 className="text-lg">Shop</h2>
-          <ul className="mt-2 space-y-1">
+          <h2>Shop</h2>
+          <ul>
             {CATEGORIES.map((c) => (
               <li key={c.slug}>
                 <a href={`/categories/${c.slug}`}>{c.name}</a>
@@ -107,8 +128,8 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h2 className="text-lg">Learn and help</h2>
-          <ul className="mt-2 space-y-1">
+          <h2>Learn and help</h2>
+          <ul>
             <li>
               <a href="/blog">Journal</a>
             </li>
@@ -126,11 +147,6 @@ export function Footer() {
             <li>
               <a href="/contact">Contact</a>
             </li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-lg">The small print</h2>
-          <ul className="mt-2 space-y-1">
             <li>
               <a href="/about">About</a>
             </li>
@@ -141,17 +157,14 @@ export function Footer() {
               <a href="/terms">Terms of use</a>
             </li>
           </ul>
-          <p className="mt-3 text-sm text-muted">
-            {SITE.business.legalName}. {SITE.business.registration} {SITE.business.address}
-          </p>
         </div>
         <div>
-          <h2 className="text-lg">Newsletter (demo)</h2>
+          <h2>Newsletter (demo)</h2>
           <Newsletter />
         </div>
       </div>
-      <div className="border-t border-line">
-        <p className="wrap py-4 text-sm text-muted">{SITE.demoNotice}</p>
+      <div className="footer-base">
+        <p className="wrap">{SITE.demoNotice}</p>
       </div>
     </footer>
   );
@@ -164,7 +177,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         Skip to content
       </a>
       <Header />
-      <main id="main" className="wrap py-8">
+      <main id="main" className="wrap page">
         {children}
       </main>
       <Footer />
@@ -174,10 +187,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted">
-      <ol className="flex flex-wrap gap-x-2">
+    <nav aria-label="Breadcrumb" className="crumbs">
+      <ol>
         {crumbs.map((c, i) => (
-          <li key={c.path} className="flex gap-2">
+          <li key={c.path}>
             {i < crumbs.length - 1 ? (
               <a href={c.path}>{c.name}</a>
             ) : (
