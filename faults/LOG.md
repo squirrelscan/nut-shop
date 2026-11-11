@@ -137,3 +137,7 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T20:10:05.713Z on broken-link-gone-410 @5b961d7
 - 2026-11-11T20:10:05.753Z on jsonld-product-invalid @5b961d7
 - 2026-11-11T20:10:05.796Z on form-input-no-label @5b961d7
+- 2026-11-11T20:21:21.953Z off broken-external-404 @cb33c7c
+- 2026-11-11T20:21:21.981Z on noindex-product @cb33c7c
+- 2026-11-11T20:21:22.009Z on sitemap-lists-404 @cb33c7c
+- 2026-11-11T20:21:22.033Z on thin-content-page @cb33c7c

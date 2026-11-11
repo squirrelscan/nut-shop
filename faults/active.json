@@ -1,7 +1,9 @@
 [
-  "broken-external-404",
   "broken-external-dead-domain",
   "broken-link-gone-410",
   "jsonld-product-invalid",
-  "form-input-no-label"
+  "form-input-no-label",
+  "noindex-product",
+  "sitemap-lists-404",
+  "thin-content-page"
 ]
