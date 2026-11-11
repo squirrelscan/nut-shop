@@ -10,11 +10,11 @@ const AUDITOR = "SquirrelScan/2.0 (+https://squirrelscan.com)";
 const GOOGLE = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
 const BROWSER = "Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/130 Safari/537.36";
 
-const send = async (mode: IndexingMode, ua: string | null) => {
-  const req = new Request(
-    "https://nutshop.squirrelscan.com/about",
-    ua ? { headers: { "user-agent": ua } } : {},
-  );
+const send = async (mode: IndexingMode, ua: string | null, marker?: string) => {
+  const h: Record<string, string> = {};
+  if (ua) h["user-agent"] = ua;
+  if (marker) h["x-squirrel-audit"] = marker;
+  const req = new Request("https://nutshop.squirrelscan.com/about", { headers: h });
   const res = new Response("<html></html>", {
     headers: { "content-type": "text/html; charset=utf-8" },
   });
@@ -88,5 +88,45 @@ describe("INDEXING modes", () => {
     expect(on).toContain("noindex");
     // The auditor gets no header, so the meta tag is the only noindex it sees.
     expect((await send("auditor-only", AUDITOR)).headers.get("x-robots-tag")).toBeNull();
+  });
+
+  test("cloud auditor: squirrel-cloud-audit UA is exempt", async () => {
+    expect(
+      (await send("auditor-only", "squirrel-cloud-audit")).headers.get("x-robots-tag"),
+    ).toBeNull();
+    expect(
+      (await send("auditor-only", "squirrel-cloud-audit/1.2")).headers.get("x-robots-tag"),
+    ).toBeNull();
+    expect(
+      (await send("auditor-only", "my-squirrel-cloud-audit")).headers.get("x-robots-tag"),
+    ).toBe("noindex, nofollow");
+  });
+
+  test("marker header: a browser UA with X-Squirrel-Audit: nutshop-demo is exempt", async () => {
+    expect(
+      (await send("auditor-only", BROWSER, "nutshop-demo")).headers.get("x-robots-tag"),
+    ).toBeNull();
+  });
+
+  test("browser UA without the marker, or with a wrong value, gets noindex", async () => {
+    expect((await send("auditor-only", BROWSER)).headers.get("x-robots-tag")).toBe(
+      "noindex, nofollow",
+    );
+    expect((await send("auditor-only", BROWSER, "other")).headers.get("x-robots-tag")).toBe(
+      "noindex, nofollow",
+    );
+  });
+
+  test("off still wins over UA and marker; on ignores them", async () => {
+    expect((await send("off", AUDITOR, "nutshop-demo")).headers.get("x-robots-tag")).toBe(
+      "noindex, nofollow",
+    );
+    expect((await send("on", BROWSER)).headers.get("x-robots-tag")).toBeNull();
+  });
+
+  test("Vary lists User-Agent and X-Squirrel-Audit in auditor-only", async () => {
+    const v = (await send("auditor-only", BROWSER)).headers.get("vary") ?? "";
+    expect(v).toContain("User-Agent");
+    expect(v).toContain("X-Squirrel-Audit");
   });
 });

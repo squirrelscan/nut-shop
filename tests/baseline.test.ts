@@ -120,6 +120,20 @@ describe("healthy baseline", () => {
     });
   });
 
+  test("CSP allows the Cloudflare Web Analytics beacon, and only those two hosts", () => {
+    withFaults([], () => {
+      const csp = securityHeaders()["Content-Security-Policy"]!;
+      const dir = (n: string) => csp.split("; ").find((d) => d.startsWith(`${n} `))!;
+      expect(dir("script-src")).toContain("https://static.cloudflareinsights.com");
+      expect(dir("connect-src")).toContain("https://cloudflareinsights.com");
+      expect(dir("script-src")).not.toContain("https://cloudflareinsights.com ");
+      expect(csp.match(/https:\/\/[a-z.]*cloudflareinsights\.com/g)).toHaveLength(2);
+    });
+    expect(
+      withFaults(["csp-removed"], () => securityHeaders()["Content-Security-Policy"]),
+    ).toBeUndefined();
+  });
+
   test("security headers present", () => {
     withFaults([], () => {
       const h = securityHeaders();

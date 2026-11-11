@@ -36,10 +36,10 @@ This site must not appear in search engines: it is used in demo videos and as th
 | Mode | Behaviour |
 | --- | --- |
 | `off` | `X-Robots-Tag: noindex, nofollow` for every client |
-| `auditor-only` (default) | the same header for every client except requests whose User-Agent starts with `SquirrelScan/` (the audit crawler, `SquirrelScan/2.0 (+https://squirrelscan.com)`); responses add `Vary: User-Agent` |
+| `auditor-only` (default) | the same header for every client except the squirrelscan audit crawler: a User-Agent starting with `SquirrelScan/` (CLI), a User-Agent starting with `squirrel-cloud-audit` (cloud plain fetch), or the request header `X-Squirrel-Audit: nutshop-demo` (cloud renders use a normal Chrome User-Agent, so the audit sends this marker; it is not a secret). Responses add `Vary: User-Agent, X-Squirrel-Audit` |
 | `on` | no header |
 
-Why the auditor is exempt: the demo audit should see an indexable shop, so findings such as the fault-system defects are judged on their own merits and are not hidden behind a blanket noindex. This is **not cloaking for ranking**. The only difference between clients is that the audit crawler is not told to noindex; every search engine and unknown bot is always told noindex, so the site is only ever made LESS indexable to third parties than a normal site. Anyone can send that User-Agent, but doing so only reveals a site that carries no content worth ranking.
+Why the auditor is exempt: the demo audit should see an indexable shop, so findings such as the fault-system defects are judged on their own merits and are not hidden behind a blanket noindex. This is **not cloaking for ranking**. The only difference between clients is that the audit crawler is not told to noindex; every search engine and unknown bot is always told noindex, so the site is only ever made LESS indexable to third parties than a normal site. Anyone can send that User-Agent or marker; that is fine, they simply see the indexable version of a demo site.
 
 `robots.txt` stays permissive in every mode: a `Disallow` would stop the audit and does not prevent indexing anyway. The `noindex-product` fault still works on top of this (it adds a `<meta name="robots" content="noindex">` to one product page). Tests: `tests/indexing.test.ts`.
 

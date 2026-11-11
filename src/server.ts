@@ -16,12 +16,13 @@ export default {
     const url = new URL(request.url);
     const mode = parseIndexingMode(env.INDEXING);
     const ua = request.headers.get("user-agent");
+    const marker = request.headers.get("x-squirrel-audit");
     // Plain http must 301 to https (the Cloudflare zone setting is primary; this is the fallback).
     const proto = request.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", "");
     if (proto === "http" && !isLocal(url.host)) {
       url.protocol = "https:";
       const headers = new Headers({ Location: url.toString() });
-      applyIndexing(headers, mode, ua);
+      applyIndexing(headers, mode, ua, marker);
       return new Response(null, { status: 301, headers });
     }
     // Static files (public/, build assets) go through the Worker too (assets.run_worker_first)
@@ -30,7 +31,7 @@ export default {
       const asset = await env.ASSETS.fetch(request);
       if (asset.status !== 404) {
         const headers = new Headers(asset.headers);
-        applyIndexing(headers, mode, ua);
+        applyIndexing(headers, mode, ua, marker);
         return new Response(asset.body, {
           status: asset.status,
           statusText: asset.statusText,

@@ -3,15 +3,19 @@ import { fault } from "../../faults/runtime";
 
 const isDev = Boolean(import.meta.env?.DEV);
 
+// Cloudflare Web Analytics, injected by the zone: exactly these two hosts.
+export const CF_BEACON_SCRIPT = "https://static.cloudflareinsights.com";
+export const CF_BEACON_CONNECT = "https://cloudflareinsights.com";
+
 export function cspValue(): string {
   return [
     "default-src 'self'",
     // TanStack Start inlines its hydration/bootstrap scripts, so inline is required here.
-    `script-src 'self' 'unsafe-inline'`,
+    `script-src 'self' 'unsafe-inline' ${CF_BEACON_SCRIPT}`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self'",
-    `connect-src 'self'${isDev ? " ws: wss:" : ""}`,
+    `connect-src 'self' ${CF_BEACON_CONNECT}${isDev ? " ws: wss:" : ""}`,
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
@@ -69,7 +73,12 @@ export async function finalize(
 ): Promise<Response> {
   const headers = new Headers(response.headers);
   for (const [k, v] of Object.entries(securityHeaders())) headers.set(k, v);
-  applyIndexing(headers, mode, request.headers.get("user-agent"));
+  applyIndexing(
+    headers,
+    mode,
+    request.headers.get("user-agent"),
+    request.headers.get("x-squirrel-audit"),
+  );
   const ct = headers.get("content-type") ?? "";
   const { pathname } = new URL(request.url);
   headers.set("Cache-Control", cacheControl(ct, pathname));

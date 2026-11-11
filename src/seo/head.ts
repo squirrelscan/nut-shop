@@ -227,10 +227,14 @@ export const faqHead = (): HeadResult =>
     ],
   });
 
-export const noindexHead = (title: string, path: string): HeadResult =>
+export const noindexHead = (
+  title: string,
+  path: string,
+  description = "Demo store page. Not for indexing.",
+): HeadResult =>
   buildHead({
     title: pageTitle(title),
-    description: "Demo store page. Not for indexing.",
+    description,
     path,
     noindex: true,
   });
