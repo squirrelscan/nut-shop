@@ -1,7 +1,1 @@
-[
-  "mixed-content-image",
-  "leaked-secret-fake",
-  "csp-removed",
-  "third-party-script-on-cart",
-  "inline-script-with-token"
-]
+[]
