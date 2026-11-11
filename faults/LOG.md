@@ -145,3 +145,4 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T20:32:25.102Z on slow-blocking-script @27b2d3a
 - 2026-11-11T20:32:25.125Z on low-contrast-text @27b2d3a
 - 2026-11-11T20:32:25.152Z on broken-external-404 @27b2d3a
+- 2026-11-11T20:43:40.700Z on robots-disallow-all @e76d796
