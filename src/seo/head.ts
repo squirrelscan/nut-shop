@@ -45,6 +45,7 @@ export function buildHead(i: HeadInput): HeadResult {
     { charSet: "utf-8" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { title: i.title },
+    { name: "theme-color", content: "#FBF4E6" },
   ];
   if (i.description) meta.push({ name: "description", content: i.description });
   meta.push({
@@ -69,7 +70,10 @@ export function buildHead(i: HeadInput): HeadResult {
   const links: HeadLink[] = [
     ...(canonical ? [{ rel: "canonical", href: canonical }] : []),
     { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+    { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+    { rel: "icon", href: "/favicon.ico", sizes: "any" },
     { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+    { rel: "manifest", href: "/site.webmanifest" },
     {
       rel: "alternate",
       type: "application/rss+xml",
