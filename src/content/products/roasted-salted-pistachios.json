@@ -1,0 +1,46 @@
+{
+  "slug": "roasted-salted-pistachios",
+  "name": "Roasted salted pistachios",
+  "category": "roasted-nuts",
+  "nut": "pistachio",
+  "tagline": "Shelled pistachios, dry-roasted and lightly salted, bright green and easy to snack on.",
+  "metaDescription": "Shelled pistachios dry-roasted with a light dusting of sea salt. Bright green, crisp and savoury, ready for snacking, salads and baking.",
+  "description": [
+    "Pistachios are the nut that makes you slow down. Each kernel is a vivid green, firm but not hard, with a flavour that sits somewhere between sweet and savoury. We roast them dry, with no oil, until the aroma turns warm and toasty, and then dust them with a little sea salt while they are still hot.",
+    "Because they arrive already shelled, there is no cracking and no pile of empty shells, which makes them a good desk-drawer snack. A small handful on its own is satisfying, and the salt is light enough that you can still taste the nut.",
+    "In the kitchen they are just as useful. Chop them roughly and scatter them over yoghurt or a bowl of porridge, fold them into a rice salad with herbs and lemon, or press them into the top of a tray of baked oats. Finely ground, they make a vivid green crumb for fish or chicken, and they are the classic partner for cardamom in sweet bakes.",
+    "The colour fades if the nuts sit in light and warmth, so keep the jar closed and somewhere cool. If you enjoy the flavour, our pistachio butter spreads the same taste on toast, and our storage guide explains how to keep roasted nuts fresh for longer."
+  ],
+  "variants": [
+    {
+      "label": "150 g bag",
+      "weightG": 150,
+      "priceCents": 695
+    },
+    {
+      "label": "400 g bag",
+      "weightG": 400,
+      "priceCents": 1595
+    }
+  ],
+  "ingredients": "Pistachio kernels (98%), sea salt.",
+  "allergens": [
+    "Pistachios (tree nut)"
+  ],
+  "mayContain": "May contain traces of other tree nuts, peanuts and sesame.",
+  "nutrition": {
+    "energyKcal": 592,
+    "fatG": 46,
+    "saturatesG": 5.6,
+    "carbsG": 18,
+    "sugarsG": 7,
+    "fibreG": 10,
+    "proteinG": 21,
+    "saltG": 1.1
+  },
+  "storage": "Store in a closed jar in a cool, dark cupboard. Keep away from heat and strong light, and eat within a few months for the best colour and crunch.",
+  "posts": [
+    "how-to-roast-pistachios-at-home",
+    "storing-nuts-so-they-stay-fresh"
+  ]
+}

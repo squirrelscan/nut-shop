@@ -19,7 +19,7 @@ export const STATIC_PAGES: Record<
     description:
       "The story of The Nut Shop: a fictional small shop for nuts, nut butters, trail mixes and gift boxes, built as a demo to test website audits.",
     h1: "About The Nut Shop",
-    lead: "We are a pretend shop with real opinions about almonds.",
+    lead: "We are a pretend shop with real opinions about almonds, pecans and pistachios.",
     sections: [
       {
         heading: "What this site is",
@@ -77,7 +77,7 @@ export const STATIC_PAGES: Record<
         heading: "Shipping",
         body: [
           "In a real shop this page would explain delivery areas, carriers and timings. Here it shows the structure shoppers expect: a flat delivery fee below a free-delivery threshold, orders packed on weekdays, and tracking by email.",
-          "Because this is a demo store, no order is ever placed and nothing is packed or posted.",
+          "Because this is a demo store, no order is ever placed and nothing is packed or posted. If you were a customer, the order confirmation would also say when to expect a parcel.",
         ],
       },
       {
