@@ -1,6 +1,7 @@
 [
-  "image-missing-alt",
-  "html-lang-missing",
   "mixed-content-image",
-  "canonical-wrong-home"
+  "leaked-secret-fake",
+  "csp-removed",
+  "third-party-script-on-cart",
+  "inline-script-with-token"
 ]

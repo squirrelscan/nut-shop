@@ -94,3 +94,10 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-11T13:14:25.018Z on html-lang-missing @9a76939
 - 2026-11-11T13:14:25.057Z on mixed-content-image @9a76939
 - 2026-11-11T13:14:25.104Z on canonical-wrong-home @9a76939
+- 2026-11-11T13:23:49.644Z off image-missing-alt @0582194
+- 2026-11-11T13:23:49.676Z off html-lang-missing @0582194
+- 2026-11-11T13:23:49.704Z off canonical-wrong-home @0582194
+- 2026-11-11T13:23:49.732Z on leaked-secret-fake @0582194
+- 2026-11-11T13:23:49.760Z on csp-removed @0582194
+- 2026-11-11T13:23:49.789Z on third-party-script-on-cart @0582194
+- 2026-11-11T13:23:49.816Z on inline-script-with-token @0582194
