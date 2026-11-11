@@ -1,10 +1,12 @@
 [
-  "meta-description-missing-category",
-  "title-duplicate",
-  "h1-missing",
-  "h1-duplicate",
-  "thin-content-page",
-  "jsonld-product-invalid",
-  "jsonld-id-conflict",
-  "html-lang-missing"
+  "csp-removed",
+  "hsts-xfo-removed",
+  "mixed-content-image",
+  "no-cache-validators",
+  "slow-blocking-script",
+  "image-missing-alt",
+  "image-missing-dimensions",
+  "image-oversized",
+  "low-contrast-text",
+  "form-input-no-label"
 ]
