@@ -23,7 +23,8 @@ export type FaultDef = {
   title: string;
   breaks: string;
   pages: string[];
-  expectedRule: string;
+  /** One rule id, or a list when the fault raises several rules (verified against audits 2026-11-11). */
+  expectedRule: string | readonly string[];
   confidence: "expected, to be confirmed by audit";
   severity: FaultSeverity;
 };
@@ -58,7 +59,7 @@ export const FAULTS = [
     breaks:
       "Contact page links to https://nut-supplier.invalid/ (DNS never resolves; the audit reports a failed lookup).",
     pages: ["/contact"],
-    expectedRule: "links/broken-external-links",
+    expectedRule: ["links/broken-external-links", "content/dev-leakage"],
     confidence: C,
     severity: "medium",
   },
@@ -90,7 +91,7 @@ export const FAULTS = [
     title: "Internal link through a 3-hop redirect chain",
     breaks: "Home links to /_fault/r1 -> r2 -> r3 -> /categories/gift-boxes.",
     pages: ["/"],
-    expectedRule: "links/redirect-chain",
+    expectedRule: ["links/redirect-chains", "crawl/redirect-chain"],
     confidence: C,
     severity: "medium",
   },
@@ -120,7 +121,7 @@ export const FAULTS = [
     title: "404 URL listed in sitemap",
     breaks: "sitemap.xml includes /products/discontinued-almond-brittle (404).",
     pages: ["/sitemap.xml"],
-    expectedRule: "crawl/sitemap-valid",
+    expectedRule: "crawl/sitemap-4xx",
     confidence: C,
     severity: "medium",
   },
@@ -160,7 +161,7 @@ export const FAULTS = [
     title: "Image without width/height",
     breaks: "Drops width and height on the raw cashews image.",
     pages: ["/products/raw-cashews", "/categories/raw-nuts"],
-    expectedRule: "perf/image-dimensions",
+    expectedRule: ["images/dimensions", "perf/cls-hints"],
     confidence: C,
     severity: "low",
   },
@@ -171,7 +172,7 @@ export const FAULTS = [
     breaks:
       "Home hero loads /_fault/big-image.svg (about 2.5 MB) instead of the 20 KB illustration.",
     pages: ["/"],
-    expectedRule: "perf/total-byte-weight",
+    expectedRule: ["images/image-file-size", "perf/total-byte-weight"],
     confidence: C,
     severity: "medium",
   },
@@ -181,7 +182,7 @@ export const FAULTS = [
     title: "http:// image on an https page",
     breaks: "Smooth peanut butter page embeds an image over plain http.",
     pages: ["/products/smooth-peanut-butter"],
-    expectedRule: "security/mixed-content",
+    expectedRule: ["security/mixed-content", "content/dev-leakage"],
     confidence: C,
     severity: "medium",
   },
@@ -202,7 +203,7 @@ export const FAULTS = [
     breaks:
       'Raw almonds and dry-roasted almonds share the title "Almonds: raw and roasted | The Nut Shop".',
     pages: ["/products/raw-almonds", "/products/dry-roasted-almonds"],
-    expectedRule: "core/title-duplicate",
+    expectedRule: ["content/duplicate-title", "core/title-unique"],
     confidence: C,
     severity: "medium",
   },
@@ -222,7 +223,7 @@ export const FAULTS = [
     title: "Canonical points to home",
     breaks: "Raw walnut halves canonical points at the home page.",
     pages: ["/products/raw-walnut-halves"],
-    expectedRule: "core/canonical",
+    expectedRule: ["core/canonical", "social/og-url-match"],
     confidence: C,
     severity: "high",
   },
@@ -262,7 +263,7 @@ export const FAULTS = [
     title: "Thin content page",
     breaks: "Storage post body is cut to its first two paragraphs.",
     pages: ["/blog/storing-nuts-so-they-stay-fresh"],
-    expectedRule: "content/thin-content",
+    expectedRule: "content/thin-vs-site-norm",
     confidence: C,
     severity: "medium",
   },
@@ -272,7 +273,7 @@ export const FAULTS = [
     title: "Invalid Product JSON-LD",
     breaks: "Smooth peanut butter Offer has no price.",
     pages: ["/products/smooth-peanut-butter"],
-    expectedRule: "schema/product",
+    expectedRule: ["schema/json-ld-valid", "schema/product"],
     confidence: C,
     severity: "medium",
   },
@@ -282,7 +283,7 @@ export const FAULTS = [
     title: "Entity @id conflict",
     breaks: "About page declares its Organization with the WebSite @id.",
     pages: ["/about"],
-    expectedRule: "schema/entity-id-conflict",
+    expectedRule: ["schema/entity-type-drift", "schema/entity-publisher-mismatch"],
     confidence: C,
     severity: "medium",
   },
@@ -324,7 +325,7 @@ export const FAULTS = [
     breaks:
       'The footer links to /gift-guide-2026, which 404s, on every page ("Holiday gift guide").',
     pages: ["(all pages, footer)"],
-    expectedRule: "links/broken-links",
+    expectedRule: ["links/broken-links", "links/no-contextual-inbound"],
     confidence: C,
     severity: "high",
   },
@@ -333,9 +334,9 @@ export const FAULTS = [
     category: "security",
     title: "Third-party script on the cart page",
     breaks:
-      "Cart page loads https://cdn.jsdelivr.net/npm/is-number@7.0.0/index.js (a tiny, harmless, pinned npm file, no tracking) from a host the rest of the site does not use.",
+      "Cart page loads https://cdn.jsdelivr.net/npm/is-number@7.0.0/index.js (a tiny, harmless, pinned npm file, no tracking) from a host the rest of the site does not use. Note: this uses the head scripts option, which the framework removes after hydration, so detection depends on render timing until squirrelscan#1769 ships.",
     pages: ["/cart"],
-    expectedRule: "security/third-party-resources",
+    expectedRule: ["security/third-party-cookies", "security/sri", "perf/preconnect"],
     confidence: C,
     severity: "medium",
   },
@@ -344,7 +345,7 @@ export const FAULTS = [
     category: "security",
     title: "Fake GitHub-style token in an inline script on the contact page",
     breaks:
-      "Contact page head has an inline script with a dummy ghp_-shaped token (assembled at request time from parts in src/seo/fake-secret.ts, never committed whole). The value looks random on purpose so detectors do not filter it as a placeholder, but it is not a real credential: it was typed at random for this demo store, never issued by GitHub or anyone else, and must never be tested against any service.",
+      "Contact page head has an inline script with a dummy ghp_-shaped token (assembled at request time from parts in src/seo/fake-secret.ts, never committed whole). The value looks random on purpose so detectors do not filter it as a placeholder, but it is not a real credential: it was typed at random for this demo store, never issued by GitHub or anyone else, and must never be tested against any service. It carries a valid GitHub CRC32 checksum so squirrelscan's rule accepts it. Note: this inline head script is also removed by the framework after hydration, so detection depends on render timing until squirrelscan#1769 ships.",
     pages: ["/contact"],
     expectedRule: "security/leaked-secrets",
     confidence: C,
@@ -366,7 +367,7 @@ export const FAULTS = [
     title: "Journal post without a share image",
     breaks: "The peanuts post has no og:image and no twitter:image.",
     pages: ["/blog/are-peanuts-really-nuts"],
-    expectedRule: "core/og-tags",
+    expectedRule: ["core/og-tags", "social/og-image-size"],
     confidence: C,
     severity: "low",
   },
@@ -377,7 +378,7 @@ export const FAULTS = [
     breaks:
       "Raw pecan halves canonical points at the home page (same page as noindex-product, for conflicting-signal tests).",
     pages: ["/products/raw-pecan-halves"],
-    expectedRule: "core/canonical",
+    expectedRule: ["core/canonical", "social/og-url-match"],
     confidence: C,
     severity: "high",
   },
@@ -387,7 +388,7 @@ export const FAULTS = [
     title: "HTML without cache validators",
     breaks: "HTML responses get Cache-Control: no-store and no ETag/Last-Modified.",
     pages: ["(all pages)"],
-    expectedRule: "perf/cache-headers",
+    expectedRule: "perf/bad-caching",
     confidence: C,
     severity: "low",
   },
@@ -407,7 +408,7 @@ export const FAULTS = [
     title: "Missing lang attribute",
     breaks: "<html> has no lang.",
     pages: ["(all pages)"],
-    expectedRule: "a11y/html-lang",
+    expectedRule: ["a11y/html-lang-valid", "i18n/lang-attribute"],
     confidence: C,
     severity: "medium",
   },
@@ -436,7 +437,7 @@ export const FAULTS = [
     category: "security",
     title: "Fake payments secret key shipped to the browser",
     breaks:
-      "Crunchy peanut butter page ships a dummy Stripe-shaped live key in an inline script (window.__SHOP_CONFIG__) and in /_fault/shop-config.js. Not a real credential.",
+      "Crunchy peanut butter page ships a dummy Stripe-shaped live key in an inline script (window.__SHOP_CONFIG__) and in /_fault/shop-config.js. Not a real credential. Note: the framework removes head scripts from the DOM after hydration, so detection depends on render timing until squirrelscan#1769 ships; this behaviour is kept on purpose as that issue's acceptance test.",
     pages: ["/products/crunchy-peanut-butter"],
     expectedRule: "security/leaked-secrets",
     confidence: C,
