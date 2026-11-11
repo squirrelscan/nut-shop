@@ -1,11 +1,10 @@
 [
-  "broken-external-404",
-  "soft-404",
-  "sitemap-lists-404",
-  "sitemap-missing-page",
-  "noindex-product",
-  "canonical-missing",
-  "canonical-wrong-home",
-  "redirect-chain-3-hops",
-  "orphan-gift-guide"
+  "meta-description-missing-category",
+  "title-duplicate",
+  "h1-missing",
+  "h1-duplicate",
+  "thin-content-page",
+  "jsonld-product-invalid",
+  "jsonld-id-conflict",
+  "html-lang-missing"
 ]
