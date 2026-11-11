@@ -1,3 +1,4 @@
+import { applyIndexing, type IndexingMode } from "./indexing";
 import { fault } from "../../faults/runtime";
 
 const isDev = Boolean(import.meta.env?.DEV);
@@ -64,9 +65,11 @@ export async function finalize(
   request: Request,
   response: Response,
   lastModified: string,
+  mode: IndexingMode = "auditor-only",
 ): Promise<Response> {
   const headers = new Headers(response.headers);
   for (const [k, v] of Object.entries(securityHeaders())) headers.set(k, v);
+  applyIndexing(headers, mode, request.headers.get("user-agent"));
   const ct = headers.get("content-type") ?? "";
   const { pathname } = new URL(request.url);
   headers.set("Cache-Control", cacheControl(ct, pathname));
@@ -90,7 +93,7 @@ export async function finalize(
   const etag = await etagOf(stable);
   headers.set("ETag", etag);
   headers.set("Last-Modified", lastModified);
-  headers.set("Vary", "Accept-Encoding");
+  headers.set("Vary", [headers.get("Vary"), "Accept-Encoding"].filter(Boolean).join(", "));
   headers.delete("content-length");
   const inm = request.headers.get("if-none-match");
   if (

@@ -1,8 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "nut-shop",
+  // The Cloudflare account comes from CLOUDFLARE_ACCOUNT_ID at deploy time (see README "Deploy").
   "compatibility_date": "2025-09-02",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
-  "observability": { "enabled": true }
+  "workers_dev": false,
+  "observability": { "enabled": true },
+  // Static files also pass through the Worker so they carry X-Robots-Tag.
+  "assets": { "binding": "ASSETS", "run_worker_first": true },
+  // off | auditor-only (default) | on. See README "Indexing".
+  "vars": { "INDEXING": "auditor-only" },
+  // `wrangler deploy` prunes any custom domain missing from this list.
+  "routes": [{ "pattern": "nutshop.squirrelscan.com", "custom_domain": true }]
 }

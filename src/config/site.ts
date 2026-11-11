@@ -2,7 +2,8 @@
  * The ONE place to set the site identity. The hostname is injected at build
  * time with VITE_SITE_URL (defaults to the local dev address).
  */
-const rawUrl = (import.meta.env?.VITE_SITE_URL as string | undefined) ?? "http://127.0.0.1:4210";
+const rawUrl =
+  (import.meta.env?.VITE_SITE_URL as string | undefined) ?? "https://nutshop.squirrelscan.com";
 
 export const SITE = {
   name: "The Nut Shop",

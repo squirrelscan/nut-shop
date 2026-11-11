@@ -4,11 +4,23 @@ dist
 dist-ssr
 *.local
 .env
+.env.*
+!.env.example
+.dev.vars
 .nitro
 .tanstack
 .wrangler
 .output
 .vinxi
 .tsbuildinfo
+*.tsbuildinfo
 .dev.pid
 dev.log
+*.log
+# local squirrelscan audit data and reports
+.squirrel/
+squirrel.db*
+reports/
+audit/
+report.json
+worker-configuration.d.ts

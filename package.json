@@ -6,9 +6,9 @@
     "#/*": "./src/*"
   },
   "scripts": {
-    "dev": "vite dev --host 127.0.0.1 --port 4210 --strictPort",
+    "dev": "VITE_SITE_URL=http://127.0.0.1:4210 vite dev --host 127.0.0.1 --port 4210 --strictPort",
     "build": "bun run content && vite build",
-    "preview": "vite preview --host 127.0.0.1 --port 4210",
+    "preview": "VITE_SITE_URL=http://127.0.0.1:4210 vite preview --host 127.0.0.1 --port 4210",
     "deploy": "bun run build && wrangler deploy",
     "content": "bun run scripts/build-content.ts",
     "images": "bun run scripts/gen-images.ts",
@@ -18,7 +18,8 @@
     "lint": "oxlint src faults scripts tests",
     "format": "oxfmt src faults/*.ts scripts tests",
     "format:check": "oxfmt --check src faults/*.ts scripts tests",
-    "test": "bun test tests"
+    "test": "bun test tests",
+    "build:local": "VITE_SITE_URL=http://127.0.0.1:4210 bun run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",

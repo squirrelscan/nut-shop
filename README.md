@@ -4,7 +4,11 @@ A fictional demo ecommerce site that squirrelscan audits end to end. It is a **t
 
 > Every page carries: "The Nut Shop is a demo store run by squirrelscan to test website audits. Nothing here is for sale." There is no real checkout, no payment fields and no form that collects personal data. Everything (brand, products, prices, recipes, business details) is invented.
 
-Stack: TanStack Start (React, SSR, file routes), Tailwind v4, Cloudflare Workers (wrangler config present, **not deployed**). No database: content lives in the repo.
+Live at https://nutshop.squirrelscan.com (once deployed). Repo: `squirrelscan/nut-shop`, MIT licensed (see `LICENSE`).
+
+**What it is:** a demo store used to test and demonstrate squirrelscan audits. All content is fictional: the brand, products, prices, recipes and the business block. Nothing is for sale, nothing collects personal data, and the contact address is a placeholder.
+
+Stack: TanStack Start (React, SSR, file routes), Tailwind v4, Cloudflare Workers. No database: content lives in the repo.
 
 ## Run it
 
@@ -19,7 +23,25 @@ bun run format:check   # oxfmt
 bun run check-links    # crawl the running site (add -- --external for outbound links)
 ```
 
-The hostname is set in one place, `src/config/site.ts`. Build with `VITE_SITE_URL=https://example.test bun run build` to change canonicals, sitemap, JSON-LD `@id`s, OG URLs and the contact email (`hello@<host>`).
+The hostname is set in one place, `src/config/site.ts`, and defaults to `https://nutshop.squirrelscan.com` (contact `hello@nutshop.squirrelscan.com`). `bun run dev` and `build:local` set `VITE_SITE_URL=http://127.0.0.1:4210` so local canonicals, sitemap, JSON-LD `@id`s and OG URLs point at the local server. A plain `bun run build` bakes in the production host.
+
+## Deploy
+
+`wrangler.jsonc` has no account id: set `CLOUDFLARE_ACCOUNT_ID` in the environment when deploying. It has a custom-domain route for `nutshop.squirrelscan.com`. `bun run deploy` builds and runs `wrangler deploy`. No secrets are needed or stored; the only setting is the `INDEXING` var below. Env files, `.dev.vars`, `.dev.pid`, build output and local audit data are gitignored.
+
+## Indexing
+
+This site must not appear in search engines: it is used in demo videos and as the example report on squirrelscan.com. The `INDEXING` var in `wrangler.jsonc` controls an `X-Robots-Tag` header, set in the Worker on every response (HTML, static files, redirects, errors):
+
+| Mode | Behaviour |
+| --- | --- |
+| `off` | `X-Robots-Tag: noindex, nofollow` for every client |
+| `auditor-only` (default) | the same header for every client except requests whose User-Agent starts with `SquirrelScan/` (the audit crawler, `SquirrelScan/2.0 (+https://squirrelscan.com)`); responses add `Vary: User-Agent` |
+| `on` | no header |
+
+Why the auditor is exempt: the demo audit should see an indexable shop, so findings such as the fault-system defects are judged on their own merits and are not hidden behind a blanket noindex. This is **not cloaking for ranking**. The only difference between clients is that the audit crawler is not told to noindex; every search engine and unknown bot is always told noindex, so the site is only ever made LESS indexable to third parties than a normal site. Anyone can send that User-Agent, but doing so only reveals a site that carries no content worth ranking.
+
+`robots.txt` stays permissive in every mode: a `Disallow` would stop the audit and does not prevent indexing anyway. The `noindex-product` fault still works on top of this (it adds a `<meta name="robots" content="noindex">` to one product page). Tests: `tests/indexing.test.ts`.
 
 ## Content
 
