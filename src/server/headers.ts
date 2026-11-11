@@ -36,10 +36,9 @@ export function securityHeaders(): Record<string, string> {
     "Cross-Origin-Opener-Policy": "same-origin",
   };
   if (!fault("csp-removed")) h["Content-Security-Policy"] = cspValue();
-  if (!fault("hsts-xfo-removed")) {
-    h["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains";
-    h["X-Frame-Options"] = "DENY";
-  }
+  // HSTS is also added by the Cloudflare zone at the edge, so it cannot be removed from here.
+  h["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains";
+  if (!fault("xfo-removed")) h["X-Frame-Options"] = "DENY";
   return h;
 }
 

@@ -144,6 +144,11 @@ export function Footer() {
                 <a href="/gift-guide">Gift guide</a>
               </li>
             )}
+            {fault("footer-broken-link") ? (
+              <li>
+                <a href="/gift-guide-2026">Holiday gift guide</a>
+              </li>
+            ) : null}
             <li>
               <a href="/contact">Contact</a>
             </li>

@@ -3,7 +3,12 @@ import { fault } from "../../faults/runtime";
 import { CATEGORIES } from "#/content/catalog";
 import type { Category, Post, Product } from "#/content/types";
 import { STATIC_PAGES, type StaticPage } from "#/content/pages";
-import { LEAK_PAGE_SLUG, leakedConfigScript } from "./fake-secret";
+import {
+  LEAK_PAGE_SLUG,
+  TOKEN_PAGE_PATH,
+  inlineTokenScript,
+  leakedConfigScript,
+} from "./fake-secret";
 import {
   articleNode,
   breadcrumbNode,
@@ -27,6 +32,8 @@ export type HeadInput = {
   /** Absolute canonical override (faults). null = omit. */
   canonical?: string | null;
   image?: string;
+  /** Omit og:image and twitter:image entirely (fault). */
+  noImage?: boolean;
   ogType?: "website" | "article" | "product";
   noindex?: boolean;
   nodes?: Node[];
@@ -58,14 +65,18 @@ export function buildHead(i: HeadInput): HeadResult {
     { property: "og:title", content: i.title },
     ...(i.description ? [{ property: "og:description", content: i.description }] : []),
     { property: "og:url", content: url(i.path) },
-    { property: "og:image", content: image },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-    { property: "og:image:alt", content: i.title },
-    { name: "twitter:card", content: "summary_large_image" },
+    ...(i.noImage
+      ? []
+      : [
+          { property: "og:image", content: image },
+          { property: "og:image:width", content: "1200" },
+          { property: "og:image:height", content: "630" },
+          { property: "og:image:alt", content: i.title },
+        ]),
+    { name: "twitter:card", content: i.noImage ? "summary" : "summary_large_image" },
     { name: "twitter:title", content: i.title },
     ...(i.description ? [{ name: "twitter:description", content: i.description }] : []),
-    { name: "twitter:image", content: image },
+    ...(i.noImage ? [] : [{ name: "twitter:image", content: image }]),
   );
   const links: HeadLink[] = [
     ...(canonical ? [{ rel: "canonical", href: canonical }] : []),
@@ -144,6 +155,8 @@ export const postCrumbs = (p: Post): Crumb[] => [
 export function productTitle(p: Product): string {
   if (fault("title-duplicate") && (p.slug === "raw-almonds" || p.slug === "dry-roasted-almonds"))
     return pageTitle("Almonds: raw and roasted");
+  if (fault("title-too-long") && p.slug === "classic-trail-mix")
+    return "Classic trail mix: a generous, hand-mixed blend of nuts, seeds and dried fruit | The Nut Shop";
   return pageTitle(
     `${p.name}: ${CATEGORIES.find((c) => c.slug === p.category)!.name.toLowerCase()}`,
   );
@@ -154,9 +167,11 @@ export function productHead(p: Product): HeadResult {
   let canonical: string | null | undefined;
   if (fault("canonical-missing") && p.slug === "raw-cashews") canonical = null;
   if (fault("canonical-wrong-home") && p.slug === "raw-walnut-halves") canonical = url("/");
+  if (fault("canonical-wrong-home-same-page") && p.slug === "raw-pecan-halves")
+    canonical = url("/");
   return buildHead({
     title: productTitle(p),
-    description: p.metaDescription,
+    description: fault("template-meta-description-missing") ? null : p.metaDescription,
     path,
     canonical,
     image: url(`/og/products-${p.slug}.png`),
@@ -195,6 +210,7 @@ export const postHead = (post: Post): HeadResult =>
     description: post.description,
     path: `/blog/${post.slug}`,
     image: url(`/og/posts-${post.slug}.png`),
+    noImage: fault("missing-og-image-post") && post.slug === "are-peanuts-really-nuts",
     ogType: "article",
     nodes: [
       webPageNode(`/blog/${post.slug}`, post.title, post.description),
@@ -211,6 +227,10 @@ export function staticHead(page: StaticPage, extra: Node[] = []): HeadResult {
     description: page.description,
     path: page.path,
     orgId,
+    extraScripts:
+      page.path === TOKEN_PAGE_PATH && fault("inline-script-with-token")
+        ? [{ children: inlineTokenScript() }]
+        : [],
     nodes: [
       webPageNode(page.path, page.title, page.description),
       breadcrumbNode(page.path, [
@@ -248,6 +268,10 @@ export const noindexHead = (
     description,
     path,
     noindex: true,
+    extraScripts:
+      path === "/cart" && fault("third-party-script-on-cart")
+        ? [{ src: "https://cdn.jsdelivr.net/npm/is-number@7.0.0/index.js" }]
+        : [],
   });
 
 export const notFoundHead = (): HeadResult =>

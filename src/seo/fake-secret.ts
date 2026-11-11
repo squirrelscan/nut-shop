@@ -18,3 +18,18 @@ export const leakedConfigScript = (): string =>
 export const leakedConfigAsset = (): string => `${leakedConfigScript()}\n`;
 
 export const LEAK_PAGE_SLUG = "crunchy-peanut-butter";
+
+/**
+ * FAKE test token for the `inline-script-with-token` fault: GitHub personal access token shape
+ * (ghp_ plus 36 characters), a different vendor from the Stripe-shaped key above. It reads
+ * "NutShopDemoFakeNotReal..." and was never issued by any provider. Assembled at request time
+ * so no contiguous copy sits in the repository.
+ */
+const TOKEN_PARTS = ["ghp_", "NutShopD", "emoFakeN", "otRealTk", "n7Q2x9Zc", "4Lw8"] as const;
+
+export const fakeTokenValue = (): string => TOKEN_PARTS.join("");
+
+export const inlineTokenScript = (): string =>
+  `window.__DEPLOY_INFO__ = { env: "production", githubToken: "${fakeTokenValue()}" };`;
+
+export const TOKEN_PAGE_PATH = "/contact";

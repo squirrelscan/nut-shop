@@ -6,10 +6,19 @@ import { STATIC_PAGES } from "#/content/pages";
 import { bigSvg, faultRoute } from "#/server/fault-routes";
 import { finalize, securityHeaders } from "#/server/headers";
 import { htmlLang } from "#/lib/html";
-import { categoryHead, homeHead, productHead, staticHead } from "#/seo/head";
+import { categoryHead, homeHead, noindexHead, postHead, productHead, staticHead } from "#/seo/head";
 import { robotsTxt, sitemapXml } from "#/seo/sitemap";
-import { fakeSecretKey } from "#/seo/fake-secret";
-import { canonicalOf, category, ldGraph, metaContent, pages, product, titleOf } from "./helpers";
+import { fakeSecretKey, fakeTokenValue } from "#/seo/fake-secret";
+import {
+  canonicalOf,
+  category,
+  ldGraph,
+  metaContent,
+  pages,
+  post,
+  product,
+  titleOf,
+} from "./helpers";
 
 type Probe = { render: () => string; on: (out: string) => boolean };
 const has = (needle: string | RegExp) => (out: string) =>
@@ -118,9 +127,39 @@ const probes: Record<FaultId, Probe> = {
     render: () => json(Object.keys(securityHeaders())),
     on: lacks("Content-Security-Policy"),
   },
-  "hsts-xfo-removed": {
+  "xfo-removed": {
     render: () => json(Object.keys(securityHeaders())),
-    on: (o) => !o.includes("Strict-Transport-Security") && !o.includes("X-Frame-Options"),
+    on: (o) => !o.includes("X-Frame-Options") && o.includes("Strict-Transport-Security"),
+  },
+  "template-meta-description-missing": {
+    render: () =>
+      json(
+        ["raw-almonds", "smooth-peanut-butter", "big-nut-hamper"].map(
+          (s) => productHead(product(s)).meta,
+        ),
+      ),
+    on: lacks('"name":"description"'),
+  },
+  "footer-broken-link": { render: () => pages.footer(), on: has('href="/gift-guide-2026"') },
+  "third-party-script-on-cart": {
+    render: () => json(noindexHead("Your cart: demo basket", "/cart").scripts),
+    on: has("https://cdn.jsdelivr.net/npm/is-number@7.0.0/index.js"),
+  },
+  "inline-script-with-token": {
+    render: () => json(staticHead(STATIC_PAGES.contact).scripts),
+    on: has(fakeTokenValue()),
+  },
+  "title-too-long": {
+    render: () => String(titleOf(productHead(product("classic-trail-mix")))),
+    on: (o) => o.length > 70,
+  },
+  "missing-og-image-post": {
+    render: () => json(postHead(post("are-peanuts-really-nuts")).meta),
+    on: lacks("og:image"),
+  },
+  "canonical-wrong-home-same-page": {
+    render: () => String(canonicalOf(productHead(product("raw-pecan-halves")))),
+    on: (o) => o === url("/"),
   },
   "no-cache-validators": {
     render: () => "sync-placeholder",
