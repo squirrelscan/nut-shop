@@ -1,1 +1,7 @@
-[]
+[
+  "broken-external-404",
+  "broken-external-dead-domain",
+  "broken-link-gone-410",
+  "jsonld-product-invalid",
+  "form-input-no-label"
+]
