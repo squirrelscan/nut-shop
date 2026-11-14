@@ -238,3 +238,5 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-14T20:55:44.594Z off canonical-wrong-home-same-page @b1e6091
 - 2026-11-14T20:55:44.620Z reset (39 cleared) @b1e6091
 - 2026-11-14T20:55:44.673Z on robots-disallow-all @b1e6091
+- 2026-11-14T20:58:15.244Z off robots-disallow-all @59cb6bf
+- 2026-11-14T20:58:15.251Z reset (1 cleared) @59cb6bf
