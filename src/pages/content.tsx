@@ -205,6 +205,11 @@ export function StaticPageView({ page }: { page: StaticPage }) {
             <a href="https://gone.nutshop-fault.squirrelscan.com/">Our logistics partner</a>
           </p>
         ) : null}
+        {page.path === "/terms" && fault("server-error-page") ? (
+          <p>
+            <a href="/_fault/server-error">Order status lookup</a>
+          </p>
+        ) : null}
         {isShipping ? (
           <p>
             Looking for something else? See the <a href="/faq">FAQ</a> or{" "}

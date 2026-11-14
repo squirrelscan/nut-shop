@@ -13,6 +13,11 @@ export function faultRoute(request: Request): Response | Promise<Response> | nul
         status: 410,
         headers: { "content-type": "text/plain; charset=utf-8" },
       });
+    case "/_fault/server-error":
+      return new Response(
+        `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Server error | ${SITE.name}</title></head><body><main><h1>Something went wrong</h1><p>This page answers HTTP 500 on purpose.</p></main></body></html>`,
+        { status: 500, headers: { "content-type": "text/html; charset=utf-8" } },
+      );
     case "/_fault/r1":
       return to("/_fault/r2");
     case "/_fault/r2":

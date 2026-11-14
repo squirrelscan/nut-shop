@@ -67,7 +67,7 @@ Every toggle appends a line to `faults/LOG.md` (ISO time, action, id, short git 
 
 `leaked-secret-fake` ships a dummy Stripe-shaped key so the leaked-secrets rule fires. It is not a real credential and is assembled from parts at request time (`src/seo/fake-secret.ts`), so no contiguous copy lives in the repo (a test checks with `git grep`). That log is how we measure time-to-detect and time-to-close: commit `active.json` + `LOG.md`, deploy, then compare against the audit timestamps.
 
-Endpoints under `/_fault/` (410 page, 3-hop redirect chain, soft 404, slow script, big image) exist in every state; faults only decide whether anything links to them.
+Endpoints under `/_fault/` (410 page, 500 page, 3-hop redirect chain, soft 404, slow script, big image) exist in every state; faults only decide whether anything links to them.
 
 `tests/faults.test.ts` renders the affected route/head/sitemap/headers with each fault off and on and asserts the claimed change. `Record<FaultId, Probe>` makes a fault without a probe a type error. `tests/baseline.test.ts` checks the healthy site: unique titles/descriptions, canonicals, JSON-LD, sitemap equals the indexable pages, headers, alt text and dimensions, no broken internal link targets.
 

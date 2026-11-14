@@ -50,6 +50,10 @@ const probes: Record<FaultId, Probe> = {
     render: () => pages.staticPage("terms"),
     on: has("https://gone.nutshop-fault.squirrelscan.com/"),
   },
+  "server-error-page": {
+    render: () => pages.staticPage("terms"),
+    on: has('href="/_fault/server-error"'),
+  },
   "redirect-chain-3-hops": { render: () => pages.home(), on: has('href="/_fault/r1"') },
   "orphan-gift-guide": { render: () => pages.footer(), on: lacks("/gift-guide") },
   "soft-404": { render: () => pages.staticPage("shipping"), on: has("/_fault/soft-404") },
@@ -223,6 +227,11 @@ describe("fault endpoints (exist in every state)", () => {
     }
     expect(hops).toBe(3);
     expect(path).toBe("/categories/gift-boxes");
+  });
+  test("/_fault/server-error is 500 HTML", async () => {
+    const r = await call("/_fault/server-error");
+    expect(r.status).toBe(500);
+    expect(r.headers.get("content-type")).toContain("text/html");
   });
   test("soft 404 returns 200 with not-found text", async () => {
     const r = await call("/_fault/soft-404");

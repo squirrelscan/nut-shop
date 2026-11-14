@@ -86,6 +86,17 @@ export const FAULTS = [
     severity: "medium",
   },
   {
+    id: "server-error-page",
+    category: "links",
+    title: "Link to an own-host page that answers 500",
+    breaks:
+      "Terms page links to /_fault/server-error (HTTP 500), so the crawl audits a page that answers 5xx (what the server_errors alert reads after a scheduled audit).",
+    pages: ["/terms"],
+    expectedRule: "links/broken-links",
+    confidence: C,
+    severity: "high",
+  },
+  {
     id: "redirect-chain-3-hops",
     category: "links",
     title: "Internal link through a 3-hop redirect chain",
