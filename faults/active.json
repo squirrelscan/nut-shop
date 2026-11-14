@@ -1,1 +1,23 @@
-[]
+[
+  "broken-internal-link",
+  "broken-link-gone-410",
+  "broken-external-invalid-domain",
+  "broken-external-404",
+  "broken-external-dead-domain",
+  "redirect-chain-3-hops",
+  "orphan-gift-guide",
+  "soft-404",
+  "sitemap-lists-404",
+  "sitemap-missing-page",
+  "meta-description-missing-category",
+  "title-duplicate",
+  "canonical-missing",
+  "canonical-wrong-home",
+  "noindex-product",
+  "h1-missing",
+  "h1-duplicate",
+  "thin-content-page",
+  "footer-broken-link",
+  "title-too-long",
+  "missing-og-image-post"
+]
