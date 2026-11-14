@@ -240,3 +240,6 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-14T20:55:44.673Z on robots-disallow-all @b1e6091
 - 2026-11-14T20:58:15.244Z off robots-disallow-all @59cb6bf
 - 2026-11-14T20:58:15.251Z reset (1 cleared) @59cb6bf
+- 2026-11-14T21:26:35.571Z on broken-internal-link @5ab3358
+- 2026-11-14T21:26:35.590Z on server-error-page @5ab3358
+- 2026-11-14T21:26:35.603Z on third-party-script-on-cart @5ab3358
