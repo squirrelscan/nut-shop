@@ -69,6 +69,8 @@ Every toggle appends a line to `faults/LOG.md` (ISO time, action, id, short git 
 
 Endpoints under `/_fault/` (410 page, 500 page, 3-hop redirect chain, soft 404, slow script, big image) exist in every state; faults only decide whether anything links to them.
 
+Three probe faults serve endpoints outside `/_fault/`, and only while they are on (404 otherwise): `exposed-env-file` (`/.env`, dummy KEY=VALUE secrets), `open-users-api` (`/api/users`, fake @example.com users) and `json-password-field` (`/api/account`, a dummy `password` field). The two API faults also add an inline `fetch()` call site to `/about` so endpoint discovery finds them. squirrelscan reports them only on a probing run (`--probe aggressive`, or a cloud audit with probing allowed). Values are assembled at request time in `src/seo/fake-probe-data.ts`.
+
 `tests/faults.test.ts` renders the affected route/head/sitemap/headers with each fault off and on and asserts the claimed change. `Record<FaultId, Probe>` makes a fault without a probe a type error. `tests/baseline.test.ts` checks the healthy site: unique titles/descriptions, canonicals, JSON-LD, sitemap equals the indexable pages, headers, alt text and dimensions, no broken internal link targets.
 
 ## Healthy baseline notes
