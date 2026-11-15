@@ -247,3 +247,6 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-15T05:45:43.477Z off server-error-page @f114065
 - 2026-11-15T05:45:43.484Z off third-party-script-on-cart @f114065
 - 2026-11-15T05:45:43.490Z reset (3 cleared) @f114065
+- 2026-11-15T05:50:37.593Z on exposed-env-file @64fba2a
+- 2026-11-15T05:50:37.617Z on open-users-api @64fba2a
+- 2026-11-15T05:50:37.636Z on json-password-field @64fba2a
