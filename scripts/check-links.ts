@@ -1,8 +1,8 @@
 /**
  * Tiny crawler. Usage: bun run check-links [baseUrl] [--external]
- * - crawls internal pages from "/" following <a href>; checks <img>/<link>/<script> targets
+ * - crawls internal pages from "/" and "/catalogue" following <a href>; checks <img>/<link>/<script> targets
  * - reports non-2xx internal targets with referrers, redirects, missing alt, JSON-LD parse errors
- * - compares sitemap.xml with the crawled indexable pages
+ * - compares every sitemap listed in robots.txt with the crawled indexable pages
  * Exit code 1 when internal broken links, JSON-LD errors or sitemap mismatches exist.
  */
 const args = process.argv.slice(2);
@@ -39,7 +39,8 @@ async function get(u: string, wantBody: boolean): Promise<Info> {
 const refs = new Map<string, Set<string>>(); // target -> referrers
 const pages = new Map<string, Info>();
 const problems: string[] = [];
-const queue: string[] = [origin + "/"];
+// /catalogue is a separate section (not linked from the main nav), so seed it too.
+const queue: string[] = [origin + "/", origin + "/catalogue"];
 const seen = new Set(queue);
 const externalLinks = new Map<string, Set<string>>();
 
@@ -120,11 +121,17 @@ for (const [u, info] of pages) {
     );
 }
 
-// sitemap vs crawl
-const sm = await get(origin + "/sitemap.xml", true);
-const sitemapUrls = new Set(
-  [...(sm.body ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]!),
+// sitemaps (every one listed in robots.txt) vs crawl
+const robots = await fetch(origin + "/robots.txt").then((r) => r.text());
+const sitemapFiles = [...robots.matchAll(/^Sitemap:\s*(\S+)/gim)].map(
+  (m) => origin + new URL(m[1]!).pathname,
 );
+const sitemapUrls = new Set<string>();
+for (const f of sitemapFiles.length ? sitemapFiles : [origin + "/sitemap.xml"]) {
+  const sm = await get(f, true);
+  if (sm.status !== 200) problems.push(`sitemap ${f} returned ${sm.status}`);
+  for (const m of (sm.body ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)) sitemapUrls.add(m[1]!);
+}
 const indexable = [...pages]
   .filter(
     ([, i]) =>
@@ -149,7 +156,7 @@ redirects.forEach((b) => console.log("  " + b));
 console.log(`other problems: ${problems.length}`);
 problems.forEach((b) => console.log("  " + b));
 console.log(
-  `sitemap: ${sitemapUrls.size} urls; indexable pages crawled but missing from sitemap: ${missingFromSitemap.length}; in sitemap but not indexable/crawled: ${notCrawled.length}`,
+  `sitemaps (${sitemapFiles.length}): ${sitemapUrls.size} urls; indexable pages crawled but missing from sitemap: ${missingFromSitemap.length}; in sitemap but not indexable/crawled: ${notCrawled.length}`,
 );
 missingFromSitemap.forEach((u) => console.log("  missing: " + u));
 notCrawled.forEach((u) => console.log("  extra: " + u));

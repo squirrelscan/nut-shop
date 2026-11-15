@@ -1,4 +1,4 @@
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 import { htmlLang } from "#/lib/html";
 import { NotFoundPage } from "#/pages/misc";
 import appCss from "../styles.css?url";
@@ -20,8 +20,9 @@ function NotFound() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
-    <html lang={htmlLang()}>
+    <html lang={htmlLang(pathname)}>
       <head>
         <HeadContent />
         <link rel="stylesheet" href={appCss} />

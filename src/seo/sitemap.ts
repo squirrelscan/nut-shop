@@ -40,9 +40,10 @@ export function sitemapXml(): string {
 }
 
 export function robotsTxt(): string {
-  if (fault("robots-disallow-all"))
-    return `User-agent: *\nDisallow: /\n\nSitemap: ${url("/sitemap.xml")}\n`;
-  return `User-agent: *\nAllow: /\n\nSitemap: ${url("/sitemap.xml")}\n`;
+  // The /catalogue/ sitemap is separate so /sitemap.xml (and its faults) stay unchanged.
+  const sitemaps = `Sitemap: ${url("/sitemap.xml")}\nSitemap: ${url("/sitemap-catalogue.xml")}\n`;
+  if (fault("robots-disallow-all")) return `User-agent: *\nDisallow: /\n\n${sitemaps}`;
+  return `User-agent: *\nAllow: /\n\n${sitemaps}`;
 }
 
 export function llmsTxt(): string {
