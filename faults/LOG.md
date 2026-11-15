@@ -243,3 +243,7 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-14T21:26:35.571Z on broken-internal-link @5ab3358
 - 2026-11-14T21:26:35.590Z on server-error-page @5ab3358
 - 2026-11-14T21:26:35.603Z on third-party-script-on-cart @5ab3358
+- 2026-11-15T05:45:43.468Z off broken-internal-link @f114065
+- 2026-11-15T05:45:43.477Z off server-error-page @f114065
+- 2026-11-15T05:45:43.484Z off third-party-script-on-cart @f114065
+- 2026-11-15T05:45:43.490Z reset (3 cleared) @f114065
