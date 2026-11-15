@@ -9,6 +9,7 @@ import { htmlLang } from "#/lib/html";
 import { categoryHead, homeHead, noindexHead, postHead, productHead, staticHead } from "#/seo/head";
 import { robotsTxt, sitemapXml } from "#/seo/sitemap";
 import { fakeSecretKey, fakeTokenValue } from "#/seo/fake-secret";
+import { fakeAccountPassword, fakeApiKey, fakeDbPassword, probeRoute } from "#/seo/fake-probe-data";
 import {
   canonicalOf,
   category,
@@ -177,6 +178,15 @@ const probes: Record<FaultId, Probe> = {
     on: has(fakeSecretKey()),
   },
   "form-input-no-label": { render: () => pages.footer(), on: lacks('for="newsletter-email"') },
+  "exposed-env-file": {
+    render: () => String(probeRoute(new Request("http://127.0.0.1:4210/.env"))?.status ?? 404),
+    on: has("200"),
+  },
+  "open-users-api": { render: () => pages.staticPage("about"), on: has('fetch("/api/users")') },
+  "json-password-field": {
+    render: () => pages.staticPage("about"),
+    on: has('fetch("/api/account")'),
+  },
 };
 
 describe("every fault changes the output it claims to", () => {
@@ -273,6 +283,57 @@ describe("leaked-secret-fake", () => {
     for (const needle of [key, key.slice(0, 20), key.slice(8)]) {
       const r = Bun.spawnSync(["git", "grep", "--untracked", "-nF", "-e", needle]);
       expect(r.stdout.toString(), needle).toBe("");
+    }
+  });
+});
+
+describe("probe faults (exposed-env-file, open-users-api, json-password-field)", () => {
+  const get = (p: string) => probeRoute(new Request(`http://127.0.0.1:4210${p}`));
+  const cases = [
+    ["exposed-env-file", "/.env", "text/plain"],
+    ["open-users-api", "/api/users", "application/json"],
+    ["json-password-field", "/api/account", "application/json"],
+  ] as const;
+  for (const [id, path, type] of cases) {
+    test(`${path} answers only while ${id} is on`, async () => {
+      expect(withFaults([], () => get(path))).toBeNull();
+      const on = withFaults([id], () => get(path))!;
+      expect(on.status).toBe(200);
+      expect(on.headers.get("content-type")).toContain(type);
+      expect(withFaults([id], () => get("/.env-nope"))).toBeNull();
+    });
+  }
+  test("each toggle switches only its own endpoint", () => {
+    expect(withFaults(["open-users-api"], () => get("/api/account"))).toBeNull();
+    expect(withFaults(["json-password-field"], () => get("/.env"))).toBeNull();
+    expect(withFaults(["exposed-env-file"], () => get("/api/users"))).toBeNull();
+  });
+  test("/.env is KEY=VALUE lines with secret-looking names", async () => {
+    const text = await withFaults(["exposed-env-file"], () => get("/.env"))!.text();
+    const lines = text.split("\n").filter(Boolean);
+    for (const l of lines) expect(l).toMatch(/^[A-Z][A-Z0-9_]*=\S+$/);
+    expect(text).toContain(`DB_PASSWORD=${fakeDbPassword()}`);
+  });
+  test("/api/users lists fake people at example.com only", async () => {
+    const body = (await withFaults(["open-users-api"], () => get("/api/users"))!.json()) as {
+      users: { email: string }[];
+    };
+    expect(body.users.length).toBeGreaterThanOrEqual(5);
+    for (const u of body.users) expect(u.email).toMatch(/@example\.com$/);
+  });
+  test("/api/account carries a password field", async () => {
+    const body = (await withFaults(["json-password-field"], () => get("/api/account"))!.json()) as {
+      password: string;
+    };
+    expect(body.password).toBe(fakeAccountPassword());
+  });
+  test("about page has no call sites with every probe fault off", () => {
+    expect(withFaults([], () => pages.staticPage("about"))).not.toContain("__shopApi");
+  });
+  test("no contiguous copy of the dummy values in the repository", () => {
+    for (const v of [fakeDbPassword(), fakeApiKey(), fakeAccountPassword()]) {
+      const r = Bun.spawnSync(["git", "grep", "--untracked", "-nF", "-e", v]);
+      expect(r.stdout.toString(), v).toBe("");
     }
   });
 });

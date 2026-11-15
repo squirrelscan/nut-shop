@@ -1,6 +1,7 @@
 import { createStartHandler, defaultStreamHandler } from "@tanstack/react-start/server";
 import { SITE } from "#/config/site";
 import { faultRoute } from "#/server/fault-routes";
+import { probeRoute } from "#/seo/fake-probe-data";
 import { finalize } from "#/server/headers";
 import { applyIndexing, parseIndexingMode } from "#/server/indexing";
 
@@ -39,7 +40,7 @@ export default {
         });
       }
     }
-    const response = (await faultRoute(request)) ?? (await start(request));
+    const response = probeRoute(request) ?? (await faultRoute(request)) ?? (await start(request));
     return finalize(request, response, new Date(`${SITE.buildDate}T00:00:00Z`).toUTCString(), mode);
   },
 };

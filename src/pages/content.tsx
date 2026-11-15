@@ -7,6 +7,7 @@ import { formatDate } from "#/lib/format";
 import { Breadcrumbs, Layout } from "#/components/layout";
 import { Img } from "#/components/media";
 import { postCrumbs } from "#/seo/head";
+import { probeCallSites } from "#/seo/fake-probe-data";
 import { fault } from "../../faults/runtime";
 import { ProductCard } from "#/pages/shop";
 
@@ -184,6 +185,9 @@ export function StaticPageView({ page }: { page: StaticPage }) {
             </a>
             .
           </p>
+        ) : null}
+        {isAbout && probeCallSites() ? (
+          <script dangerouslySetInnerHTML={{ __html: probeCallSites()! }} />
         ) : null}
         {isAbout && fault("broken-link-gone-410") ? (
           <p>

@@ -454,6 +454,39 @@ export const FAULTS = [
     confidence: C,
     severity: "critical",
   },
+  {
+    id: "exposed-env-file",
+    category: "security",
+    title: "Fake /.env file served to anyone",
+    breaks:
+      "/.env answers 200 text/plain with KEY=VALUE lines (dummy database password, API key and session secret, assembled at request time in src/seo/fake-probe-data.ts). Not real credentials. Found only by an aggressive probe run.",
+    pages: ["/.env"],
+    expectedRule: "security/exposed-files",
+    confidence: C,
+    severity: "critical",
+  },
+  {
+    id: "open-users-api",
+    category: "security",
+    title: "Unauthenticated /api/users endpoint with personal data",
+    breaks:
+      "/api/users answers JSON with six fake users (names, @example.com emails, phone numbers, roles) to anyone; the about page calls it from an inline script so endpoint discovery finds it. Found only by a probe run.",
+    pages: ["/api/users", "/about"],
+    expectedRule: ["security/unauthenticated-api", "security/json-sensitive-fields"],
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "json-password-field",
+    category: "security",
+    title: "JSON response with a password field",
+    breaks:
+      "/api/account answers JSON for one fake account including a `password` field with a dummy value (assembled at request time); the about page calls it from an inline script so endpoint discovery finds it. Found only by a probe run.",
+    pages: ["/api/account", "/about"],
+    expectedRule: "security/json-sensitive-fields",
+    confidence: C,
+    severity: "high",
+  },
 ] as const satisfies readonly FaultDef[];
 
 export type FaultId = (typeof FAULTS)[number]["id"];
