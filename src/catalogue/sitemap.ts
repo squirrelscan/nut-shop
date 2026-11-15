@@ -2,7 +2,7 @@ import { SITE, url } from "#/config/site";
 import { escapeXml } from "#/lib/format";
 import { cataloguePaths } from "./generate";
 
-/** Separate sitemap for /catalogue/ (2,135 URLs), listed in robots.txt next to /sitemap.xml. */
+/** Separate sitemap for /catalogue/ (2,135 URLs). Not referenced from robots.txt or /sitemap.xml on purpose. */
 export function catalogueSitemapXml(): string {
   const rows = cataloguePaths().map(
     (p) =>

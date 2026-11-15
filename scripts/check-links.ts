@@ -1,12 +1,15 @@
 /**
- * Tiny crawler. Usage: bun run check-links [baseUrl] [--external]
- * - crawls internal pages from "/" and "/catalogue" following <a href>; checks <img>/<link>/<script> targets
+ * Tiny crawler. Usage: bun run check-links [baseUrl] [--external] [--catalogue]
+ * --catalogue: start from /catalogue instead of "/" and compare against /sitemap-catalogue.xml
+ *   (the catalogue is not linked from the main site and not listed in robots.txt).
+ * - crawls internal pages from "/" following <a href>; checks <img>/<link>/<script> targets
  * - reports non-2xx internal targets with referrers, redirects, missing alt, JSON-LD parse errors
- * - compares every sitemap listed in robots.txt with the crawled indexable pages
+ * - compares sitemap.xml with the crawled indexable pages
  * Exit code 1 when internal broken links, JSON-LD errors or sitemap mismatches exist.
  */
 const args = process.argv.slice(2);
 const external = args.includes("--external");
+const catalogueMode = args.includes("--catalogue");
 const base = (args.find((a) => a.startsWith("http")) ?? "http://127.0.0.1:4210").replace(
   /\/+$/,
   "",
@@ -39,8 +42,7 @@ async function get(u: string, wantBody: boolean): Promise<Info> {
 const refs = new Map<string, Set<string>>(); // target -> referrers
 const pages = new Map<string, Info>();
 const problems: string[] = [];
-// /catalogue is a separate section (not linked from the main nav), so seed it too.
-const queue: string[] = [origin + "/", origin + "/catalogue"];
+const queue: string[] = [origin + (catalogueMode ? "/catalogue" : "/")];
 const seen = new Set(queue);
 const externalLinks = new Map<string, Set<string>>();
 
@@ -121,17 +123,11 @@ for (const [u, info] of pages) {
     );
 }
 
-// sitemaps (every one listed in robots.txt) vs crawl
-const robots = await fetch(origin + "/robots.txt").then((r) => r.text());
-const sitemapFiles = [...robots.matchAll(/^Sitemap:\s*(\S+)/gim)].map(
-  (m) => origin + new URL(m[1]!).pathname,
+// sitemap vs crawl
+const sm = await get(origin + (catalogueMode ? "/sitemap-catalogue.xml" : "/sitemap.xml"), true);
+const sitemapUrls = new Set(
+  [...(sm.body ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]!),
 );
-const sitemapUrls = new Set<string>();
-for (const f of sitemapFiles.length ? sitemapFiles : [origin + "/sitemap.xml"]) {
-  const sm = await get(f, true);
-  if (sm.status !== 200) problems.push(`sitemap ${f} returned ${sm.status}`);
-  for (const m of (sm.body ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)) sitemapUrls.add(m[1]!);
-}
 const indexable = [...pages]
   .filter(
     ([, i]) =>
@@ -141,7 +137,9 @@ const indexable = [...pages]
       !/rel="canonical" href="(?!([^"]*)")/.test(i.body ?? ""),
   )
   .map(([u]) => u)
-  .filter((u) => !/\/(cart|search|order-demo)(\?|$)/.test(u));
+  .filter((u) => !/\/(cart|search|order-demo)(\?|$)/.test(u))
+  // Catalogue mode checks the catalogue sitemap against catalogue pages only (the header links out).
+  .filter((u) => !catalogueMode || /^\/catalogue(\/|$)/.test(new URL(u).pathname));
 const crawledSet = new Set(indexable.map((u) => u.split("?")[0]!));
 const missingFromSitemap = [...crawledSet].filter((u) => !sitemapUrls.has(u));
 const notCrawled = [...sitemapUrls].filter((u) => !crawledSet.has(u));
@@ -156,7 +154,7 @@ redirects.forEach((b) => console.log("  " + b));
 console.log(`other problems: ${problems.length}`);
 problems.forEach((b) => console.log("  " + b));
 console.log(
-  `sitemaps (${sitemapFiles.length}): ${sitemapUrls.size} urls; indexable pages crawled but missing from sitemap: ${missingFromSitemap.length}; in sitemap but not indexable/crawled: ${notCrawled.length}`,
+  `sitemap: ${sitemapUrls.size} urls; indexable pages crawled but missing from sitemap: ${missingFromSitemap.length}; in sitemap but not indexable/crawled: ${notCrawled.length}`,
 );
 missingFromSitemap.forEach((u) => console.log("  missing: " + u));
 notCrawled.forEach((u) => console.log("  extra: " + u));

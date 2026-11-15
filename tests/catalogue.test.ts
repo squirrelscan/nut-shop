@@ -21,7 +21,7 @@ import { catalogueSitemapXml } from "#/catalogue/sitemap";
 import { htmlLang } from "#/lib/html";
 import { robotsTxt, sitemapXml } from "#/seo/sitemap";
 import { cacheControl, securityHeaders } from "#/server/headers";
-import { canonicalOf, html, metaContent, titleOf } from "./helpers";
+import { canonicalOf, html, metaContent, pages, titleOf } from "./helpers";
 
 const itemHtml = (slug: string) =>
   html(createElement(CatalogueItemPage, { item: getCatalogueItem(slug)! }));
@@ -129,7 +129,10 @@ describe("catalogue", () => {
     expect(new Set(locs).size).toBe(locs.length);
     expect(cataloguePaths().length).toBe(locs.length);
     expect(sitemapXml()).not.toContain("/catalogue");
-    expect(robotsTxt()).toContain("/sitemap-catalogue.xml");
+    // Not advertised: capped fault-smoke audits seeded at / must not spend budget on it.
+    expect(robotsTxt()).not.toContain("catalogue");
+    for (const page of [pages.home(), pages.footer(), pages.shop()])
+      expect(page).not.toContain("/catalogue");
   });
 
   test("isolated from the fault system: every fault on changes nothing in /catalogue/", () => {
