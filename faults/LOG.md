@@ -250,3 +250,6 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-15T05:50:37.593Z on exposed-env-file @64fba2a
 - 2026-11-15T05:50:37.617Z on open-users-api @64fba2a
 - 2026-11-15T05:50:37.636Z on json-password-field @64fba2a
+- 2026-11-15T05:52:41.275Z off exposed-env-file @84a19c0
+- 2026-11-15T05:52:41.298Z off open-users-api @84a19c0
+- 2026-11-15T05:52:41.325Z off json-password-field @84a19c0
