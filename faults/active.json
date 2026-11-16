@@ -1,1 +1,5 @@
-[]
+[
+  "exposed-env-file",
+  "open-users-api",
+  "json-password-field"
+]
