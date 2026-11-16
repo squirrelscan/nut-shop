@@ -68,7 +68,7 @@ export async function finalize(
   request: Request,
   response: Response,
   lastModified: string,
-  mode: IndexingMode = "auditor-only",
+  mode: IndexingMode = "crawlers-only",
 ): Promise<Response> {
   const headers = new Headers(response.headers);
   for (const [k, v] of Object.entries(securityHeaders())) headers.set(k, v);

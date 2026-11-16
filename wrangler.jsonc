@@ -9,8 +9,8 @@
   "observability": { "enabled": true },
   // Static files also pass through the Worker so they carry X-Robots-Tag.
   "assets": { "binding": "ASSETS", "run_worker_first": true },
-  // off | auditor-only (default) | on. See README "Indexing".
-  "vars": { "INDEXING": "auditor-only" },
+  // off | auditor-only | crawlers-only (default) | on. See README "Indexing".
+  "vars": { "INDEXING": "crawlers-only" },
   // `wrangler deploy` prunes any custom domain missing from this list.
   "routes": [{ "pattern": "nutshop.squirrelscan.com", "custom_domain": true }]
 }
