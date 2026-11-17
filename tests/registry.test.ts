@@ -14,7 +14,7 @@ describe("fault registry", () => {
     for (const f of FAULTS) {
       const rules = rulesOf(f);
       expect(rules.length).toBeGreaterThan(0);
-      for (const r of rules) expect(r).toMatch(/^[a-z0-9]+\/[a-z0-9-]+$/);
+      for (const r of rules) expect(r).toMatch(/^[a-z0-9-]+\/[a-z0-9-]+$/);
       expect(new Set(rules).size).toBe(rules.length);
     }
   });

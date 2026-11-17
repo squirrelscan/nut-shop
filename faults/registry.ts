@@ -487,6 +487,116 @@ export const FAULTS = [
     confidence: C,
     severity: "high",
   },
+  {
+    id: "third-party-session-replay-on-cart",
+    category: "security",
+    title: "Three session-replay tools on the cart page",
+    breaks:
+      "Cart page loads the Hotjar, Microsoft Clarity and FullStory scripts with placeholder ids (nothing is configured, nothing is recorded). Three tools doing the same job on a checkout-type page. The page's CSP script-src gains these origins while the fault is on.",
+    pages: ["/cart"],
+    expectedRule: ["third-party/session-replay-on-sensitive-page", "third-party/vendor-count"],
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "third-party-tag-managers-on-cart",
+    category: "security",
+    title: "Two tag managers on the cart page",
+    breaks:
+      "Cart page loads Google Tag Manager and Adobe Launch with placeholder container ids (both answer an error, no tag runs). Two tag managers on a checkout-type page.",
+    pages: ["/cart"],
+    expectedRule: "third-party/tag-manager-on-sensitive-page",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "third-party-ab-test-on-cart",
+    category: "security",
+    title: "A/B testing snippet on the cart page",
+    breaks:
+      "Cart page loads an Optimizely project snippet URL with a placeholder project id. An A/B testing snippet can rewrite the page it runs on.",
+    pages: ["/cart"],
+    expectedRule: "third-party/script-on-sensitive-page",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "third-party-ad-and-tracking-vendors-on-cart",
+    category: "security",
+    title: "Ad network, share widget and tracking pixels on the cart page",
+    breaks:
+      "Cart page requests four vendor scripts that have no business on a checkout-type page (Baidu Tongji, ShareThis, Amazon ads, TikTok pixel). They are requested with preload links and never executed.",
+    pages: ["/cart"],
+    expectedRule: "third-party/script-on-sensitive-page",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "third-party-vulnerable-libraries-on-cart",
+    category: "security",
+    title: "Old library versions with published CVEs on the cart page",
+    breaks:
+      "Cart page loads jQuery 1.11.3 (CVE-2015-9251, CVE-2020-11022), Bootstrap 3.3.7 (CVE-2019-8331) and Lodash 4.17.4 (CVE-2021-23337) from public CDNs, version-pinned and without an integrity attribute. Nothing on the page calls them.",
+    pages: ["/cart"],
+    expectedRule: ["perf/js-libraries", "third-party/missing-sri-versioned", "security/sri"],
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "third-party-conflicting-library-versions-on-cart",
+    category: "security",
+    title: "Two versions of the same library on the cart page",
+    breaks:
+      "Cart page loads jQuery 1.11.3 from code.jquery.com and jQuery 3.7.1 from jsDelivr: two copies of one library, from two CDNs, the second replacing the first.",
+    pages: ["/cart"],
+    expectedRule: ["perf/js-libraries", "third-party/missing-sri-versioned"],
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "third-party-vendor-sprawl-home",
+    category: "security",
+    title: "Scripts from about thirty companies on the home page",
+    breaks:
+      "Home page loads 28 vendor scripts from about 28 different companies (analytics, ad pixels, chat widgets, consent tools, payments, video), all with placeholder ids. The page's CSP script-src gains each origin while the fault is on; connect-src, img-src and frame-src do not change, so no script can send anything onward.",
+    pages: ["/"],
+    expectedRule: "third-party/vendor-count",
+    confidence: C,
+    severity: "high",
+  },
+  {
+    id: "third-party-proxied-script-home",
+    category: "security",
+    title: "Vendor script served through the shop's own origin",
+    breaks:
+      "Home page loads /_fault/proxy.js?url=<a Plausible script URL>: a first-party URL that names its vendor target the way a script proxy does. The response is a comment, nothing is forwarded.",
+    pages: ["/"],
+    expectedRule: "third-party/proxied-script",
+    confidence: C,
+    severity: "medium",
+  },
+  {
+    id: "third-party-unknown-host-script-home",
+    category: "security",
+    title: "Script from a host that is not a known vendor",
+    breaks:
+      "Home page loads https://esm.sh/is-number@7.0.0 as a module (a tiny, harmless, pinned npm file, no tracking) from a CDN host that vendor lists do not usually name.",
+    pages: ["/"],
+    expectedRule: "security/sri",
+    confidence: C,
+    severity: "low",
+  },
+  {
+    id: "third-party-reported-compromised-vendor-home",
+    category: "security",
+    title: "Script URL on a host with a publicly reported compromise",
+    breaks:
+      "Home page requests a placeholder script URL on cdn.debugbear.com, the script host named in press reports of a compromise on 2026-10-29. Requested with a preload link and never executed; the placeholder path answers an error.",
+    pages: ["/"],
+    expectedRule: "third-party/compromised-script",
+    confidence: C,
+    severity: "critical",
+  },
 ] as const satisfies readonly FaultDef[];
 
 export type FaultId = (typeof FAULTS)[number]["id"];
