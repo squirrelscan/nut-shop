@@ -42,7 +42,8 @@ export function sitemapXml(): string {
 export function robotsTxt(): string {
   if (fault("robots-disallow-all"))
     return `User-agent: *\nDisallow: /\n\nSitemap: ${url("/sitemap.xml")}\n`;
-  return `User-agent: *\nAllow: /\n\nSitemap: ${url("/sitemap.xml")}\n`;
+  // TEMPORARY (squirrelscan/repo#2490 carried re-crawl): list the catalogue sitemap so one audit re-crawls /catalogue. Revert on main after the run.
+  return `User-agent: *\nAllow: /\n\nSitemap: ${url("/sitemap.xml")}\nSitemap: ${url("/sitemap-catalogue.xml")}\n`;
 }
 
 export function llmsTxt(): string {
