@@ -1,5 +1,7 @@
 /**
- * Tiny crawler. Usage: bun run check-links [baseUrl] [--external]
+ * Tiny crawler. Usage: bun run check-links [baseUrl] [--external] [--catalogue]
+ * --catalogue: start from /catalogue instead of "/" and compare against /sitemap-catalogue.xml
+ *   (the catalogue is not linked from the main site and not listed in robots.txt).
  * - crawls internal pages from "/" following <a href>; checks <img>/<link>/<script> targets
  * - reports non-2xx internal targets with referrers, redirects, missing alt, JSON-LD parse errors
  * - compares sitemap.xml with the crawled indexable pages
@@ -7,6 +9,7 @@
  */
 const args = process.argv.slice(2);
 const external = args.includes("--external");
+const catalogueMode = args.includes("--catalogue");
 const base = (args.find((a) => a.startsWith("http")) ?? "http://127.0.0.1:4210").replace(
   /\/+$/,
   "",
@@ -39,7 +42,7 @@ async function get(u: string, wantBody: boolean): Promise<Info> {
 const refs = new Map<string, Set<string>>(); // target -> referrers
 const pages = new Map<string, Info>();
 const problems: string[] = [];
-const queue: string[] = [origin + "/"];
+const queue: string[] = [origin + (catalogueMode ? "/catalogue" : "/")];
 const seen = new Set(queue);
 const externalLinks = new Map<string, Set<string>>();
 
@@ -121,7 +124,7 @@ for (const [u, info] of pages) {
 }
 
 // sitemap vs crawl
-const sm = await get(origin + "/sitemap.xml", true);
+const sm = await get(origin + (catalogueMode ? "/sitemap-catalogue.xml" : "/sitemap.xml"), true);
 const sitemapUrls = new Set(
   [...(sm.body ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]!),
 );
@@ -134,7 +137,9 @@ const indexable = [...pages]
       !/rel="canonical" href="(?!([^"]*)")/.test(i.body ?? ""),
   )
   .map(([u]) => u)
-  .filter((u) => !/\/(cart|search|order-demo)(\?|$)/.test(u));
+  .filter((u) => !/\/(cart|search|order-demo)(\?|$)/.test(u))
+  // Catalogue mode checks the catalogue sitemap against catalogue pages only (the header links out).
+  .filter((u) => !catalogueMode || /^\/catalogue(\/|$)/.test(new URL(u).pathname));
 const crawledSet = new Set(indexable.map((u) => u.split("?")[0]!));
 const missingFromSitemap = [...crawledSet].filter((u) => !sitemapUrls.has(u));
 const notCrawled = [...sitemapUrls].filter((u) => !crawledSet.has(u));

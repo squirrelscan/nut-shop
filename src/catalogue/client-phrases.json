@@ -1,0 +1,58 @@
+{
+  "reviewers": [
+    "Ada",
+    "Bram",
+    "Carys",
+    "Dev",
+    "Elif",
+    "Finn",
+    "Greta",
+    "Hugo",
+    "Ines",
+    "Jonah",
+    "Kemi",
+    "Luca",
+    "Mira",
+    "Nils",
+    "Orla",
+    "Priya",
+    "Quinn",
+    "Rosa",
+    "Sami",
+    "Tova",
+    "Umar",
+    "Vera",
+    "Wren",
+    "Yusuf",
+    "Zara"
+  ],
+  "openers": [
+    "Bought a {pack} for the office and it lasted two days.",
+    "These are now a fixture in my pantry.",
+    "Ordered on a whim after reading the storage guide.",
+    "Picked these for a cheese board and they stole the show.",
+    "I use these in my morning porridge most days.",
+    "Took a bag on a long hike last weekend.",
+    "Gave a bag to my neighbour, who asked where they came from.",
+    "Tried them next to a supermarket brand to compare."
+  ],
+  "praise": [
+    "The {style} flavour is noticeable without being heavy.",
+    "Every {nut} was whole and evenly sized.",
+    "The crunch held up even after a week in the jar.",
+    "They taste fresh, with none of the stale bitterness I sometimes get.",
+    "The seasoning sticks to the nut rather than collecting at the bottom.",
+    "Good value per 100 g compared with what I usually buy.",
+    "The bag reseals properly, which matters more than I expected."
+  ],
+  "quibbles": [
+    "I would like a bigger bag option.",
+    "A few broken pieces at the bottom, but nothing to complain about.",
+    "Slightly saltier than I expected.",
+    "I wish the label listed the roast date.",
+    "Could be a touch more toasted for my taste.",
+    "No complaints at all."
+  ],
+  "warehouses": ["North depot", "Harbour store", "Valley barn", "City counter"],
+  "badges": ["Staff pick", "Restocked this week", "Small batch", "Seasonal", "Best seller"]
+}

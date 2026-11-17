@@ -22,14 +22,18 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ShippingAndReturnsRouteImport } from './routes/shipping-and-returns'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SitemapCatalogueDotxmlRouteImport } from './routes/sitemap-catalogue[.]xml'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as DotwellKnownSecurityDottxtRouteImport } from './routes/[.]well-known/security[.]txt'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogRssDotxmlRouteImport } from './routes/blog/rss[.]xml'
+import { Route as CatalogueIndexRouteImport } from './routes/catalogue/index'
+import { Route as CatalogueSlugRouteImport } from './routes/catalogue/$slug'
 import { Route as CategoriesSlugRouteImport } from './routes/categories/$slug'
 import { Route as ProductsSlugRouteImport } from './routes/products/$slug'
+import { Route as CataloguePageNRouteImport } from './routes/catalogue/page/$n'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -96,6 +100,11 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapCatalogueDotxmlRoute = SitemapCatalogueDotxmlRouteImport.update({
+  id: '/sitemap-catalogue.xml',
+  path: '/sitemap-catalogue.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -127,6 +136,16 @@ const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
   path: '/blog/rss.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogueIndexRoute = CatalogueIndexRouteImport.update({
+  id: '/catalogue/',
+  path: '/catalogue/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogueSlugRoute = CatalogueSlugRouteImport.update({
+  id: '/catalogue/$slug',
+  path: '/catalogue/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   id: '/categories/$slug',
   path: '/categories/$slug',
@@ -135,6 +154,11 @@ const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CataloguePageNRoute = CataloguePageNRouteImport.update({
+  id: '/catalogue/page/$n',
+  path: '/catalogue/page/$n',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -152,14 +176,18 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/shipping-and-returns': typeof ShippingAndReturnsRoute
   '/shop': typeof ShopRoute
+  '/sitemap-catalogue.xml': typeof SitemapCatalogueDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/.well-known/security.txt': typeof DotwellKnownSecurityDottxtRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/catalogue/$slug': typeof CatalogueSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/catalogue/': typeof CatalogueIndexRoute
+  '/catalogue/page/$n': typeof CataloguePageNRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -175,14 +203,18 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/shipping-and-returns': typeof ShippingAndReturnsRoute
   '/shop': typeof ShopRoute
+  '/sitemap-catalogue.xml': typeof SitemapCatalogueDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/.well-known/security.txt': typeof DotwellKnownSecurityDottxtRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/catalogue/$slug': typeof CatalogueSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/catalogue': typeof CatalogueIndexRoute
+  '/catalogue/page/$n': typeof CataloguePageNRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -199,14 +231,18 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/shipping-and-returns': typeof ShippingAndReturnsRoute
   '/shop': typeof ShopRoute
+  '/sitemap-catalogue.xml': typeof SitemapCatalogueDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/.well-known/security.txt': typeof DotwellKnownSecurityDottxtRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/catalogue/$slug': typeof CatalogueSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/catalogue/': typeof CatalogueIndexRoute
+  '/catalogue/page/$n': typeof CataloguePageNRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -224,14 +260,18 @@ export interface FileRouteTypes {
     | '/search'
     | '/shipping-and-returns'
     | '/shop'
+    | '/sitemap-catalogue.xml'
     | '/sitemap.xml'
     | '/terms'
     | '/.well-known/security.txt'
     | '/blog/$slug'
     | '/blog/rss.xml'
+    | '/catalogue/$slug'
     | '/categories/$slug'
     | '/products/$slug'
     | '/blog/'
+    | '/catalogue/'
+    | '/catalogue/page/$n'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -247,14 +287,18 @@ export interface FileRouteTypes {
     | '/search'
     | '/shipping-and-returns'
     | '/shop'
+    | '/sitemap-catalogue.xml'
     | '/sitemap.xml'
     | '/terms'
     | '/.well-known/security.txt'
     | '/blog/$slug'
     | '/blog/rss.xml'
+    | '/catalogue/$slug'
     | '/categories/$slug'
     | '/products/$slug'
     | '/blog'
+    | '/catalogue'
+    | '/catalogue/page/$n'
   id:
     | '__root__'
     | '/'
@@ -270,14 +314,18 @@ export interface FileRouteTypes {
     | '/search'
     | '/shipping-and-returns'
     | '/shop'
+    | '/sitemap-catalogue.xml'
     | '/sitemap.xml'
     | '/terms'
     | '/.well-known/security.txt'
     | '/blog/$slug'
     | '/blog/rss.xml'
+    | '/catalogue/$slug'
     | '/categories/$slug'
     | '/products/$slug'
     | '/blog/'
+    | '/catalogue/'
+    | '/catalogue/page/$n'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -294,14 +342,18 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   ShippingAndReturnsRoute: typeof ShippingAndReturnsRoute
   ShopRoute: typeof ShopRoute
+  SitemapCatalogueDotxmlRoute: typeof SitemapCatalogueDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   DotwellKnownSecurityDottxtRoute: typeof DotwellKnownSecurityDottxtRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogRssDotxmlRoute: typeof BlogRssDotxmlRoute
+  CatalogueSlugRoute: typeof CatalogueSlugRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  CatalogueIndexRoute: typeof CatalogueIndexRoute
+  CataloguePageNRoute: typeof CataloguePageNRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -397,6 +449,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap-catalogue.xml': {
+      id: '/sitemap-catalogue.xml'
+      path: '/sitemap-catalogue.xml'
+      fullPath: '/sitemap-catalogue.xml'
+      preLoaderRoute: typeof SitemapCatalogueDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -439,6 +498,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRssDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalogue/': {
+      id: '/catalogue/'
+      path: '/catalogue'
+      fullPath: '/catalogue/'
+      preLoaderRoute: typeof CatalogueIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogue/$slug': {
+      id: '/catalogue/$slug'
+      path: '/catalogue/$slug'
+      fullPath: '/catalogue/$slug'
+      preLoaderRoute: typeof CatalogueSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories/$slug': {
       id: '/categories/$slug'
       path: '/categories/$slug'
@@ -451,6 +524,13 @@ declare module '@tanstack/react-router' {
       path: '/products/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogue/page/$n': {
+      id: '/catalogue/page/$n'
+      path: '/catalogue/page/$n'
+      fullPath: '/catalogue/page/$n'
+      preLoaderRoute: typeof CataloguePageNRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -470,14 +550,18 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   ShippingAndReturnsRoute: ShippingAndReturnsRoute,
   ShopRoute: ShopRoute,
+  SitemapCatalogueDotxmlRoute: SitemapCatalogueDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   DotwellKnownSecurityDottxtRoute: DotwellKnownSecurityDottxtRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogRssDotxmlRoute: BlogRssDotxmlRoute,
+  CatalogueSlugRoute: CatalogueSlugRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  CatalogueIndexRoute: CatalogueIndexRoute,
+  CataloguePageNRoute: CataloguePageNRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

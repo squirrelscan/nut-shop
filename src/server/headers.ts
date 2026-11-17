@@ -1,5 +1,11 @@
 import { applyIndexing, type IndexingMode } from "./indexing";
-import { fault } from "../../faults/runtime";
+import { fault as faultOn } from "../../faults/runtime";
+import type { FaultId } from "../../faults/registry";
+import { isCataloguePath } from "#/catalogue/paths";
+
+/** /catalogue/ is outside the fault system: header faults never apply to it. */
+const fault = (id: FaultId, pathname?: string): boolean =>
+  !(pathname && isCataloguePath(pathname)) && faultOn(id);
 
 const isDev = Boolean(import.meta.env?.DEV);
 
@@ -27,7 +33,7 @@ export function cspValue(): string {
 }
 
 /** Security headers for every response. */
-export function securityHeaders(): Record<string, string> {
+export function securityHeaders(pathname?: string): Record<string, string> {
   const h: Record<string, string> = {
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Permissions-Policy":
@@ -35,16 +41,17 @@ export function securityHeaders(): Record<string, string> {
     "X-Content-Type-Options": "nosniff",
     "Cross-Origin-Opener-Policy": "same-origin",
   };
-  if (!fault("csp-removed")) h["Content-Security-Policy"] = cspValue();
+  if (!fault("csp-removed", pathname)) h["Content-Security-Policy"] = cspValue();
   // HSTS is also added by the Cloudflare zone at the edge, so it cannot be removed from here.
   h["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains";
-  if (!fault("xfo-removed")) h["X-Frame-Options"] = "DENY";
+  if (!fault("xfo-removed", pathname)) h["X-Frame-Options"] = "DENY";
   return h;
 }
 
 /** Cache policy by content type. HTML revalidates; validators are added by the caller. */
 export function cacheControl(contentType: string, pathname: string): string {
-  if (fault("no-cache-validators") && contentType.includes("text/html")) return "no-store";
+  if (fault("no-cache-validators", pathname) && contentType.includes("text/html"))
+    return "no-store";
   if (pathname.startsWith("/_fault/")) return "no-store";
   if (contentType.includes("text/html")) return "public, max-age=0, must-revalidate";
   if (/\.(xml|txt)$/.test(pathname)) return "public, max-age=3600, must-revalidate";
@@ -52,8 +59,8 @@ export function cacheControl(contentType: string, pathname: string): string {
   return "public, max-age=3600, must-revalidate";
 }
 
-export const wantsValidators = (contentType: string): boolean =>
-  !(fault("no-cache-validators") && contentType.includes("text/html"));
+export const wantsValidators = (contentType: string, pathname?: string): boolean =>
+  !(fault("no-cache-validators", pathname) && contentType.includes("text/html"));
 
 async function etagOf(buf: ArrayBuffer): Promise<string> {
   const digest = await crypto.subtle.digest("SHA-256", buf);
@@ -71,7 +78,8 @@ export async function finalize(
   mode: IndexingMode = "auditor-only",
 ): Promise<Response> {
   const headers = new Headers(response.headers);
-  for (const [k, v] of Object.entries(securityHeaders())) headers.set(k, v);
+  const { pathname } = new URL(request.url);
+  for (const [k, v] of Object.entries(securityHeaders(pathname))) headers.set(k, v);
   applyIndexing(
     headers,
     mode,
@@ -79,13 +87,12 @@ export async function finalize(
     request.headers.get("x-squirrel-audit"),
   );
   const ct = headers.get("content-type") ?? "";
-  const { pathname } = new URL(request.url);
   headers.set("Cache-Control", cacheControl(ct, pathname));
   const cacheable =
     request.method === "GET" &&
     response.status === 200 &&
     !pathname.startsWith("/_fault/") &&
-    wantsValidators(ct);
+    wantsValidators(ct, pathname);
   if (!cacheable)
     return new Response(request.method === "HEAD" ? null : response.body, {
       status: response.status,
