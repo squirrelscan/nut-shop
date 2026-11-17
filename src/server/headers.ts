@@ -75,7 +75,7 @@ export async function finalize(
   request: Request,
   response: Response,
   lastModified: string,
-  mode: IndexingMode = "auditor-only",
+  mode: IndexingMode = "crawlers-only",
 ): Promise<Response> {
   const headers = new Headers(response.headers);
   const { pathname } = new URL(request.url);

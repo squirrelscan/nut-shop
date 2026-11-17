@@ -49,16 +49,49 @@ describe("INDEXING modes", () => {
     }
   });
 
-  test("default and unknown values fall back to auditor-only", () => {
-    expect(parseIndexingMode(undefined)).toBe("auditor-only");
-    expect(parseIndexingMode("")).toBe("auditor-only");
-    expect(parseIndexingMode("yes")).toBe("auditor-only");
+  test("crawlers-only: noindex for crawlers and empty UAs, not for browsers or the auditor", async () => {
+    const crawlers = [
+      GOOGLE,
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0 Safari/537.36",
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.1; +https://openai.com/gptbot",
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)",
+      "Mozilla/5.0 (compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)",
+      "CCBot/2.0 (https://commoncrawl.org/faq/)",
+      "SomeNewCrawler/0.1",
+      "random-spider",
+      null,
+      "",
+    ];
+    for (const ua of crawlers) {
+      expect((await send("crawlers-only", ua)).headers.get("x-robots-tag"), String(ua)).toBe(
+        "noindex, nofollow",
+      );
+    }
+    const visitors = [
+      BROWSER,
+      AUDITOR,
+      "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0",
+    ];
+    for (const ua of visitors) {
+      expect((await send("crawlers-only", ua)).headers.get("x-robots-tag"), String(ua)).toBeNull();
+    }
+    expect(
+      (await send("crawlers-only", GOOGLE, "nutshop-demo")).headers.get("x-robots-tag"),
+    ).toBeNull();
+    expect((await send("crawlers-only", BROWSER)).headers.get("vary")).toContain("User-Agent");
+  });
+
+  test("default and unknown values fall back to crawlers-only", () => {
+    expect(parseIndexingMode(undefined)).toBe("crawlers-only");
+    expect(parseIndexingMode("")).toBe("crawlers-only");
+    expect(parseIndexingMode("yes")).toBe("crawlers-only");
+    expect(parseIndexingMode("auditor-only")).toBe("auditor-only");
     expect(parseIndexingMode("off")).toBe("off");
     expect(parseIndexingMode("on")).toBe("on");
   });
 
   test("never more indexable to third parties than the default", () => {
-    for (const mode of ["off", "auditor-only"] as const)
+    for (const mode of ["off", "auditor-only", "crawlers-only"] as const)
       expect(robotsTag(mode, GOOGLE)).not.toBeNull();
   });
 
