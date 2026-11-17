@@ -260,3 +260,14 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-16T20:38:47.624Z off open-users-api @3ef5d36
 - 2026-11-16T20:38:47.635Z off json-password-field @3ef5d36
 - 2026-11-16T20:38:47.646Z reset (3 cleared) @3ef5d36
+- 2026-11-17T03:43:05.542Z on third-party-session-replay-on-cart @ab74acd
+- 2026-11-17T03:43:05.566Z on third-party-tag-managers-on-cart @ab74acd
+- 2026-11-17T03:43:05.589Z on third-party-ab-test-on-cart @ab74acd
+- 2026-11-17T03:43:05.610Z on third-party-ad-and-tracking-vendors-on-cart @ab74acd
+- 2026-11-17T03:43:05.632Z on third-party-vulnerable-libraries-on-cart @ab74acd
+- 2026-11-17T03:43:05.652Z on third-party-conflicting-library-versions-on-cart @ab74acd
+- 2026-11-17T03:43:05.672Z on third-party-vendor-sprawl-home @ab74acd
+- 2026-11-17T03:43:05.693Z on third-party-proxied-script-home @ab74acd
+- 2026-11-17T03:43:05.715Z on third-party-unknown-host-script-home @ab74acd
+- 2026-11-17T03:43:05.742Z on third-party-reported-compromised-vendor-home @ab74acd
+- 2026-11-17T03:43:05.770Z on third-party-script-on-cart @ab74acd

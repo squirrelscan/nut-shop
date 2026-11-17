@@ -1,1 +1,13 @@
-[]
+[
+  "third-party-session-replay-on-cart",
+  "third-party-tag-managers-on-cart",
+  "third-party-ab-test-on-cart",
+  "third-party-ad-and-tracking-vendors-on-cart",
+  "third-party-vulnerable-libraries-on-cart",
+  "third-party-conflicting-library-versions-on-cart",
+  "third-party-vendor-sprawl-home",
+  "third-party-proxied-script-home",
+  "third-party-unknown-host-script-home",
+  "third-party-reported-compromised-vendor-home",
+  "third-party-script-on-cart"
+]
