@@ -50,6 +50,15 @@ export function faultRoute(request: Request): Response | Promise<Response> | nul
             headers: { "content-type": "text/javascript; charset=utf-8" },
           })
         : new Response("Not found\n", { status: 404 });
+    case "/_fault/proxy.js":
+      // Stand-in for a script proxy: the vendor target is in `?url=`, the body is a comment.
+      return new Response(
+        "/* stand-in for a vendor script served from the shop's own origin */\n",
+        {
+          status: 200,
+          headers: { "content-type": "text/javascript; charset=utf-8" },
+        },
+      );
     case "/_fault/big-image.svg":
       return new Response(bigSvg(), { status: 200, headers: { "content-type": "image/svg+xml" } });
     default:

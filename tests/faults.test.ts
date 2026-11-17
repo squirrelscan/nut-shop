@@ -8,6 +8,12 @@ import { finalize, securityHeaders } from "#/server/headers";
 import { htmlLang } from "#/lib/html";
 import { categoryHead, homeHead, noindexHead, postHead, productHead, staticHead } from "#/seo/head";
 import { robotsTxt, sitemapXml } from "#/seo/sitemap";
+import {
+  PROXIED_SCRIPT_PATH,
+  THIRD_PARTY_GROUPS,
+  thirdPartyLoads,
+  thirdPartyScriptOrigins,
+} from "#/seo/third-party-faults";
 import { fakeSecretKey, fakeTokenValue } from "#/seo/fake-secret";
 import { fakeAccountPassword, fakeApiKey, fakeDbPassword, probeRoute } from "#/seo/fake-probe-data";
 import {
@@ -20,6 +26,11 @@ import {
   product,
   titleOf,
 } from "./helpers";
+
+const cartHead = () => {
+  const head = noindexHead("Your cart: demo basket", "/cart");
+  return JSON.stringify([head.links, head.scripts]);
+};
 
 type Probe = { render: () => string; on: (out: string) => boolean };
 const has = (needle: string | RegExp) => (out: string) =>
@@ -187,6 +198,40 @@ const probes: Record<FaultId, Probe> = {
     render: () => pages.staticPage("about"),
     on: has('fetch("/api/account")'),
   },
+  "third-party-session-replay-on-cart": {
+    render: cartHead,
+    on: has("https://edge.fullstory.com/"),
+  },
+  "third-party-tag-managers-on-cart": { render: cartHead, on: has("https://assets.adobedtm.com/") },
+  "third-party-ab-test-on-cart": { render: cartHead, on: has("https://cdn.optimizely.com/js/") },
+  "third-party-ad-and-tracking-vendors-on-cart": {
+    render: cartHead,
+    on: has('"rel":"preload","as":"script","href":"https://c.amazon-adsystem.com/'),
+  },
+  "third-party-vulnerable-libraries-on-cart": {
+    render: cartHead,
+    on: has("https://code.jquery.com/jquery-1.11.3.min.js"),
+  },
+  "third-party-conflicting-library-versions-on-cart": {
+    render: cartHead,
+    on: has("https://cdn.jsdelivr.net/npm/jquery@3.7.1/"),
+  },
+  "third-party-vendor-sprawl-home": {
+    render: () => json(homeHead().scripts),
+    on: has("https://connect.facebook.net/en_US/fbevents.js"),
+  },
+  "third-party-proxied-script-home": {
+    render: () => json(homeHead().scripts),
+    on: has(`${PROXIED_SCRIPT_PATH}?url=https%3A%2F%2Fplausible.io%2F`),
+  },
+  "third-party-unknown-host-script-home": {
+    render: () => json(homeHead().scripts),
+    on: has('"src":"https://esm.sh/is-number@7.0.0"'),
+  },
+  "third-party-reported-compromised-vendor-home": {
+    render: () => json(homeHead().links),
+    on: has('"rel":"preload","as":"script","href":"https://cdn.debugbear.com/'),
+  },
 };
 
 describe("every fault changes the output it claims to", () => {
@@ -335,5 +380,100 @@ describe("probe faults (exposed-env-file, open-users-api, json-password-field)",
       const r = Bun.spawnSync(["git", "grep", "--untracked", "-nF", "-e", v]);
       expect(r.stdout.toString(), v).toBe("");
     }
+  });
+});
+
+describe("third-party script faults", () => {
+  const ids = THIRD_PARTY_GROUPS.map((g) => g.id);
+  const scriptSrc = (path: string) =>
+    securityHeaders(path)
+      ["Content-Security-Policy"]!.split("; ")
+      .find((d) => d.startsWith("script-src "))!;
+
+  test("baseline: no third-party load and an unchanged CSP on every page", () => {
+    withFaults([], () => {
+      for (const path of ["/", "/cart", "/about"]) {
+        expect(thirdPartyLoads(path)).toEqual([]);
+        expect(thirdPartyScriptOrigins(path)).toEqual([]);
+      }
+      expect(scriptSrc("/cart")).toBe(scriptSrc("/about"));
+    });
+  });
+
+  test("a fault loads only on its own page, and the CSP allows exactly its origins there", () => {
+    for (const group of THIRD_PARTY_GROUPS) {
+      withFaults([group.id], () => {
+        const other = group.path === "/" ? "/cart" : "/";
+        expect(thirdPartyLoads(other)).toEqual([]);
+        expect(scriptSrc(other)).not.toMatch(/hotjar|jquery|facebook|debugbear|esm\.sh/);
+        const csp = scriptSrc(group.path);
+        for (const load of group.loads) {
+          if (load.src.startsWith("/")) continue;
+          expect(csp.split(" ")).toContain(new URL(load.src).origin);
+        }
+      });
+    }
+  });
+
+  test("only script-src changes: connect-src, img-src and default-src stay as in the baseline", () => {
+    const rest = (csp: string) =>
+      csp
+        .split("; ")
+        .filter((d) => !d.startsWith("script-src "))
+        .join("; ");
+    const off = withFaults([], () => securityHeaders("/")["Content-Security-Policy"]!);
+    const on = withFaults(ids, () => securityHeaders("/")["Content-Security-Policy"]!);
+    expect(on).not.toBe(off);
+    expect(rest(on)).toBe(rest(off));
+  });
+
+  test("the existing jsDelivr cart fault is allowed by the cart CSP while it is on", () => {
+    expect(withFaults([], () => scriptSrc("/cart"))).not.toContain("https://cdn.jsdelivr.net");
+    expect(withFaults(["third-party-script-on-cart"], () => scriptSrc("/cart"))).toContain(
+      "https://cdn.jsdelivr.net",
+    );
+  });
+
+  test("every third-party URL is https on a vendor host, or the first-party proxy path", () => {
+    for (const group of THIRD_PARTY_GROUPS) {
+      for (const load of group.loads) {
+        expect(load.src.startsWith("https://") || load.src.startsWith(PROXIED_SCRIPT_PATH)).toBe(
+          true,
+        );
+      }
+    }
+  });
+
+  test("a URL two faults share is loaded once", () => {
+    withFaults(
+      [
+        "third-party-vulnerable-libraries-on-cart",
+        "third-party-conflicting-library-versions-on-cart",
+      ],
+      () => {
+        const srcs = thirdPartyLoads("/cart").map((l) => l.src);
+        expect(new Set(srcs).size).toBe(srcs.length);
+        expect(srcs.filter((u) => u.includes("jquery")).length).toBe(2);
+      },
+    );
+  });
+
+  test("the home page fault reaches more than 25 distinct script hosts", () => {
+    const hosts = new Set(
+      THIRD_PARTY_GROUPS.find((g) => g.id === "third-party-vendor-sprawl-home")!.loads.map(
+        (l) => new URL(l.src).hostname,
+      ),
+    );
+    expect(hosts.size).toBeGreaterThan(25);
+  });
+
+  test("the proxy stand-in is first-party JavaScript", async () => {
+    const r = (await faultRoute(
+      new Request(
+        `http://127.0.0.1:4210${PROXIED_SCRIPT_PATH}?url=https%3A%2F%2Fplausible.io%2Fjs%2Fscript.js`,
+      ),
+    ))!;
+    expect(r.status).toBe(200);
+    expect(r.headers.get("content-type")).toContain("text/javascript");
   });
 });

@@ -2,6 +2,7 @@ import { applyIndexing, type IndexingMode } from "./indexing";
 import { fault as faultOn } from "../../faults/runtime";
 import type { FaultId } from "../../faults/registry";
 import { isCataloguePath } from "#/catalogue/paths";
+import { thirdPartyScriptOrigins } from "#/seo/third-party-faults";
 
 /** /catalogue/ is outside the fault system: header faults never apply to it. */
 const fault = (id: FaultId, pathname?: string): boolean =>
@@ -13,11 +14,12 @@ const isDev = Boolean(import.meta.env?.DEV);
 export const CF_BEACON_SCRIPT = "https://static.cloudflareinsights.com";
 export const CF_BEACON_CONNECT = "https://cloudflareinsights.com";
 
-export function cspValue(): string {
+/** `extraScriptSrc`: origins a third-party script fault loads on this page (empty in the baseline). */
+export function cspValue(extraScriptSrc: readonly string[] = []): string {
   return [
     "default-src 'self'",
     // TanStack Start inlines its hydration/bootstrap scripts, so inline is required here.
-    `script-src 'self' 'unsafe-inline' ${CF_BEACON_SCRIPT}`,
+    ["script-src 'self' 'unsafe-inline'", CF_BEACON_SCRIPT, ...extraScriptSrc].join(" "),
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self'",
@@ -41,7 +43,10 @@ export function securityHeaders(pathname?: string): Record<string, string> {
     "X-Content-Type-Options": "nosniff",
     "Cross-Origin-Opener-Policy": "same-origin",
   };
-  if (!fault("csp-removed", pathname)) h["Content-Security-Policy"] = cspValue();
+  if (!fault("csp-removed", pathname))
+    h["Content-Security-Policy"] = cspValue(
+      pathname && !isCataloguePath(pathname) ? thirdPartyScriptOrigins(pathname) : [],
+    );
   // HSTS is also added by the Cloudflare zone at the edge, so it cannot be removed from here.
   h["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains";
   if (!fault("xfo-removed", pathname)) h["X-Frame-Options"] = "DENY";

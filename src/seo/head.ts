@@ -9,6 +9,7 @@ import {
   inlineTokenScript,
   leakedConfigScript,
 } from "./fake-secret";
+import { thirdPartyPreloads, thirdPartyScripts } from "./third-party-faults";
 import {
   articleNode,
   breadcrumbNode,
@@ -21,8 +22,15 @@ import {
 } from "./jsonld";
 
 export type HeadMeta = Record<string, string>;
-export type HeadLink = { rel: string; href: string; type?: string; sizes?: string; title?: string };
-export type HeadScript = { type?: string; children?: string; src?: string };
+export type HeadLink = {
+  rel: string;
+  href: string;
+  type?: string;
+  sizes?: string;
+  title?: string;
+  as?: string;
+};
+export type HeadScript = { type?: string; children?: string; src?: string; async?: boolean };
 export type HeadResult = { meta: HeadMeta[]; links: HeadLink[]; scripts: HeadScript[] };
 
 export type HeadInput = {
@@ -98,6 +106,9 @@ export function buildHead(i: HeadInput): HeadResult {
     : [{ type: "application/ld+json", children: graph(i.path, i.nodes ?? [], { orgId: i.orgId }) }];
   if (fault("slow-blocking-script") && i.path === "/") scripts.push({ src: "/_fault/slow.js" });
   scripts.push(...(i.extraScripts ?? []));
+  // Third-party script faults (src/seo/third-party-faults.ts): empty unless one is on for this path.
+  links.push(...thirdPartyPreloads(i.path));
+  scripts.push(...thirdPartyScripts(i.path));
   return { meta, links, scripts };
 }
 
