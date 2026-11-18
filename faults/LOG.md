@@ -291,3 +291,4 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-18T22:03:46.999Z on title-too-long @d70489a
 - 2026-11-18T22:03:47.020Z off html-lang-missing @d70489a
 - 2026-11-18T22:03:47.041Z off h1-missing @d70489a
+- 2026-11-18T22:48:51.905Z on low-contrast-text @75b73a8

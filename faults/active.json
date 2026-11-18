@@ -13,5 +13,6 @@
   "broken-external-404",
   "third-party-new-vendor-home",
   "leaked-secret-fake",
-  "title-too-long"
+  "title-too-long",
+  "low-contrast-text"
 ]
