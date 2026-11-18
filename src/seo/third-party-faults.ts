@@ -134,6 +134,7 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
       fetchOnly("https://snap.licdn.com/li.lms-analytics/insight.min.js"),
       fetchOnly("https://cloud.umami.is/script.js"),
       fetchOnly("https://cdn.userway.org/widget.js"),
+      fetchOnly("https://embed.tawk.to/nutshopdemo0/default"),
     ],
   },
 ];
