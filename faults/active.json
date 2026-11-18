@@ -11,5 +11,6 @@
   "third-party-reported-compromised-vendor-home",
   "third-party-script-on-cart",
   "broken-external-404",
-  "inline-script-with-token"
+  "inline-script-with-token",
+  "third-party-new-vendor-home"
 ]

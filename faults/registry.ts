@@ -597,6 +597,17 @@ export const FAULTS = [
     confidence: C,
     severity: "critical",
   },
+  {
+    id: "third-party-new-vendor-home",
+    category: "security",
+    title: "A vendor the site has never loaded before appears on the home page",
+    breaks:
+      "Home page requests the LinkedIn Insight Tag script (snap.licdn.com) with a preload link, never executed. The vendor is not in the site's third-party baseline, so the next scheduled audit should raise a third_party_added alert (squirrelscan notify loop).",
+    pages: ["/"],
+    expectedRule: "third-party/vendor-count",
+    confidence: C,
+    severity: "low",
+  },
 ] as const satisfies readonly FaultDef[];
 
 export type FaultId = (typeof FAULTS)[number]["id"];

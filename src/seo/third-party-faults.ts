@@ -127,6 +127,11 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
     path: "/",
     loads: [fetchOnly("https://cdn.debugbear.com/nutshopdemo0.js")],
   },
+  {
+    id: "third-party-new-vendor-home",
+    path: "/",
+    loads: [fetchOnly("https://snap.licdn.com/li.lms-analytics/insight.min.js")],
+  },
 ];
 
 /** The existing single-script fault (head.ts loads it); listed here so the CSP lets it through. */

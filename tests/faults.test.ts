@@ -232,6 +232,10 @@ const probes: Record<FaultId, Probe> = {
     render: () => json(homeHead().links),
     on: has('"rel":"preload","as":"script","href":"https://cdn.debugbear.com/'),
   },
+  "third-party-new-vendor-home": {
+    render: () => json(homeHead().links),
+    on: has('"rel":"preload","as":"script","href":"https://snap.licdn.com/'),
+  },
 };
 
 describe("every fault changes the output it claims to", () => {
