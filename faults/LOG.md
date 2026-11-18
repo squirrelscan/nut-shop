@@ -275,3 +275,4 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-18T08:37:02.864Z on broken-external-404 @6c1059c
 - 2026-11-18T11:44:39.225Z off inline-script-with-token @3b06808
 - 2026-11-18T13:41:42.007Z on inline-script-with-token @b2ed91b
+- 2026-11-18T15:13:50.223Z off inline-script-with-token @a77244f
