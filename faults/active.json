@@ -12,5 +12,6 @@
   "third-party-script-on-cart",
   "broken-external-404",
   "third-party-new-vendor-home",
-  "h1-missing"
+  "h1-missing",
+  "html-lang-missing"
 ]
