@@ -102,7 +102,7 @@ export function HomePage() {
           <div className="hero-foot">
             <p
               className="lead"
-              style={fault("low-contrast-text") ? { color: "#b9b9b9" } : undefined}
+              style={fault("low-contrast-text") ? { color: "#b9b9b9", backgroundColor: "#fbf4e6" } : undefined}
             >
               Raw and roasted nuts, spreads ground in small jars, and boxes ready to give.
             </p>

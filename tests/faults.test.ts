@@ -183,7 +183,10 @@ const probes: Record<FaultId, Probe> = {
   },
   "slow-blocking-script": { render: () => json(homeHead().scripts), on: has("/_fault/slow.js") },
   "html-lang-missing": { render: () => String(htmlLang()), on: has("undefined") },
-  "low-contrast-text": { render: () => pages.home(), on: has("#b9b9b9") },
+  "low-contrast-text": {
+    render: () => pages.home(),
+    on: (html: string) => html.includes("color:#b9b9b9") && html.includes("background-color:#fbf4e6"),
+  },
   "leaked-secret-fake": {
     render: () => json(productHead(product("crunchy-peanut-butter")).scripts),
     on: has(fakeSecretKey()),

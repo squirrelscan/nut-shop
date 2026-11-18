@@ -427,7 +427,7 @@ export const FAULTS = [
     id: "low-contrast-text",
     category: "a11y",
     title: "Low-contrast text",
-    breaks: "Home hero tagline rendered #b9b9b9 on near-white.",
+    breaks: "Home hero tagline rendered #b9b9b9 on the #fbf4e6 page cream, both set inline so the audit can measure the pair (the rule skips stylesheet backgrounds).",
     pages: ["/"],
     expectedRule: "a11y/color-contrast",
     confidence: C,
