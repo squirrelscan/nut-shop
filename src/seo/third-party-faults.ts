@@ -132,8 +132,8 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
     path: "/",
     loads: [
       fetchOnly("https://snap.licdn.com/li.lms-analytics/insight.min.js"),
-      fetchOnly("https://scripts.simpleanalyticscdn.com/latest.js"),
       fetchOnly("https://cloud.umami.is/script.js"),
+      fetchOnly("https://cdn.userway.org/widget.js"),
     ],
   },
 ];

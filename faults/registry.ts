@@ -602,7 +602,7 @@ export const FAULTS = [
     category: "security",
     title: "A vendor the site has never loaded before appears on the home page",
     breaks:
-      "Home page requests the LinkedIn Insight Tag (snap.licdn.com), Simple Analytics (scripts.simpleanalyticscdn.com) and Umami (cloud.umami.is) scripts with preload links, never executed. Vendors not yet in the site's third-party baseline raise a third_party_added alert on the next scheduled audit (squirrelscan notify loop).",
+      "Home page requests the LinkedIn Insight Tag (snap.licdn.com), Umami (cloud.umami.is) and UserWay (cdn.userway.org) scripts with preload links, never executed (Simple Analytics was removed in loop C5 to test a vendor going away). Vendors not yet in the site's third-party baseline raise a third_party_added alert on the next scheduled audit (squirrelscan notify loop).",
     pages: ["/"],
     expectedRule: "third-party/vendor-count",
     confidence: C,
