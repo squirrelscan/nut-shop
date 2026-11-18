@@ -271,3 +271,5 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-17T03:43:05.715Z on third-party-unknown-host-script-home @ab74acd
 - 2026-11-17T03:43:05.742Z on third-party-reported-compromised-vendor-home @ab74acd
 - 2026-11-17T03:43:05.770Z on third-party-script-on-cart @ab74acd
+- 2026-11-18T08:37:02.838Z on inline-script-with-token @6c1059c
+- 2026-11-18T08:37:02.864Z on broken-external-404 @6c1059c
