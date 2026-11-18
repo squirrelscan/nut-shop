@@ -279,3 +279,6 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-18T15:20:07.606Z on inline-script-with-token @318940d
 - 2026-11-18T17:10:07.861Z on third-party-new-vendor-home @346c7a9
 - 2026-11-18T17:15:02.846Z on h1-missing @6ae7c1c
+- 2026-11-18T20:06:46.083Z off h1-missing @901379e
+- 2026-11-18T20:06:46.104Z on image-missing-alt @901379e
+- 2026-11-18T20:06:46.127Z off inline-script-with-token @901379e

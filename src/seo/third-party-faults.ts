@@ -130,7 +130,10 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
   {
     id: "third-party-new-vendor-home",
     path: "/",
-    loads: [fetchOnly("https://snap.licdn.com/li.lms-analytics/insight.min.js")],
+    loads: [
+      fetchOnly("https://snap.licdn.com/li.lms-analytics/insight.min.js"),
+      fetchOnly("https://scripts.simpleanalyticscdn.com/latest.js"),
+    ],
   },
 ];
 

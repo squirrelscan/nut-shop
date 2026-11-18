@@ -11,7 +11,6 @@
   "third-party-reported-compromised-vendor-home",
   "third-party-script-on-cart",
   "broken-external-404",
-  "inline-script-with-token",
   "third-party-new-vendor-home",
-  "h1-missing"
+  "image-missing-alt"
 ]

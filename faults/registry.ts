@@ -602,7 +602,7 @@ export const FAULTS = [
     category: "security",
     title: "A vendor the site has never loaded before appears on the home page",
     breaks:
-      "Home page requests the LinkedIn Insight Tag script (snap.licdn.com) with a preload link, never executed. The vendor is not in the site's third-party baseline, so the next scheduled audit should raise a third_party_added alert (squirrelscan notify loop).",
+      "Home page requests the LinkedIn Insight Tag (snap.licdn.com) and Simple Analytics (scripts.simpleanalyticscdn.com) scripts with preload links, never executed. Vendors not yet in the site's third-party baseline raise a third_party_added alert on the next scheduled audit (squirrelscan notify loop).",
     pages: ["/"],
     expectedRule: "third-party/vendor-count",
     confidence: C,
