@@ -12,5 +12,13 @@
   // off | auditor-only | crawlers-only (default) | on. See README "Indexing".
   "vars": { "INDEXING": "crawlers-only" },
   // `wrangler deploy` prunes any custom domain missing from this list.
-  "routes": [{ "pattern": "nutshop.squirrelscan.com", "custom_domain": true }]
+  "routes": [
+    { "pattern": "nutshop.squirrelscan.com", "custom_domain": true },
+    // squirrelscan/repo#4870: internal-only TLS fixture hosts. The cloud TLS probe answers these with a
+    // mocked certificate for internal orgs only (expiring in 5 days, expired, hostname mismatch); the
+    // real certificate here is a normal valid one. Same site content, no redirect to the main host.
+    { "pattern": "tls-expiring-5d.nutshop.squirrelscan.com", "custom_domain": true },
+    { "pattern": "tls-expired.nutshop.squirrelscan.com", "custom_domain": true },
+    { "pattern": "tls-mismatch.nutshop.squirrelscan.com", "custom_domain": true }
+  ]
 }
