@@ -297,3 +297,4 @@ One line per toggle: ISO time, action, fault id. Used to measure time-to-detect 
 - 2026-11-19T03:15:24.813Z on broken-link-gone-410 @a0e06c7
 - 2026-11-19T03:15:24.841Z on broken-external-dead-domain @a0e06c7
 - 2026-11-19T03:15:24.866Z on server-error-page @a0e06c7
+- 2026-11-19T22:45:53.815Z on low-contrast-text @cb4e39f

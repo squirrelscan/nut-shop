@@ -17,5 +17,6 @@
   "broken-internal-link",
   "broken-link-gone-410",
   "broken-external-dead-domain",
-  "server-error-page"
+  "server-error-page",
+  "low-contrast-text"
 ]
