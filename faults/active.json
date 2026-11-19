@@ -13,5 +13,9 @@
   "broken-external-404",
   "third-party-new-vendor-home",
   "leaked-secret-fake",
-  "title-too-long"
+  "title-too-long",
+  "broken-internal-link",
+  "broken-link-gone-410",
+  "broken-external-dead-domain",
+  "server-error-page"
 ]
