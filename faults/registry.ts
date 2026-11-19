@@ -36,7 +36,7 @@ export const FAULTS = [
     id: "broken-internal-link",
     category: "links",
     title: "Link to a product slug that does not exist",
-    breaks: "Adds a related-products link to /products/almond-brittle-deluxe, which 404s.",
+    breaks: "Adds related-products links to /products/almond-brittle-deluxe and /products/pecan-praline-gone (the second added 11-19 for the #4917 broken-link alert re-test), both 404.",
     pages: ["/products/raw-almonds"],
     expectedRule: "links/broken-links",
     confidence: C,

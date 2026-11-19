@@ -466,6 +466,8 @@ export function ProductPage({ product: p }: { product: Product }) {
         {fault("broken-internal-link") && p.slug === "raw-almonds" ? (
           <p className="section-tight">
             <a href="/products/almond-brittle-deluxe">Almond brittle deluxe</a>
+            {" · "}
+            <a href="/products/pecan-praline-gone">Pecan praline</a>
           </p>
         ) : null}
       </section>
