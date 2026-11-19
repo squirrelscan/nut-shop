@@ -137,6 +137,8 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
       fetchOnly("https://embed.tawk.to/nutshopdemo0/default"),
       // #4929 live check: a NEW session-replay vendor, run as a script (no project key: it records nothing)
       s("https://web-sdk.smartlook.com/recorder.js"),
+      // #4944 live check: another NEW session-replay vendor (no site id: it records nothing)
+      s("https://cdn.inspectlet.com/inspectlet.js"),
     ],
   },
 ];

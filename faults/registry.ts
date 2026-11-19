@@ -602,7 +602,7 @@ export const FAULTS = [
     category: "security",
     title: "A vendor the site has never loaded before appears on the home page",
     breaks:
-      "Home page requests the LinkedIn Insight Tag (snap.licdn.com), Umami (cloud.umami.is) and UserWay (cdn.userway.org) and Smartlook (web-sdk.smartlook.com/recorder.js, run as a script with no project key, added 11-19 for the #4929 house-plays live check: a new session-replay vendor) and Tawk.to (embed.tawk.to, added after #4891 to check the vendor identity email: icon, what it is, homepage) scripts with preload links, never executed (Simple Analytics was removed in loop C5 to test a vendor going away). Vendors not yet in the site's third-party baseline raise a third_party_added alert on the next scheduled audit (squirrelscan notify loop).",
+      "Home page requests the LinkedIn Insight Tag (snap.licdn.com), Umami (cloud.umami.is) and UserWay (cdn.userway.org) and Inspectlet (cdn.inspectlet.com/inspectlet.js, no site id, added 11-19 for the #4944 rule-5 live check) and Smartlook (web-sdk.smartlook.com/recorder.js, run as a script with no project key, added 11-19 for the #4929 house-plays live check: a new session-replay vendor) and Tawk.to (embed.tawk.to, added after #4891 to check the vendor identity email: icon, what it is, homepage) scripts with preload links, never executed (Simple Analytics was removed in loop C5 to test a vendor going away). Vendors not yet in the site's third-party baseline raise a third_party_added alert on the next scheduled audit (squirrelscan notify loop).",
     pages: ["/"],
     expectedRule: "third-party/vendor-count",
     confidence: C,
