@@ -135,6 +135,8 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
       fetchOnly("https://cloud.umami.is/script.js"),
       fetchOnly("https://cdn.userway.org/widget.js"),
       fetchOnly("https://embed.tawk.to/nutshopdemo0/default"),
+      // #4929 live check: a NEW session-replay vendor, run as a script (no project key: it records nothing)
+      s("https://web-sdk.smartlook.com/recorder.js"),
     ],
   },
 ];
