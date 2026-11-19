@@ -139,6 +139,8 @@ export const THIRD_PARTY_GROUPS: readonly Group[] = [
       s("https://web-sdk.smartlook.com/recorder.js"),
       // #4944 live check: another NEW session-replay vendor (no site id: it records nothing)
       s("https://cdn.inspectlet.com/inspectlet.js"),
+      // #4956 live check: another NEW session-replay vendor (placeholder id: it records nothing)
+      s("https://cdn.pagesense.io/js/nutshopdemo0/0.js"),
     ],
   },
 ];
