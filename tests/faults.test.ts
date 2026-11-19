@@ -44,7 +44,7 @@ const json = (v: unknown) => JSON.stringify(v);
 const probes: Record<FaultId, Probe> = {
   "broken-internal-link": {
     render: () => pages.product("raw-almonds"),
-    on: (html: string) => html.includes("/products/almond-brittle-deluxe") && html.includes("/products/pecan-praline-gone") && html.includes("/products/macadamia-crunch-gone"),
+    on: (html: string) => html.includes("/products/almond-brittle-deluxe") && html.includes("/products/pecan-praline-gone") && html.includes("/products/macadamia-crunch-gone") && html.includes("/products/cashew-cluster-gone"),
   },
   "broken-link-gone-410": {
     render: () => pages.staticPage("about"),

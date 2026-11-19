@@ -470,6 +470,8 @@ export function ProductPage({ product: p }: { product: Product }) {
             <a href="/products/pecan-praline-gone">Pecan praline</a>
             {" · "}
             <a href="/products/macadamia-crunch-gone">Macadamia crunch</a>
+            {" · "}
+            <a href="/products/cashew-cluster-gone">Cashew cluster</a>
           </p>
         ) : null}
       </section>

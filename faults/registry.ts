@@ -36,7 +36,7 @@ export const FAULTS = [
     id: "broken-internal-link",
     category: "links",
     title: "Link to a product slug that does not exist",
-    breaks: "Adds related-products links to /products/almond-brittle-deluxe, /products/pecan-praline-gone and /products/macadamia-crunch-gone (the second and third added 11-19 for the #4917 broken-link alert re-tests, the third for the post-#4934 run), all 404.",
+    breaks: "Adds related-products links to /products/almond-brittle-deluxe, /products/pecan-praline-gone, /products/macadamia-crunch-gone and /products/cashew-cluster-gone (the second to fourth added 11-19 for the #4917 re-tests: the third for the post-#4934 run, the fourth for the #4936 worse-line run), all 404.",
     pages: ["/products/raw-almonds"],
     expectedRule: "links/broken-links",
     confidence: C,
