@@ -26,6 +26,7 @@ export const STATIC_PAGES: Record<
         body: [
           "The Nut Shop is a demo store run by squirrelscan. It looks and behaves like a small independent shop: product pages, a journal, policies and a cart. It exists so that website audits have something realistic to look at, and so that we can break it on purpose and fix it again.",
           "Nothing here is for sale. There is no checkout, no payment form and no account system. Every product, price, recipe and policy was written for the demo.",
+          "We also use this page to check that audits re-render a page when its content changes.",
         ],
       },
       {
